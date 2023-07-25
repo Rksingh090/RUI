@@ -1,0 +1,173 @@
+/* background and color  */
+.mainBG {
+    background-color: var(--background);
+}
+
+.secondaryBG {
+    background-color: var(--secondaryBg);
+    color: var(--secondaryColor);
+}
+
+.mainIcon {
+    fill: var(--secondaryColor);
+}
+
+.mainText {
+    color: var(--secondaryColor);
+}
+
+/* rounded  */
+.roundSM {
+    border-radius: 4px;
+}
+
+.roundMD {
+    border-radius: 8px;
+}
+
+/* padding  */
+.padSM {
+    padding: var(--padSM);
+}
+
+.padXSM {
+    padding: var(--padXSM);
+}
+
+.padYSM {
+    padding: var(--padYSM);
+}
+
+/* input  */
+.rpInput {
+    padding: 7px 10px;
+    background-color: var(--secondaryBg);
+    color: var(--secondaryColor);
+
+    border: none;
+    outline: none;
+    width: inherit;
+}
+
+.rpInput::placeholder {
+    color: var(--fadeText);
+}
+
+.rpInput.noXPad {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.rpInput.noYPad {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+/* flex  */
+.flexRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.flexRow.gapSM {
+    gap: 5px;
+}
+
+.flexRow.gapMD {
+    gap: 10px;
+}
+
+.flexRow.gapLG {
+    gap: 15px;
+}
+
+.flexCol {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+.flexCol.gapSM {
+    gap: 5px;
+}
+
+.flexCol.gapMD {
+    gap: 10px;
+}
+
+.flexCol.gapLG {
+    gap: 15px;
+}
+
+
+/* icon btns  */
+
+.iconWrap {
+    height: 35px;
+    aspect-ratio: 1;
+    background-color: rgba(255, 255, 255, 0);
+    transition: all .1s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5000px;
+    cursor: pointer;
+}
+
+.iconWrap.effect:hover {
+    background-color: var(--transparentBG);
+}
+
+.iconWrap.effect:active {
+    transform: scale(.87);
+}
+
+
+/* fonts  */
+.fxs {
+    font-size: 10px;
+}
+
+.fsm {
+    font-size: 12px;
+}
+
+.fmd {
+    font-size: 14px;
+}
+
+.flg {
+    font-size: 16px;
+}
+
+.fxl {
+    font-size: 18px;
+}
+
+.fxxl {
+    font-size: 20px;
+}
+
+
+/* font weight  */
+
+.fw300 {
+    font-weight: 300;
+}
+
+.fw400 {
+    font-weight: 400;
+}
+
+.fw500 {
+    font-weight: 500;
+}
+
+.f600 {
+    font-weight: 600;
+}

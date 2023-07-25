@@ -1,0 +1,84 @@
+.baseDevider {
+    display: grid;
+    background-color: var(--secondaryBg);
+    transition: all .3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.Navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: var(--navbarHeight);
+    padding: 0 20px;
+    background-color: var(--background);
+    z-index: 909;
+    box-shadow: var(--shadowSM);
+    position: relative;
+}
+
+/* 
+    .Navbar .navStart {}
+    .Navbar .navMiddle {}
+    .Navbar .navEnd {}
+*/
+
+
+.Sidebar {
+    max-height: var(--bodyHeight);
+    width: 100%;
+    position: relative;
+    box-shadow: var(--shadowSM);
+}
+
+.Sidebar::-webkit-scrollbar{
+    display: none;
+}
+
+.sidebarInner {
+    z-index: 89;
+    width: 100%;
+    min-height: 100%;
+    background-color: var(--background);
+    padding: 10px 0;
+}
+
+.sidebarItem {
+    width: 100%;
+}
+
+.sidebarItem > a {
+    padding: 10px 15px;
+    font-size: 12px;
+    text-decoration: none;
+    width: 100%;
+}
+.Sidebar.close  .sidebarItem > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.sidebarItem > a:hover {
+    background-color: var(--secondaryBg);
+}
+
+.sidebarItem > a > span{
+    white-space: nowrap;
+}
+
+.Sidebar.close .sidebarItem > a >span{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 65px;
+    transform: translate(0, -50%);
+    background-color: var(--background);
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+.Sidebar.close .sidebarItem > a:hover span{
+    display: block;
+}
+
