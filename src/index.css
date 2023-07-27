@@ -7,6 +7,8 @@
     --secondaryBg: #f5f5f5;
     --secondaryColor: #323232;
 
+    --primaryColor: #e65800;
+
     --fadeText: #414141;
 
     --navbarHeight: 60px;
@@ -48,6 +50,7 @@
 
 
 html, * {
+    transition: color 1s ease, background-color 1s ease;
     margin: 0;
     padding: 0;
     box-sizing: border-box;

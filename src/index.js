@@ -5,6 +5,7 @@ import ThemeContext from './context/ThemeContext';
 
 import './index.css';
 import './styles/utils.css';
+import './styles/common.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

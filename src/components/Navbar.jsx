@@ -1,23 +1,24 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useTheme } from '../context/ThemeContext'
 import { CiDark } from 'react-icons/ci';
 import { BsSun } from 'react-icons/bs';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { HiOutlineMenuAlt2 } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
-  const { theme, changeTheme, setMenuOpen } = useTheme();
+  const { theme, changeTheme, changeMenu } = useTheme();
 
 
   return (
     <div className='Navbar'>
 
       <div className="navStart flexRow gapSM">
-        <div className="iconWrap effect" onClick={() => setMenuOpen(prev => !prev)}>
+        <div className="iconWrap effect" onClick={changeMenu}>
           <HiOutlineMenuAlt2 size={22} />
         </div>
-        <h2 className='flg'>RPanel</h2>
+        <Link to="/" className='flg logoIcon'>RPanel</Link>
       </div>
       <div className="navMiddle">
         <div className="secondaryBG padXSM flexRow roundSM">

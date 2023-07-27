@@ -16,6 +16,10 @@
     color: var(--secondaryColor);
 }
 
+.primaryText {
+    color: var(--primaryColor);
+}
+
 /* rounded  */
 .roundSM {
     border-radius: 4px;
@@ -171,3 +175,35 @@
 .f600 {
     font-weight: 600;
 }
+
+
+/* position utils  */
+.corner {
+    position: absolute;
+}
+
+.corner.gapSM {
+    padding: 5px;
+}
+
+.corner.gapMD {
+    padding: 10px;
+}
+
+.corner.topLeft {
+    top: 0;
+    left: 0;
+}
+
+.corner.topRight {
+    top: 0;
+    right: 0;
+}
+
+
+/* with common padding  */
+
+.withPadding {
+    padding: 15px;
+}
+

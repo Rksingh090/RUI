@@ -4,21 +4,24 @@ import Navbar from './Navbar'
 import "./styles/base.css";
 import Sidebar from './Sidebar';
 import { useTheme } from '../context/ThemeContext';
+import { Outlet } from 'react-router-dom';
 
 
 const Base = ({ children }) => {
   const {menuOpen} = useTheme();
+
+  
   return (
     <div>
         <Navbar />
-        <div className='baseDevider' style={{
-          gridTemplateColumns: menuOpen ? 
+        <div className='baseDivider' style={{
+          gridTemplateColumns: menuOpen === "true" ? 
           "200px 1fr" :
           "60px 1fr"
         }}>
             <Sidebar />
-            <div>
-              {children}
+            <div className='minHeightDiv'>
+              <Outlet />
             </div>
         </div>
     </div>

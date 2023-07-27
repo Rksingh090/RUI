@@ -1,5 +1,4 @@
 .homePage {
     width: 100%;
-    min-height: var(--bodyHeight);
     background-color: var(--secondaryBg);
 }

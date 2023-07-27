@@ -1,5 +1,5 @@
 import React from 'react'
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const themeCtx = createContext();
 
@@ -7,25 +7,19 @@ export const useTheme = () => useContext(themeCtx);
 
 const ThemeContext = ({ children }) => {
 
-    const [theme, setTheme] = useState("dark");
-
-    const [menuOpen, setMenuOpen] = useState(true);
-
-    useEffect(() => {
-        let getTheme = localStorage.getItem("theme");
-        if (getTheme && getTheme !== undefined) {
-            setTheme(getTheme);
-        } else {
-            let defaultDark = window.matchMedia('(prefer-color-scheme: dark)').matches;
-            localStorage.setItem("theme", defaultDark ? "dark" : "light")
-            setTheme(defaultDark ? "dark" : "light")
-        }
-    }, [])
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+    const [menuOpen, setMenuOpen] = useState(localStorage.getItem("menuState") || "true");
 
 
     const changeTheme = () => {
         localStorage.setItem("theme", theme === "light" ? "dark" : "light")
         setTheme(prevTheme => prevTheme === "light" ? "dark" : "light")
+    }
+    
+    const changeMenu = () => {
+        let revMenuState = menuOpen === "true" ? "false" : "true"; 
+        localStorage.setItem("menuState", revMenuState);
+        setMenuOpen(revMenuState);
     }
 
     const setNamedTheme = (themeName = "dark") => {
@@ -53,6 +47,7 @@ const ThemeContext = ({ children }) => {
             theme, setTheme, 
             changeTheme,setNamedTheme,
             menuOpen, setMenuOpen, 
+            changeMenu
         }}>
             {children}
         </themeCtx.Provider>

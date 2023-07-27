@@ -1,6 +1,5 @@
-.baseDevider {
+.baseDivider {
     display: grid;
-    background-color: var(--secondaryBg);
     transition: all .3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -16,6 +15,11 @@
     z-index: 909;
     box-shadow: var(--shadowSM);
     position: relative;
+}
+
+.logoIcon {
+    cursor: pointer;
+    text-decoration: none;
 }
 
 /* 
