@@ -29,3 +29,24 @@
     margin-top: 10px;
     width: 70%;
 }
+
+
+/* theme boxes  */
+.allThemeBoxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 80px);
+    gap: 15px;
+}
+
+.themeBox {
+    aspect-ratio: 1;
+    gap: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadowSM);
+    cursor: pointer;
+    border-radius: 545px;
+    font-size: 12px;
+}

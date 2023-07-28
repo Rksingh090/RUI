@@ -1,14 +1,15 @@
-import React from 'react'
-import { useTheme } from '../context/ThemeContext'
-import { CiDark } from 'react-icons/ci';
-import { BsSun } from 'react-icons/bs';
-import { AiOutlineSearch } from 'react-icons/ai';
+import React, { useState } from 'react'
+import { useTheme } from '../context/ThemeContext';
+
+import { AiOutlineBgColors, AiOutlineSearch } from 'react-icons/ai';
 import { HiOutlineMenuAlt2 } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
+import { ValidThemes } from '../constants';
 
 
 const Navbar = () => {
-  const { theme, changeTheme, changeMenu } = useTheme();
+  const { theme, changeMenu, setNamedTheme } = useTheme();
+  const [showThemeSelect, setShowThemeSelect] = useState(false)
 
 
   return (
@@ -27,12 +28,29 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navEnd">
-        <div className="iconWrap effect" onClick={changeTheme}>
-          {theme === "light" ? (
-            <CiDark size={26} />
-          ) : (
-            <BsSun size={22} />
-          )}
+        <div className="navThemeIcon">
+          <div className="iconWrap effect"
+            onClick={() => setShowThemeSelect(prev => !prev)}
+            >
+              <AiOutlineBgColors size={20} />
+          </div>
+          <div className={`navThemeSelect ${showThemeSelect ? "active" : ""}`}>
+            {
+              ValidThemes.map((theme, idx) => (
+                <div
+                  style={{
+                    backgroundColor: theme.background,
+                    "--delay": (idx * .2) + "s"
+                  }}
+                  className='withShadow'
+                  onClick={() => setNamedTheme(theme.title)}
+                  title={theme.title}
+                >
+
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
 

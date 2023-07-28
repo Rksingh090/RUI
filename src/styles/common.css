@@ -81,6 +81,9 @@
     background-color: transparent;
 }
 
+.RInput>input::placeholder {
+    color: var(--secondaryColor);
+}
 
 /* r table  */
 

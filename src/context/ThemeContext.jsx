@@ -15,38 +15,30 @@ const ThemeContext = ({ children }) => {
         localStorage.setItem("theme", theme === "light" ? "dark" : "light")
         setTheme(prevTheme => prevTheme === "light" ? "dark" : "light")
     }
-    
+
     const changeMenu = () => {
-        let revMenuState = menuOpen === "true" ? "false" : "true"; 
+        let revMenuState = menuOpen === "true" ? "false" : "true";
         localStorage.setItem("menuState", revMenuState);
         setMenuOpen(revMenuState);
     }
 
     const setNamedTheme = (themeName = "dark") => {
-        let themeCheck;
-        switch (themeName) {
-            case "light":
-                themeCheck = "light";
-                break;
-            case "dark":
-                themeCheck = "dark";
-                break;
-            case "purple":
-                themeCheck = "purple";
-                break;
-            default:
-                themeCheck = "dark"
-                break;
+        let validThemes = ["light", "dark","gray", "blue", "pink", "teal", "dracula", "orange"];
+        if (validThemes.includes(themeName)) {
+            setTheme(themeName)
+            localStorage.setItem("theme", themeName);
         }
-        setTheme(themeCheck)
-        localStorage.setItem("theme", themeCheck);
+        else {
+            setTheme("dark")
+            localStorage.setItem("theme", "dark");
+        }
     }
 
     return (
         <themeCtx.Provider value={{
-            theme, setTheme, 
-            changeTheme,setNamedTheme,
-            menuOpen, setMenuOpen, 
+            theme, setTheme,
+            changeTheme, setNamedTheme,
+            menuOpen, setMenuOpen,
             changeMenu
         }}>
             {children}
