@@ -1,0 +1,52 @@
+.webBoxes {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+
+
+.webBox {
+    background-color: var(--background);
+    color: var(--color);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.webBox.round {
+    border-radius: 5px;
+}
+.webBox.withShadow {
+    box-shadow: var(--shadowSM );
+}
+
+.webBoxData {
+    display: grid;
+    grid-template-columns: 40px minmax(0,3fr);
+    gap: 10px;
+}
+
+.webBoxData .webImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.webDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.webDetails .appName {
+    margin-bottom: 5px;
+}
+.webDetails .webLine {
+    font-size: 10px;
+    font-weight: 400;
+}

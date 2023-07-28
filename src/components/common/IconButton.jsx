@@ -1,8 +1,8 @@
 import React from 'react'
 
-const IconButton = ({ Icon, text, classList }) => {
+const IconButton = ({ type, Icon, text, classList }) => {
   return (
-    <button className={`iconBtn flexRow center ${classList}`}>
+    <button type={type || "button"} className={`iconBtn flexRow center ${classList || ""}`}>
       {Icon}
       <span>{text}</span>
     </button>

@@ -1,0 +1,75 @@
+/* file header  */
+.fileHeader {
+    /* height: 35px; */
+    background-color: var(--background);
+    color: var(--color);
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.fileHeader .end,
+.fileHeader .start {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.fileHeader .end > button,
+.fileHeader .start > div,
+.fileHeader .start > button {
+    height: 25px;
+}
+
+.fileHeader.round {
+    border-radius: 5px;
+}
+
+.filePath {
+    background-color: var(--secondaryBg);
+}
+
+.filePath input.noStyle {
+    width: 250px;
+}
+
+.fileHeader .start .iconBtn,
+.fileHeader .end .iconBtn {
+    background-color: var(--secondaryBg);
+}
+
+
+/* file boxes  */
+.fileBoxes {
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+
+.fileBox {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 35px minmax(0, 1fr);
+    background-color: var(--background);
+    gap: 5px;
+}
+
+.fileIconCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: var(--secondaryBg);
+}
+.fileDataCol {
+
+}

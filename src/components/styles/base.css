@@ -34,6 +34,7 @@
     width: 100%;
     position: relative;
     box-shadow: var(--shadowSM);
+    z-index: 89;
 }
 
 .Sidebar::-webkit-scrollbar{
@@ -41,7 +42,6 @@
 }
 
 .sidebarInner {
-    z-index: 89;
     width: 100%;
     min-height: 100%;
     background-color: var(--background);

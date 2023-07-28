@@ -67,6 +67,15 @@
     padding-bottom: 0;
 }
 
+/* nostyle input  */
+input.noStyle {
+    border: none;
+    outline: none;
+    height: 100%;
+    background: transparent;
+    padding: 0 5px;
+}
+
 
 /* flex  */
 .flexRow {
@@ -201,9 +210,47 @@
 }
 
 
-/* with common padding  */
+/* with padding  */
 
 .withPadding {
     padding: 15px;
 }
 
+.withShadow {
+    box-shadow: var(--shadowSM);
+}
+
+.hoverToSecondaryBG:hover {
+    background-color: var(--secondaryBg);
+}
+
+
+.withPointer {
+    cursor: pointer;
+}
+
+
+
+/* tab menu with bar  */
+.TabMenu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--background);
+}
+
+.tab {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.tab.active {
+    color: white;
+    background-color: var(--primaryColor);
+}
+
+
+/* links style  */
+.Rlink {
+    text-decoration: none;
+}

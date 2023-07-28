@@ -28,7 +28,8 @@
 /* min height class  */
 .minHeightDiv {
     min-height: var(--bodyHeight);
-    background-color: var(--secondaryBg);;
+    background-color: var(--secondaryBg);
+    ;
 }
 
 
@@ -38,14 +39,101 @@
     color: var(--color);
     border: none;
     outline: none;
-    padding: 8px 12px;
+    padding: 6px 12px;
     cursor: pointer;
 }
 
 .iconBtn.round {
     border-radius: 5px;
 }
+
 .iconBtn.withShadow {
-    box-shadow: var(--shadowSM); 
+    box-shadow: var(--shadowSM);
 }
 
+.iconBtn.primaryBg {
+    background-color: var(--primaryColor);
+}
+
+.iconBtn.primaryBg span {
+    color: white;
+}
+
+
+
+/* custom inut with --background and --color  */
+
+.RInput {
+    background-color: var(--background);
+    color: var(--color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 5px;
+}
+
+.RInput>input {
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 12px;
+    width: 100%;
+}
+
+
+/* r table  */
+
+.RTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--background);
+}
+
+.RTable th {
+    font-weight: 600;
+    background-color: var(--secondaryBg);
+    padding: 10px;
+    font-size: 12px;
+    text-align: left;
+}
+
+.RTable td {    
+    text-align: left;
+    font-size: 12px;
+    padding: 4px 10px;
+}
+
+.RTable tr {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0, 1fr);
+}
+
+/* bordered table  */
+.RTable.bordered {
+    border: 1px solid var(--secondaryBg);
+}
+
+
+.RTable.bordered th:not(:last-child),
+.RTable.bordered tr:not(:last-child) td:not(:last-child) {
+    border-right: 1px solid var(--secondaryBg);
+    border-bottom: 1px solid var(--secondaryBg);
+}
+
+.RTable.bordered tr:last-child td:not(:last-child) {
+    border-right: 1px solid var(--secondaryBg);
+}
+
+.RTable.bordered th:last-child,
+.RTable.bordered tr:not(:last-child) td:last-child {
+    border-bottom: 1px solid var(--secondaryBg);
+}
+
+/* zebra style border */
+.RTable.bordered.zebra{
+    border: 1px solid var(--background);
+}
+
+.RTable.zebra tr:nth-child(even){
+    background-color: var(--secondaryBg);
+}
