@@ -57,7 +57,7 @@ function App() {
   const { theme } = useTheme();
 
   return (
-    <div data-theme={theme}>
+    <div data-theme={theme} className='mainApp'>
       <RouterProvider router={router} />
     </div>
   );

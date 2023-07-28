@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useTheme } from '../context/ThemeContext'
 import { LiaDocker } from 'react-icons/lia';
 import { FiSettings } from 'react-icons/fi';
+import { RxDashboard } from 'react-icons/rx';
 import { BsAppIndicator, BsDatabase, BsFolder2Open, BsTerminalDash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
@@ -17,6 +18,12 @@ const Sidebar = () => {
   return (
     <div className={`Sidebar ${menuOpen === "true" ? "open" : "close"}`}>
       <ul className="sidebarInner flexCol">
+        <li className="sidebarItem">
+          <Link className="flexRow gapMD" to="/">
+            <RxDashboard size={18} />
+            <span>Dashboard</span>
+          </Link>
+        </li>
         <li className="sidebarItem">
           <Link className="flexRow gapMD" to="/web">
             <BsAppIndicator size={18} />

@@ -8,7 +8,7 @@ import { ValidThemes } from '../constants';
 
 
 const Navbar = () => {
-  const { theme, changeMenu, setNamedTheme } = useTheme();
+  const { changeMenu, setNamedTheme } = useTheme();
   const [showThemeSelect, setShowThemeSelect] = useState(false)
 
 
@@ -31,16 +31,17 @@ const Navbar = () => {
         <div className="navThemeIcon">
           <div className="iconWrap effect"
             onClick={() => setShowThemeSelect(prev => !prev)}
-            >
-              <AiOutlineBgColors size={20} />
+          >
+            <AiOutlineBgColors size={20} />
           </div>
           <div className={`navThemeSelect ${showThemeSelect ? "active" : ""}`}>
             {
               ValidThemes.map((theme, idx) => (
                 <div
+                  key={idx}
                   style={{
                     backgroundColor: theme.background,
-                    "--delay": (idx * .2) + "s"
+                    "--delay": (idx * .05) + "s"
                   }}
                   className='withShadow'
                   onClick={() => setNamedTheme(theme.title)}

@@ -28,8 +28,13 @@
 /* min height class  */
 .minHeightDiv {
     min-height: var(--bodyHeight);
+    max-height: var(--bodyHeight);
     background-color: var(--secondaryBg);
-    ;
+    overflow: hidden;
+}
+
+.minHeightDiv > div {
+    overflow-y: auto;
 }
 
 

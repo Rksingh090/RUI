@@ -16,7 +16,7 @@ import { ValidThemes } from '../constants';
 const Settings = () => {
     const [tabIndex, setTabIndex] = useState(0);
 
-    const { setNamedTheme } = useTheme();
+    const { setNamedTheme, menuOpen } = useTheme();
 
     return (
         <div className='fullXY withPadding settingPage'>
@@ -87,41 +87,27 @@ const Settings = () => {
                 <div className='padYSM'>
                     <div className='allThemeBoxes'>
                         {
-                            ValidThemes.map((theme) => (
-                                <div className={`themeBox ${theme?.title}`} 
-                                style={{
-                                    color: theme?.color,
-                                    backgroundColor: theme?.background
-                                }}
-                                onClick={() => setNamedTheme(theme?.title)}>
-                                    {theme?.text}
+                            ValidThemes.map((theme, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`themeBox ${theme?.title}`}
+                                    style={{
+                                        color: theme?.color,
+                                        backgroundColor: theme?.background
+                                    }}
+                                    onClick={() => setNamedTheme(theme?.title)}>
+                                        {theme?.text}
+                                    
                                 </div>
                             ))
                         }
-                        {/*
-                        <div className="themeBox dark" onClick={() => setNamedTheme("dark")}>
-                            Dark
-                        </div>
-                        <div className="themeBox blue" onClick={() => setNamedTheme("blue")}>
-                            Light Blue
-                        </div>
-                        <div className="themeBox pink" onClick={() => setNamedTheme("pink")}>
-                            Pink
-                        </div>
-                        <div className="themeBox teal" onClick={() => setNamedTheme("teal")}>
-                            Teal
-                        </div>
-                        <div className="themeBox dracula" onClick={() => setNamedTheme("dracula")}>
-                            Dracula
-                        </div>
-                        <div className="themeBox orange" onClick={() => setNamedTheme("orange")}>
-                            Orange
-                        </div> */}
                     </div>
                 </div>
             </TabBox>
 
-            <div className="fixedBottomBar">
+            <div className="fixedBottomBar" style={{
+                left: menuOpen === "true" ? "200px" : "60px"
+            }}>
                 <p>Version: v 1.0.0</p>
                 <p>Copyright &copy;2023 - Rpanel@Rishab Singh</p>
                 <p></p>
