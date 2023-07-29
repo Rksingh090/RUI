@@ -3,7 +3,7 @@ import {
     BsFiletypeAi, BsFiletypeCss, BsFiletypeCsv, BsFiletypeDocx,
     BsFiletypeExe, BsFiletypeGif, BsFiletypeHeic, BsFiletypeHtml,
     BsFiletypeJpg, BsFiletypeJs, BsFiletypeJson, BsFiletypeMp3,
-    BsFiletypePdf, BsFiletypePng, BsFiletypeSh, BsFiletypeTxt
+    BsFiletypePdf, BsFiletypePng, BsFiletypeSh, BsFiletypeTxt, BsFolder
 } from 'react-icons/bs'
 
 const FileIcon = ({ filename }) => {
@@ -76,7 +76,7 @@ const FileIcon = ({ filename }) => {
         if (fileIndex !== -1) {
             return fileTypes[fileIndex].icon;
         }
-        return <BsFiletypeAi size={18} />
+        return <BsFolder size={18} />
     }
 
     return (

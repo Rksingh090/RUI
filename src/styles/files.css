@@ -71,5 +71,16 @@
     background-color: var(--secondaryBg);
 }
 .fileDataCol {
-
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.fileDataCol p.name{
+    font-size: 13px;
+    font-weight: 400;
+}
+.fileDataCol p.size {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--fadeText);
 }

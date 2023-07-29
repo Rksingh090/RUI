@@ -9,17 +9,19 @@ const FileFolder = () => {
     <div className='fullXY withPadding'>
       <FileHeader />
       <div className="fileBoxes">
-        <FileBox fileData={{ fileName: "hello.txt"}} />
-        <FileBox fileData={{ fileName: "app.js"}} />
-        <FileBox fileData={{ fileName: "imp.docx"}} />
-        <FileBox fileData={{ fileName: "somefile.pdf"}} />
-        <FileBox fileData={{ fileName: "bash.sh"}} />
-        <FileBox fileData={{ fileName: "bash.docx"}} />
-        <FileBox fileData={{ fileName: "bash.docx"}} />
-        <FileBox fileData={{ fileName: "music.mp3"}} />
-        <FileBox fileData={{ fileName: "img.jpg"}} />
-        <FileBox fileData={{ fileName: "tansimg.png"}} />
-        <FileBox fileData={{ fileName: "index.html"}} />
+        <FileBox fileData={{ type: "file", fileName: "hello.txt"}} />
+        <FileBox fileData={{ type: "file", fileName: "app.js"}} />
+        <FileBox fileData={{ type: "file", fileName: "imp.docx"}} />
+        <FileBox fileData={{ type: "file", fileName: "somefile.pdf"}} />
+        <FileBox fileData={{ type: "file", fileName: "bash.sh"}} />
+        <FileBox fileData={{ type: "file", fileName: "bash.docx"}} />
+        <FileBox fileData={{ type: "file", fileName: "bash.docx"}} />
+        <FileBox fileData={{ type: "folder", folderName: "var"}} />
+        <FileBox fileData={{ type: "folder", folderName: "lib"}} />
+        <FileBox fileData={{ type: "file", fileName: "music.mp3"}} />
+        <FileBox fileData={{ type: "file", fileName: "img.jpg"}} />
+        <FileBox fileData={{ type: "file", fileName: "tansimg.png"}} />
+        <FileBox fileData={{ type: "file", fileName: "index.html"}} />
       </div>
     </div>
   )
