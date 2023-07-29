@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useTheme } from '../context/ThemeContext'
 import { LiaDocker } from 'react-icons/lia';
 import { FiSettings } from 'react-icons/fi';
@@ -9,11 +9,6 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
   const { menuOpen } = useTheme();
 
-  useEffect(() => {
-    fetch("http://localhost:4000/api")
-    .then(() => console.log("Hello"))
-    .catch((e) => console.log(e))
-  }, [])
 
   return (
     <div className={`Sidebar ${menuOpen === "true" ? "open" : "close"}`}>

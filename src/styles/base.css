@@ -25,8 +25,77 @@
 
 /* 
     .Navbar .navStart {}
-    .Navbar .navMiddle {}
     */
+.Navbar .navSearch {
+    position: relative;
+}
+
+.navSearchResult {
+    position: absolute;
+    top: 50px;
+    left: -50px;
+    width: 400px;
+    background-color: var(--background);
+    box-shadow: var(--shadowSM);
+}
+
+.navSearchItem {
+    display: grid;
+    grid-template-columns: 50px minmax(0, 1fr);
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+.navSearchItem:hover{
+    color: white;
+    background-color: var(--primaryColor);
+}
+.navSearchItem p,
+.navSearchItem svg,
+.navSearchItem h4 {
+    transition: all .3s ease;
+}
+.navSearchItem p,
+.navSearchItem svg{
+    font-weight: 400;
+}
+.navSearchItem:hover p,
+.navSearchItem:hover svg,
+.navSearchItem:hover h4 {
+    color: white;
+    fill: white;
+}
+.navSearchItem:not(:last-child){
+    border-bottom: 1px solid var(--secondaryBg);
+}
+.itemIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.itemData {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.itemData > h4 {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.lineData {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.lineData > p {
+    font-size: 10px;
+}
+
 .Navbar .navThemeIcon {
     position: relative;
 }
@@ -41,7 +110,6 @@
     gap: 10px;
     opacity: 0;
     pointer-events: none;
-    /* background-color: red; */
 }
 
 .navThemeSelect.active {
@@ -65,6 +133,7 @@
     animation-iteration-count: 1;
     animation-delay: var(--delay);
 }
+
 
 @keyframes showAnim {
     0% {

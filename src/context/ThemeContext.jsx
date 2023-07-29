@@ -1,5 +1,6 @@
 import React from 'react'
 import { createContext, useContext, useState } from "react";
+import { ValidThemes } from '../constants';
 
 const themeCtx = createContext();
 
@@ -23,8 +24,7 @@ const ThemeContext = ({ children }) => {
     }
 
     const setNamedTheme = (themeName = "dark") => {
-        let validThemes = ["light", "dark","gray", "blue", "pink", "teal", "dracula", "orange"];
-        if (validThemes.includes(themeName)) {
+        if (ValidThemes.filter(item => item.title === themeName).length > 0) {
             setTheme(themeName)
             localStorage.setItem("theme", themeName);
         }

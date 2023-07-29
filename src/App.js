@@ -11,6 +11,7 @@ import FileFolder from './pages/FileFolder';
 import Database from './pages/Database';
 import Terminal from './pages/Terminal';
 import Settings from './pages/Settings';
+import WebDetails from './pages/WebDetails';
 
 
 const router = createBrowserRouter([
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/web",
-        element: <Web />
+        element: <Web />,
+      },
+      {
+        path: "/web/:containerId",
+        element: <WebDetails />
       },
       {
         path: "/docker",

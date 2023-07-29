@@ -2,31 +2,75 @@ import React from 'react'
 import "../styles/home.css";
 
 import { BsCpu } from "react-icons/bs";
-import { BiMemoryCard } from "react-icons/bi";
-import { PiHardDriveLight } from "react-icons/pi";
-import { FaRunning } from "react-icons/fa";
+import CircleBar from '../components/common/CircleBar';
 
 const Home = () => {
-  return (
-    <div className='homePage fullXY withPadding'>
-      <div className="homePageStats">
-        <div className="dashboardCard roundSM">
-          <BsCpu size={40} />
-        </div>
-        <div className="dashboardCard roundSM">
-          <BiMemoryCard size={40} />
-        </div>
-        <div className="dashboardCard roundSM">
 
-          <PiHardDriveLight size={40} />
-        </div>
-        <div className="dashboardCard roundSM">
+	
 
-          <FaRunning size={35} />
-        </div>
-      </div>
-    </div>
-  )
+	return (
+		<div className='homePage fullXY withPadding'>
+			<div className="homePageStats">
+				<div className="dashboardCard roundSM">
+					<CircleBar Icon={<BsCpu size={20} />} percent={10} />
+					<p>CPU Usage</p>
+				</div>
+				<div className="dashboardCard roundSM">
+					<CircleBar Icon={<BsCpu size={20} />} percent={25} />
+					<p>Memory Usage</p>
+				</div>
+				<div className="dashboardCard roundSM">
+					<CircleBar Icon={<BsCpu size={20} />} percent={75} />
+					<p>Disk Space</p>
+				</div>
+				<div className="dashboardCard roundSM">
+					<CircleBar Icon={<BsCpu size={20} />} percent={10} maxValue={10} customUnit={"Pc."} type={"value"} />
+					<p>Web Limit</p>
+				</div>
+				<div className="dashboardCard roundSM">
+					<CircleBar Icon={<BsCpu size={20} />} percent={3} maxValue={20} customUnit={"Pc."} type={"value"} />
+					<p>User Limit</p>
+				</div>
+			</div>
+
+			<div className='homeActivities roundSM'>
+				<h4>Recent Activities</h4>
+				<div className='allActivities' >
+					<div className="item roundSM successBorderTop">
+						<h5>New Web Added: PhpMyAdmin</h5>
+						<div className="flexRow gapMD">
+							<p>Image: Nodejs</p>
+							<p>ContainerId: rfsdafgsd54g56sd7g5sd12g7</p>
+						</div>
+					</div>
+					<div className="item roundSM errorBorderTop">
+						<h5>Container Deleted Wordpress</h5>
+						<div className="flexRow gapMD">
+							<p>Image: Nodejs</p>
+							<p>ContainerId: rfsdafgsd54g56sd7g5sd12g7</p>
+						</div>
+					</div>
+					<div className="item roundSM infoBorderTop">
+						<h5>Proxy Added to Wordpress</h5>
+						<div className="flexRow gapMD">
+							<p>Image: Wordpress</p>
+							<p>ContainerId: a453fgsvsd4axynk54op</p>
+							<p>Domain: gbapks.xyz</p>
+							<p>Proxy Pass: localhost:45205</p>
+						</div>
+					</div>
+					<div className="item roundSM warningBorderTop">
+						<h5>Restart Pending</h5>
+						<div className="flexRow gapMD">
+							<p>ContainerId: a453fgs78ax5520k54op</p>
+							<p>Created At: 10 Hours Ago </p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	)
 }
 
 export default Home

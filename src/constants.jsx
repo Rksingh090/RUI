@@ -36,9 +36,15 @@ export const ValidThemes = [
         color: "#ffffff"
     },
     {
-        text: "Orange",
-        title: "orange",
-        background: "#ff9d33",
+        text: "Purple",
+        title: "purple",
+        background: "#a600ff",
+        color: "#ffffff"
+    },
+    {
+        text: "Yellow",
+        title: "yellow",
+        background: "#F3D459",
         color: "#ffffff"
     },
 ]

@@ -1,0 +1,48 @@
+.dockerPage {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.dockerItems {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+.dockerItem {
+    padding: 10px;
+    background-color: var(--background);
+    color: var(--color);
+    border-width: 2px;
+    overflow: hidden;
+}
+.dockerItem .primaryText,
+.dockerItem p {
+    width: 100%;
+}
+
+.dockerLine {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dockerLine span {
+    letter-spacing: .7px;
+}
+
+.dockerItem h3.primaryText {
+    text-transform: capitalize;
+    font-weight: bold;
+    border-bottom: 1px solid var(--primaryColor);
+    padding-bottom: 8px;
+}
+
+.dockerItem p span {
+    font-weight: 300;
+}
+
+.dockerItem p span:first-child {
+    color: var(--fadeText);
+}

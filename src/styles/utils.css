@@ -239,9 +239,21 @@ input.noStyle {
     background-color: var(--background);
 }
 
+.TabMenu.wrap {
+    flex-wrap: wrap;
+}
+.TabMenu.scrollX {
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+.TabMenu.scrollX::-webkit-scrollbar {
+    height: 4px;
+}
+
 .tab {
     padding: 5px 10px;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .tab.active {
@@ -253,4 +265,60 @@ input.noStyle {
 /* links style  */
 .Rlink {
     text-decoration: none;
+}
+
+
+
+/* badge colors */
+.successBG {
+    background-color: var(--success);
+}
+.successText {
+    color: var(--success);
+}
+.successBorderAll {
+    border: 1px solid var(--success);
+}
+.successBorderTop {
+    border-top: 1px solid var(--success);
+}
+
+.errorBG {
+    background-color: var(--error);
+}
+.errorText {
+    color: var(--error);
+}
+.errorBorderAll {
+    border: 1px solid var(--error);
+}
+.errorBorderTop {
+    border-top: 1px solid var(--error);
+}
+
+.infoBG {
+    background-color: var(--info);
+}
+.infoText {
+    color: var(--info);
+}
+.infoBorderAll {
+    border: 1px solid var(--info);
+}
+.infoBorderTop {
+    border-top: 1px solid var(--info);
+}
+
+
+.warningBG {
+    background-color: var(--warning);
+}
+.warningText {
+    color: var(--warning);
+}
+.warningBorderAll {
+    border: 1px solid var(--warning);
+}
+.warningBorderTop {
+    border-top: 1px solid var(--warning);
 }

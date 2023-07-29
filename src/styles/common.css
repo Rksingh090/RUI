@@ -30,12 +30,9 @@
     min-height: var(--bodyHeight);
     max-height: var(--bodyHeight);
     background-color: var(--secondaryBg);
-    overflow: hidden;
+    overflow: auto;
 }
 
-.minHeightDiv > div {
-    overflow-y: auto;
-}
 
 
 /* icon btn  */
@@ -106,7 +103,7 @@
     text-align: left;
 }
 
-.RTable td {    
+.RTable td {
     text-align: left;
     font-size: 12px;
     padding: 4px 10px;
@@ -114,7 +111,7 @@
 
 .RTable tr {
     display: grid;
-    grid-template-columns: minmax(0,1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 
 /* bordered table  */
@@ -139,10 +136,51 @@
 }
 
 /* zebra style border */
-.RTable.bordered.zebra{
+.RTable.bordered.zebra {
     border: 1px solid var(--background);
 }
 
-.RTable.zebra tr:nth-child(even){
+.RTable.zebra tr:nth-child(even) {
     background-color: var(--secondaryBg);
+}
+
+
+/* circular progess bar  */
+#progressBar {
+    position: relative;
+    height: 100%;
+}
+
+#progressBar svg#bar {
+    height: 100%;
+    aspect-ratio: 1;
+    margin: auto;
+    display: block;
+}
+
+#progressBar svg#bar path {
+    stroke-linecap: round;
+    stroke-width: 6;
+}
+
+#progressBar svg#bar path.grey {
+    stroke: #e7e7e8;
+}
+
+#progressBar svg#bar path.blue {
+    stroke-dasharray: 198;
+    transition: all 2s ease;
+    stroke-dashoffset: calc((100 - var(--percent)) * 1.98);
+    stroke: hsl(calc(100 - var(--percent)), 100%, 50%);
+}
+
+#progressBar .progressText {
+    fill: var(--color);
+    transition: all .3s ease;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    white-space: nowrap;
 }

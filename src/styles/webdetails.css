@@ -1,0 +1,59 @@
+.webDetailsPage {
+    width: 100%;
+    overflow-y: auto;
+}
+
+.mainWebGrid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.webDetailCol1,
+.webDetailCol2 {
+    background-color: var(--background);
+    width: 100%;
+    overflow: hidden;
+}
+.webDetailCol1 {
+    padding: 10px;
+}
+
+.webDetailCol1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.webDetailCol1 .webDetailItem {
+    width: 100%;
+    padding: 8px 0;
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+}
+.webDetailCol1 .webDetailItem:not(:last-child){
+    border-bottom: 1px solid var(--secondaryBg);
+}
+.webDetailCol1 .webDetailItem p,
+.webDetailCol1 .webDetailItem a {
+    font-size: 12px;
+}
+
+.webDetailCol1 .webDetailItem .head {
+    font-size: 12px;
+    color: var(--fadeText);
+}
+
+
+/* column 2  */
+.webDetailCol2 {  
+}
+
+.allTabArea {
+    width: 100%;
+    transition: all .4s ease;
+    padding: 10px;
+    font-size: 12px;
+    line-height: 18px;
+}
