@@ -13,7 +13,7 @@ const RInput = ({
         <div 
         className={`RInput ${RClass || ""}`}
         style={{
-            width: width || "250px"
+            width: width || "100%"
         }}
         >
             {Icon && Icon}

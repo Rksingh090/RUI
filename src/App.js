@@ -12,6 +12,7 @@ import Database from './pages/Database';
 import Terminal from './pages/Terminal';
 import Settings from './pages/Settings';
 import WebDetails from './pages/WebDetails';
+import AddWeb from './pages/AddWeb';
 
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/web/:containerId",
         element: <WebDetails />
+      },
+      {
+        path: "/add/web",
+        element: <AddWeb />
       },
       {
         path: "/docker",

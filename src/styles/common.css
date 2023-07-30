@@ -57,11 +57,37 @@
     background-color: var(--primaryColor);
 }
 
+.iconBtn.primaryBg svg,
 .iconBtn.primaryBg span {
     color: white;
+    fill: white;
 }
 
+.iconBtn.noBg {
+    background-color: transparent;
+    box-shadow: none;
+}
 
+.iconBtn.fontSM {
+    font-size: 10px;
+}
+.iconBtn.fontMD {
+    font-size: 12px;
+}
+.iconBtn.fontLG {
+    font-size: 14px;
+}
+
+.iconBtn .iconLoading {
+    animation: spin 1s infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    to{
+        transform: rotateZ(360deg);
+    }
+}
 
 /* custom inut with --background and --color  */
 
@@ -84,7 +110,7 @@
 }
 
 .RInput>input::placeholder {
-    color: var(--secondaryColor);
+    color: var(--fadeText);
 }
 
 /* r table  */

@@ -20,7 +20,7 @@
     --secondaryColor: #323232;
 
     --primaryColor: #e65800;
-    --fadeText: #767676;
+    --fadeText: #bbbbbb;
 
     --scrollTrack: #DDDDDD;
     --scrollThumb: #aaaaaa;
@@ -156,12 +156,13 @@ html,
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
     font-weight: 500;
-
     color: var(--color);
 }
 
+*:not(.XtermTerminal *) {
+    font-family: "Poppins", sans-serif;
+}
 
 ::-webkit-scrollbar {
     width: 8px;

@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react'
 import {
-    BsFiletypeAi, BsFiletypeCss, BsFiletypeCsv, BsFiletypeDocx,
+    BsFiletypeCss, BsFiletypeCsv, BsFiletypeDocx,
     BsFiletypeExe, BsFiletypeGif, BsFiletypeHeic, BsFiletypeHtml,
     BsFiletypeJpg, BsFiletypeJs, BsFiletypeJson, BsFiletypeMp3,
     BsFiletypePdf, BsFiletypePng, BsFiletypeSh, BsFiletypeTxt, BsFolder
-} from 'react-icons/bs'
+}
+    from 'react-icons/bs'
 
 const FileIcon = ({ filename }) => {
 

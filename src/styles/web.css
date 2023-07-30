@@ -5,8 +5,23 @@
     gap: 20px;
 }
 
+/* web header  */
+.webHeader {
+    background-color: var(--background);
+    color: var(--color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    width: 100%;
+}
 
+.webHeader .webEnd .iconBtn {
+    background-color: var(--secondaryBg);
+}
 
+/* web box component  */
 .webBox {
     background-color: var(--background);
     color: var(--color);
@@ -49,4 +64,116 @@
 .webDetails .webLine {
     font-size: 10px;
     font-weight: 400;
+}
+
+
+
+
+
+/* template deploy  */
+.deployTemplates {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.deployTemplates .template{
+    background-color: var(--background);
+    transition: all .3s ease;
+    overflow: hidden;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    box-shadow: var(--shadowSM);
+}
+.deployTemplates .template .templateImg {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.deployTemplates .template .templateImg img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+}
+
+/* deploy form  */
+.templateDeployPage {
+    width: 100%;
+}
+
+.deployGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.templateDeployForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+}
+
+
+.templateDeployForm .RInput input {
+    font-weight: 300;
+}
+
+.envVarHead {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.envVariables {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 35px);
+    gap: 10px;
+}
+
+.envVariables .deleteIcon {
+    background-color: var(--background);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
+.templateOutput {
+    background-color: var(--background);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.templateOutput p {
+    font-size: 12px;
+}
+.templateOutput .output {
+    background: var(--secondaryBg);
+    height: 100%;
+    padding: 10px;
+    min-height: 155px;
 }

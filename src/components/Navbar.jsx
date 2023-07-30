@@ -6,7 +6,7 @@ import { HiOutlineMenuAlt2 } from 'react-icons/hi';
 import { CiGlobe } from 'react-icons/ci';
 
 import { Link } from 'react-router-dom';
-import { ValidThemes } from '../constants';
+import { ValidThemes } from '../config/themes';
 
 
 

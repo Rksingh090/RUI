@@ -11,7 +11,7 @@ import { CiLock } from "react-icons/ci";
 import IconButton from '../components/common/IconButton';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
-import { ValidThemes } from '../constants';
+import { ValidThemes } from '../config/themes';
 
 const Settings = () => {
     const [tabIndex, setTabIndex] = useState(0);
