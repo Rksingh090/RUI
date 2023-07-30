@@ -8,15 +8,14 @@ const WebHeader = () => {
     return (
         <div className="webHeader roundSM">
             <div className="webStart">
-                <p>Total Websites: 10</p>
+                <Link to={"/add/web"}>
+                    <IconButton text={"Add Website"} classList={"gapSM primaryBg roundSM fontSM"} Icon={<AiOutlinePlus size={14} />} />
+                </Link>
             </div>
             <div className="webMiddle">
-
             </div>
             <div className="webEnd">
-                <Link to={"/add/web"}>
-                    <IconButton text={"Add Website"} classList={"gapSM roundSM fontMD"} Icon={<AiOutlinePlus size={17} />} />
-                </Link>
+                <p>Total Websites: 10</p>
             </div>
         </div>
     )

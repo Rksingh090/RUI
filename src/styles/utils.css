@@ -250,7 +250,8 @@ input.noStyle {
     height: 4px;
 }
 
-.tab {
+.TabMenu .tab {
+    font-size: 12px;
     padding: 5px 10px;
     cursor: pointer;
     white-space: nowrap;

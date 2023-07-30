@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
 
 // components 
-import RInput from '../common/RInput'
-import IconButton from '../common/IconButton'
+import RInput from '../../common/RInput'
+import IconButton from '../../common/IconButton'
 
 // icons 
 import { CgClose } from 'react-icons/cg'
 import { AiOutlineCloudUpload, AiOutlinePlus } from 'react-icons/ai'
 
-const GithubDeploy = () => {
+const FileDeploy = () => {
+
   const [templateData, setTemplateData] = useState({
     name: "",
-    github_url: "",
+    folder_path: "",
     exposed_ports: "",
     environments: [{
       name: "",
@@ -58,7 +59,7 @@ const GithubDeploy = () => {
   }
 
   return (
-    <div className="withPadding gapSM templateDeployPage">
+    <div className="templateDeployPage">
       <div className="deployGrid">
         <form className='templateDeployForm '>
           <RInput
@@ -73,8 +74,8 @@ const GithubDeploy = () => {
 
           <RInput
             RClass={"roundSM withShadow "}
-            placeholder={"Github Url"}
-            value={templateData.github_url}
+            placeholder={"Folder Path"}
+            value={templateData.folder_path}
             onChange={(e) => setTemplateData(prev => ({
               ...prev,
               github_url: e.target.value
@@ -96,7 +97,7 @@ const GithubDeploy = () => {
               <div className="envVariables" key={idx}>
                 <RInput RClass={"roundSM withShadow "} value={env.name} onChange={(e) => setEnvName(e, idx)} placeholder={"key"} />
                 <RInput RClass={"roundSM withShadow "} value={env.value} onChange={(e) => setEnvVal(e, idx)} placeholder={"value"} />
-                <div className='deleteIcon' onClick={() => deleteThis(idx)}>
+                <div className='deleteIcon withShadow' onClick={() => deleteThis(idx)}>
                   <CgClose size={18} />
                 </div>
               </div>
@@ -114,4 +115,4 @@ const GithubDeploy = () => {
   )
 }
 
-export default GithubDeploy
+export default FileDeploy

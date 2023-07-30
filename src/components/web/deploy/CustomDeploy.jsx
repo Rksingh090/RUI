@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { AiOutlineCloudUpload, AiOutlinePlus } from "react-icons/ai";
 import { CgClose } from "react-icons/cg";
 
-import RInput from '../common/RInput';
-import IconButton from '../common/IconButton';
-import { availableTemplates } from '../../config/templates';
+import RInput from '../../common/RInput';
+import IconButton from '../../common/IconButton';
+import { availableTemplates } from '../../../config/templates';
 
-const TemplateDeployForm = ({ templateImg }) => {
+const CustomDeploy = ({ templateImg }) => {
 
     const [templateData, setTemplateData] = useState({
         name: "",
@@ -67,7 +67,7 @@ const TemplateDeployForm = ({ templateImg }) => {
     }
 
     return (
-        <div className="withPadding gapSM templateDeployPage">
+        <div className="templateDeployPage">
             <div className="deployGrid">
                 <form className='templateDeployForm '>
                     <RInput
@@ -102,7 +102,7 @@ const TemplateDeployForm = ({ templateImg }) => {
                             <div className="envVariables" key={idx}>
                                 <RInput RClass={"roundSM withShadow "} value={env.name} onChange={(e) => setEnvName(e, idx)} placeholder={"key"} />
                                 <RInput RClass={"roundSM withShadow "} value={env.value} onChange={(e) => setEnvVal(e, idx)} placeholder={"value"} />
-                                <div className='deleteIcon' onClick={() => deleteThis(idx)}>
+                                <div className='deleteIcon withShadow' onClick={() => deleteThis(idx)}>
                                     <CgClose size={18} />
                                 </div>
                             </div>
@@ -121,4 +121,4 @@ const TemplateDeployForm = ({ templateImg }) => {
     )
 }
 
-export default TemplateDeployForm
+export default CustomDeploy

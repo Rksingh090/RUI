@@ -1,9 +1,11 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { useTheme } from './context/ThemeContext';
 
+// base 
+import Base from './components/base/Base';
+
 // pages 
 import Home from './pages/Home';
-import Base from './components/Base';
 import Web from './pages/Web';
 import Error404 from './pages/Error404';
 import Docker from './pages/Docker';

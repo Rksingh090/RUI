@@ -1,7 +1,7 @@
 import React from 'react'
-import { availableTemplates } from '../../config/templates';
+import { availableTemplates } from '../../../config/templates';
 
-const TemplateDeploy = ({ onSelectTemplate }) => {
+const DeployTemplates = ({ onSelectTemplate }) => {
   return (
     <div className='deployTemplates'>
       {
@@ -19,4 +19,4 @@ const TemplateDeploy = ({ onSelectTemplate }) => {
   )
 }
 
-export default TemplateDeploy
+export default DeployTemplates

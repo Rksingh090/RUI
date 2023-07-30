@@ -1,10 +1,14 @@
 import React from 'react'
-import { useTheme } from '../context/ThemeContext'
+
+// utils 
+import { useTheme } from '../../context/ThemeContext'
+import { Link } from 'react-router-dom';
+
+// icons 
 import { LiaDocker } from 'react-icons/lia';
 import { FiSettings } from 'react-icons/fi';
 import { RxDashboard } from 'react-icons/rx';
 import { BsAppIndicator, BsDatabase, BsFolder2Open, BsTerminalDash } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   const { menuOpen } = useTheme();

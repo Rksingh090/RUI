@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
 
 // components 
-import RInput from '../common/RInput'
-import IconButton from '../common/IconButton'
+import RInput from '../../common/RInput'
+import IconButton from '../../common/IconButton'
 
 // icons 
 import { CgClose } from 'react-icons/cg'
 import { AiOutlineCloudUpload, AiOutlinePlus } from 'react-icons/ai'
 
-const FileDeploy = () => {
-
+const GithubDeploy = () => {
   const [templateData, setTemplateData] = useState({
     name: "",
-    folder_path: "",
+    github_url: "",
     exposed_ports: "",
     environments: [{
       name: "",
@@ -59,7 +58,7 @@ const FileDeploy = () => {
   }
 
   return (
-    <div className="withPadding gapSM templateDeployPage">
+    <div className="templateDeployPage">
       <div className="deployGrid">
         <form className='templateDeployForm '>
           <RInput
@@ -74,8 +73,8 @@ const FileDeploy = () => {
 
           <RInput
             RClass={"roundSM withShadow "}
-            placeholder={"Folder Path"}
-            value={templateData.folder_path}
+            placeholder={"Github Url"}
+            value={templateData.github_url}
             onChange={(e) => setTemplateData(prev => ({
               ...prev,
               github_url: e.target.value
@@ -96,8 +95,8 @@ const FileDeploy = () => {
             templateData.environments.map((env, idx) => (
               <div className="envVariables" key={idx}>
                 <RInput RClass={"roundSM withShadow "} value={env.name} onChange={(e) => setEnvName(e, idx)} placeholder={"key"} />
-                <RInput RClass={"roundSM withShadow "} value={env.value} onChange={(e) => setEnvVal(e, idx)} placeholder={"value"} />
-                <div className='deleteIcon' onClick={() => deleteThis(idx)}>
+                <RInput RClass={"roundSM withShadow"} value={env.value} onChange={(e) => setEnvVal(e, idx)} placeholder={"value"} />
+                <div className='deleteIcon withShadow' onClick={() => deleteThis(idx)}>
                   <CgClose size={18} />
                 </div>
               </div>
@@ -115,4 +114,4 @@ const FileDeploy = () => {
   )
 }
 
-export default FileDeploy
+export default GithubDeploy

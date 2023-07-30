@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { useTheme } from '../context/ThemeContext';
+import React, { useMemo, useState } from 'react'
+
+import { useTheme } from '../../context/ThemeContext';
+import { Link } from 'react-router-dom';
+import { ValidThemes } from '../../config/themes';
 
 import { AiOutlineBgColors, AiOutlineSearch } from 'react-icons/ai';
 import { HiOutlineMenuAlt2 } from 'react-icons/hi';
 import { CiGlobe } from 'react-icons/ci';
-
-import { Link } from 'react-router-dom';
-import { ValidThemes } from '../config/themes';
 
 
 
@@ -19,7 +19,7 @@ const Navbar = () => {
 
 	const [searchText, setSearchText] = useState("");
 
-	const [searchData, setSearchData] = useState([
+	const searchData = useMemo(() => [
 		{
 			type: "web",
 			name: "Node_app",
@@ -41,7 +41,7 @@ const Navbar = () => {
 			portBinding: "5000:80",
 			containerId: "acr345545agrreesf22"
 		},
-	])
+	], [])
 
 	const onSearchText = (e) => {
 		const { value} = e.target;

@@ -1,14 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom';
+
 import TabBox from '../components/common/TabBox';
-import TemplateDeployTab from '../components/web/TemplateDeployTab';
-import FileDeployTab from '../components/web/FileDeployTab';
-import GithubDeployTab from '../components/web/GithubDeployTab';
-import TemplateDeployForm from '../components/web/TemplateDeployForm';
+import DeployTemplates from '../components/web/deploy/DeployTemplates';
+import GithubDeploy from '../components/web/deploy/GithubDeploy';
+import FileDeploy from '../components/web/deploy/FileDeploy';
+import CustomDeploy from '../components/web/deploy/CustomDeploy';
 
 const AddWeb = () => {
 
+  const { hash } = useLocation()
   const [tabIdx, setTabIdx] = useState(0);
   const [selectedTemplate, setSelectedTemplate] = useState("");
+
+  useEffect(() => {
+    if (hash && hash === "") return;
+    switch (hash) {
+      case "#templates":
+        setTabIdx(0);
+        break;
+      case "#github-deploy":
+        setTabIdx(1);
+        break;
+      case "#file-deploy":
+        setTabIdx(2);
+        break;
+      case "#custom-deploy":
+        setTabIdx(3);
+        break;
+      default:
+        break;
+    }
+  }, [hash])
+
 
   const onSelectTemplate = (templateName) => {
     setSelectedTemplate(templateName)
@@ -18,23 +42,23 @@ const AddWeb = () => {
   return (
     <div className="fullXY withPadding flexCol gapSM">
       <div className="TabMenu">
-        <p className={`tab ${tabIdx === 0 ? "active" : ""}`} onClick={() => setTabIdx(0)}>Deploy Template</p>
-        <p className={`tab ${tabIdx === 1 ? "active" : ""}`} onClick={() => setTabIdx(1)}>Deploy from Github </p>
-        <p className={`tab ${tabIdx === 2 ? "active" : ""}`} onClick={() => setTabIdx(2)}>Deploy from Folder</p>
-        <p className={`tab ${tabIdx === 3 ? "active" : ""}`} onClick={() => setTabIdx(3)}>Custom Template</p>
+        <Link className={`tab ${tabIdx === 0 ? "active" : ""}`} to={"/add/web/#templates"}>Deploy Template</Link>
+        <Link className={`tab ${tabIdx === 1 ? "active" : ""}`} to={"/add/web/#github-deploy"}>Deploy from Github </Link>
+        <Link className={`tab ${tabIdx === 2 ? "active" : ""}`} to={"/add/web/#file-deploy"}>Deploy from Folder</Link>
+        <Link className={`tab ${tabIdx === 3 ? "active" : ""}`} to={"/add/web/#custom-deploy"}>Custom Template</Link>
       </div>
 
       <TabBox show={tabIdx === 0}>
-        <TemplateDeployTab onSelectTemplate={onSelectTemplate} />
+        <DeployTemplates onSelectTemplate={onSelectTemplate} />
       </TabBox>
       <TabBox show={tabIdx === 1}>
-        <GithubDeployTab />
+        <GithubDeploy />
       </TabBox>
       <TabBox show={tabIdx === 2}>
-        <FileDeployTab />
+        <FileDeploy />
       </TabBox>
       <TabBox show={tabIdx === 3}>
-        <TemplateDeployForm templateImg={selectedTemplate} />
+        <CustomDeploy templateImg={selectedTemplate} />
       </TabBox>
     </div>
   )

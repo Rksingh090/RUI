@@ -1,16 +1,15 @@
 import React from 'react'
 import Navbar from './Navbar'
 
-import "../styles/base.css";
+import "../../styles/base.css";
 
 import Sidebar from './Sidebar';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 import { Outlet } from 'react-router-dom';
 
 
-const Base = ({ children }) => {
+const Base = () => {
   const {menuOpen} = useTheme();
-
   
   return (
     <>
