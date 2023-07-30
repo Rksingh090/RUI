@@ -6,9 +6,11 @@ import { CgClose } from "react-icons/cg";
 import RInput from '../../common/RInput';
 import IconButton from '../../common/IconButton';
 import { availableTemplates } from '../../../config/templates';
+import { useSearchParams } from 'react-router-dom';
 
 const CustomDeploy = ({ templateImg }) => {
 
+    const [searchParams, _] = useSearchParams();
     const [templateData, setTemplateData] = useState({
         name: "",
         image: "",
@@ -20,13 +22,14 @@ const CustomDeploy = ({ templateImg }) => {
     })
 
     useEffect(() => {
-        if (!templateImg || templateImg === "") return;
-        let getTemplate = availableTemplates.filter((item) => item.name === templateImg);
+        let template = searchParams.get("template");
+        if (!searchParams || !template ||template === "") return;
+        let getTemplate = availableTemplates.filter((item) => item.name === template);
         if (getTemplate.length <= 0) {
             alert("Template not found");
         }
         setTemplateData(getTemplate[0])
-    }, [templateImg])
+    }, [searchParams])
 
 
     const onAddEnv = () => {

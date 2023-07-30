@@ -1,5 +1,6 @@
 import React from 'react'
 import { availableTemplates } from '../../../config/templates';
+import { Link } from 'react-router-dom';
 
 const DeployTemplates = ({ onSelectTemplate }) => {
   return (
@@ -7,12 +8,12 @@ const DeployTemplates = ({ onSelectTemplate }) => {
       {
         availableTemplates &&
         availableTemplates.map((template, idx) => (
-          <button onClick={() => onSelectTemplate(template?.name)} key={idx} className='template roundSM'>
+          <Link to={`/add/web?template=${template?.name}#custom-deploy`} key={idx} className='template roundSM'>
             <div className='templateImg'>
               <img src={template?.icon} width={"150px"} height={"150px"} alt="" />
             </div>
             <p>{template?.name}</p>
-          </button>
+          </Link>
         ))
       }
     </div>

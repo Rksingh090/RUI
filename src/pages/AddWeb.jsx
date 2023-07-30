@@ -11,7 +11,6 @@ const AddWeb = () => {
 
   const { hash } = useLocation()
   const [tabIdx, setTabIdx] = useState(0);
-  const [selectedTemplate, setSelectedTemplate] = useState("");
 
   useEffect(() => {
     if (hash && hash === "") return;
@@ -33,12 +32,6 @@ const AddWeb = () => {
     }
   }, [hash])
 
-
-  const onSelectTemplate = (templateName) => {
-    setSelectedTemplate(templateName)
-    setTabIdx(3);
-  }
-
   return (
     <div className="fullXY withPadding flexCol gapSM">
       <div className="TabMenu">
@@ -49,7 +42,7 @@ const AddWeb = () => {
       </div>
 
       <TabBox show={tabIdx === 0}>
-        <DeployTemplates onSelectTemplate={onSelectTemplate} />
+        <DeployTemplates />
       </TabBox>
       <TabBox show={tabIdx === 1}>
         <GithubDeploy />
@@ -58,7 +51,7 @@ const AddWeb = () => {
         <FileDeploy />
       </TabBox>
       <TabBox show={tabIdx === 3}>
-        <CustomDeploy templateImg={selectedTemplate} />
+        <CustomDeploy />
       </TabBox>
     </div>
   )
