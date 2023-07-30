@@ -1,26 +1,52 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import "../styles/home.css";
 
 import { BsCpu } from "react-icons/bs";
 import CircleBar from '../components/common/CircleBar';
+import { WS_URL } from '../constants';
 
 const Home = () => {
 
+	const socket = useMemo(() => new WebSocket(`${WS_URL}/v1/stats/dashboard`), [])
+
+	const [stats, setStat]= useState({
+		cpu_usage: "",
+		disk_usage: "",
+		memory_usage: ""
+	}) 
+
+
+	
+	socket.onmessage = (e) => {
+		try {
+			const {data} = e;
+			let jsonData = JSON.parse(data);
+
+			setStat({
+				cpu_usage: Number(jsonData.cpu_usage).toFixed(2),
+				disk_usage: Number(jsonData.disk_usage).toFixed(2),
+				memory_usage: Number(jsonData?.memory_usage).toFixed(2)
+			})
+
+		} catch (error) {
+			console.log(error);
+		}
+	}
 	
 
 	return (
 		<div className='homePage fullXY withPadding'>
 			<div className="homePageStats">
 				<div className="dashboardCard roundSM">
-					<CircleBar Icon={<BsCpu size={20} />} percent={10} />
+					<CircleBar Icon={<BsCpu size={20} />} percent={stats?.cpu_usage || 10} />
 					<p>CPU Usage</p>
 				</div>
 				<div className="dashboardCard roundSM">
-					<CircleBar Icon={<BsCpu size={20} />} percent={25} />
+					<CircleBar Icon={<BsCpu size={20} />} percent={stats?.memory_usage?.usedPercent || 10} />
 					<p>Memory Usage</p>
 				</div>
 				<div className="dashboardCard roundSM">
-					<CircleBar Icon={<BsCpu size={20} />} percent={75} />
+					<CircleBar Icon={<BsCpu size={20} />} percent={stats?.disk_usage} />
 					<p>Disk Space</p>
 				</div>
 				<div className="dashboardCard roundSM">

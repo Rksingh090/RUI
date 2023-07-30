@@ -8,9 +8,9 @@ import IconButton from '../../common/IconButton';
 import { availableTemplates } from '../../../config/templates';
 import { useSearchParams } from 'react-router-dom';
 
-const CustomDeploy = ({ templateImg }) => {
+const CustomDeploy = () => {
 
-    const [searchParams, _] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
     const [templateData, setTemplateData] = useState({
         name: "",
         image: "",

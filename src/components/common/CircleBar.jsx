@@ -15,12 +15,6 @@ const CircleBar = ({ percent, type, customUnit, maxValue }) => {
     },[percent, maxValue, type])
 
 
-    useEffect(() => {
-        setInterval(() => {
-            setPercentCal(Math.random() * 100)
-        }, 5000)
-    }, [])
-
     return (
         <div id="progressBar">
             <svg id='bar' viewBox="0 0 110 100">

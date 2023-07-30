@@ -81,7 +81,7 @@
 
 .deployTemplates .template{
     background-color: var(--background);
-    transition: all .3s ease;
+    transition: all .5s ease;
     overflow: hidden;
     padding: 10px;
     display: flex;
@@ -94,6 +94,14 @@
     border: none;
     box-shadow: var(--shadowSM);
 }
+
+.deployTemplates .template:hover {
+    background-color: var(--primaryColor);
+}
+.deployTemplates .template:hover p {
+    color: white;
+}
+
 .deployTemplates .template .templateImg {
     height: 80px;
     width: 100%;
