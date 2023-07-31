@@ -4,7 +4,8 @@ import { useTheme } from '../../context/ThemeContext';
 import { Link } from 'react-router-dom';
 import { ValidThemes } from '../../config/themes';
 
-import { AiOutlineBgColors, AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { IoColorPaletteOutline } from 'react-icons/io5';
 import { HiOutlineMenuAlt2 } from 'react-icons/hi';
 import { CiGlobe } from 'react-icons/ci';
 
@@ -108,7 +109,7 @@ const Navbar = () => {
 					<div className="iconWrap effect"
 						onClick={() => setShowThemeSelect(prev => !prev)}
 					>
-						<AiOutlineBgColors size={20} />
+						<IoColorPaletteOutline size={20} />
 					</div>
 					<div className={`navThemeSelect ${showThemeSelect ? "active" : ""}`}>
 						{

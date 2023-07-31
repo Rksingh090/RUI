@@ -2,7 +2,9 @@ import React from 'react'
 import { availableTemplates } from '../../../config/templates';
 import { Link } from 'react-router-dom';
 
-const DeployTemplates = ({ onSelectTemplate }) => {
+
+const DeployTemplates = () => {
+
   return (
     <div className='deployTemplates'>
       {

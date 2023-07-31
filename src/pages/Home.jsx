@@ -15,7 +15,6 @@ const Home = () => {
 		memory_usage: ""
 	}) 
 
-
 	
 	socket.onmessage = (e) => {
 		try {
@@ -37,23 +36,23 @@ const Home = () => {
 	return (
 		<div className='homePage fullXY withPadding'>
 			<div className="homePageStats">
-				<div className="dashboardCard roundSM">
+				<div className="dashboardCard roundSM withShadow">
 					<CircleBar Icon={<BsCpu size={20} />} percent={stats?.cpu_usage || 10} />
 					<p>CPU Usage</p>
 				</div>
-				<div className="dashboardCard roundSM">
-					<CircleBar Icon={<BsCpu size={20} />} percent={stats?.memory_usage?.usedPercent || 10} />
+				<div className="dashboardCard roundSM withShadow">
+					<CircleBar Icon={<BsCpu size={20} />} percent={stats?.memory_usage || 10} />
 					<p>Memory Usage</p>
 				</div>
-				<div className="dashboardCard roundSM">
+				<div className="dashboardCard roundSM withShadow">
 					<CircleBar Icon={<BsCpu size={20} />} percent={stats?.disk_usage} />
 					<p>Disk Space</p>
 				</div>
-				<div className="dashboardCard roundSM">
+				<div className="dashboardCard roundSM withShadow">
 					<CircleBar Icon={<BsCpu size={20} />} percent={10} maxValue={10} customUnit={"Pc."} type={"value"} />
 					<p>Web Limit</p>
 				</div>
-				<div className="dashboardCard roundSM">
+				<div className="dashboardCard roundSM withShadow">
 					<CircleBar Icon={<BsCpu size={20} />} percent={3} maxValue={20} customUnit={"Pc."} type={"value"} />
 					<p>User Limit</p>
 				</div>

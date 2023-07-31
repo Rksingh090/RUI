@@ -96,10 +96,10 @@
 }
 
 .deployTemplates .template:hover {
-    background-color: var(--primaryColor);
+    background-color: var(--secondaryBg);
 }
 .deployTemplates .template:hover p {
-    color: white;
+    color: var(--primaryColor);
 }
 
 .deployTemplates .template .templateImg {
@@ -179,10 +179,14 @@
 
 .templateOutput p {
     font-size: 12px;
+    white-space: break-spaces;
 }
-.templateOutput .output {
+ .output {
     background: var(--secondaryBg);
     height: 100%;
     padding: 10px;
     min-height: 155px;
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }

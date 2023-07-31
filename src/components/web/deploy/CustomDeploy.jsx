@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 
 import { AiOutlineCloudUpload, AiOutlinePlus } from "react-icons/ai";
 import { CgClose } from "react-icons/cg";
@@ -8,7 +8,10 @@ import IconButton from '../../common/IconButton';
 import { availableTemplates } from '../../../config/templates';
 import { useSearchParams } from 'react-router-dom';
 
+import { WS_URL } from '../../../constants';
+
 const CustomDeploy = () => {
+    const ws = useMemo(() => new WebSocket(`${WS_URL}/webws`), [])
 
     const [searchParams, setSearchParams] = useSearchParams();
     const [templateData, setTemplateData] = useState({
@@ -21,9 +24,11 @@ const CustomDeploy = () => {
         exposed_ports: ""
     })
 
+    const [stdOutputs, setStdOutputs] = useState([]);
+
     useEffect(() => {
         let template = searchParams.get("template");
-        if (!searchParams || !template ||template === "") return;
+        if (!searchParams || !template || template === "") return;
         let getTemplate = availableTemplates.filter((item) => item.name === template);
         if (getTemplate.length <= 0) {
             alert("Template not found");
@@ -69,6 +74,29 @@ const CustomDeploy = () => {
         }))
     }
 
+
+
+    ws.onopen = (e) => {
+        console.log("Connection Opened.");
+    }
+    ws.onmessage = (e) => {
+        const { data } = e;
+        
+        if (!data || data === null) return;
+
+        let parsedData = JSON.parse(data);
+        console.log(parsedData);
+
+        setStdOutputs(prev => [
+            ...prev,
+            parsedData
+        ])
+    }
+
+    ws.onclose = (e) => {
+        console.log("Connection Closed.");
+    }
+
     return (
         <div className="templateDeployPage">
             <div className="deployGrid">
@@ -79,7 +107,7 @@ const CustomDeploy = () => {
                             ...prev,
                             name: e.target.value
                         }))}
-                        RClass={"roundSM withShadow "} 
+                        RClass={"roundSM withShadow "}
                         placeholder={"Web Name"}
                     />
                     <RInput value={templateData.image}
@@ -116,7 +144,15 @@ const CustomDeploy = () => {
 
                 <div className="templateOutput roundSM withShadow">
                     <p>Deploy Log</p>
-                    <div className="output "></div>
+                    <div className="output">
+                        {
+                            stdOutputs &&
+                            stdOutputs.length > 0 &&
+                            stdOutputs.map((stdOut, idx) => (
+                                <p key={idx}>{stdOut?.message}</p>
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
 

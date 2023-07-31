@@ -5,6 +5,10 @@ import WebHeader from '../components/web/WebHeader';
 
 
 const Web = () => {
+  
+
+  
+
   return (
     <div className='fullXY withPadding flexCol gapLG'>
       <WebHeader />
