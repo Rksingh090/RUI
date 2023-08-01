@@ -18,7 +18,7 @@ const FileDeploy = () => {
     folder_path: "",
     exposed_ports: "",
     environments: [{
-      name: "",
+      key: "",
       value: ""
     }]
   })
@@ -30,7 +30,7 @@ const FileDeploy = () => {
       environments: [
         ...prev.environments,
         {
-          name: "",
+          key: "",
           value: ""
         }
       ]
@@ -39,7 +39,7 @@ const FileDeploy = () => {
 
   const setEnvName = (e, idx) => {
     let envs = templateData.environments;
-    envs[idx].name = e.target.value;
+    envs[idx].key = e.target.value;
     setTemplateData(prev => ({
       ...prev,
       environments: envs
@@ -98,7 +98,7 @@ const FileDeploy = () => {
             templateData.environments &&
             templateData.environments.map((env, idx) => (
               <div className="envVariables" key={idx}>
-                <RInput RClass={"roundSM withShadow "} value={env.name} onChange={(e) => setEnvName(e, idx)} placeholder={"key"} />
+                <RInput RClass={"roundSM withShadow "} value={env.key} onChange={(e) => setEnvName(e, idx)} placeholder={"key"} />
                 <RInput RClass={"roundSM withShadow "} value={env.value} onChange={(e) => setEnvVal(e, idx)} placeholder={"value"} />
                 <div className='deleteIcon withShadow' onClick={() => deleteThis(idx)}>
                   <CgClose size={18} />

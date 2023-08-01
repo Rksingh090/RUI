@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { AiOutlineCloudUpload, AiOutlinePlus } from "react-icons/ai";
 import { CgClose } from "react-icons/cg";
@@ -20,7 +20,7 @@ const CustomDeploy = () => {
         name: "",
         image: "",
         environments: [{
-            name: "",
+            key: "",
             value: ""
         }],
         exposed_port: ""
@@ -43,7 +43,7 @@ const CustomDeploy = () => {
             environments: [
                 ...prev.environments,
                 {
-                    name: "",
+                    key: "",
                     value: ""
                 }
             ]
@@ -52,7 +52,7 @@ const CustomDeploy = () => {
 
     const setEnvName = (e, idx) => {
         let envs = templateData.environments;
-        envs[idx].name = e.target.value;
+        envs[idx].key = e.target.value;
         setTemplateData(prev => ({
             ...prev,
             environments: envs
@@ -78,6 +78,16 @@ const CustomDeploy = () => {
         e.preventDefault();
         deployTemplateApp(templateData);
     }
+
+    const customLogEndRef = useRef(null);
+    useEffect(() => {
+        const scrollToBottom = () => {
+            if (customLogEndRef.current) {
+                customLogEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+            }
+        }
+        scrollToBottom()
+    }, [customDeployLogs?.length])
 
     return (
         <div className="templateDeployPage">
@@ -113,7 +123,7 @@ const CustomDeploy = () => {
                         templateData.environments &&
                         templateData.environments.map((env, idx) => (
                             <div className="envVariables" key={idx}>
-                                <RInput RClass={"roundSM withShadow "} value={env.name} onChange={(e) => setEnvName(e, idx)} placeholder={"key"} />
+                                <RInput RClass={"roundSM withShadow "} value={env.key} onChange={(e) => setEnvName(e, idx)} placeholder={"key"} />
                                 <RInput RClass={"roundSM withShadow "} value={env.value} onChange={(e) => setEnvVal(e, idx)} placeholder={"value"} />
                                 <div className='deleteIcon withShadow' onClick={() => deleteThis(idx)}>
                                     <CgClose size={18} />
@@ -134,6 +144,7 @@ const CustomDeploy = () => {
                                 <p key={idx}>{stdOut?.message}</p>
                             ))
                         }
+                        <span ref={customLogEndRef}></span>
                     </div>
                 </div>
             </div>

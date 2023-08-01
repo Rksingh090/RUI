@@ -30,13 +30,17 @@ const WebContext = ({ children }) => {
     const [singleWeb, setSingleWeb] = useState({});
 
     // logs 
+    const [rebuildLog, setRebuildLog] = useState([]);
     const [githubDeployLogs, setGithubDeployLogs] = useState([]);
     const [fileDeployLogs, setFileDeployLogs] = useState([]);
     const [customDeployLogs, setCustomDeployLogs] = useState([]);
     const [generalLogs, setGeneralLogs] = useState([]);
 
-    // single container logs 
+    // single container
     const [containerLog, setContainerLog] = useState("");
+    const [containerError, setContainerError] = useState({
+        error: false
+    });
 
     // on ws open 
     ws.onopen = (e) => {
@@ -63,6 +67,11 @@ const WebContext = ({ children }) => {
                 break;
             case "templateDeploy":
                 setCustomDeployLogs(prev => [
+                    ...prev, parsedData
+                ])
+                break;
+            case "rebuild":
+                setRebuildLog(prev => [
                     ...prev, parsedData
                 ])
                 break;
@@ -209,7 +218,11 @@ const WebContext = ({ children }) => {
                 }
             })
             .catch((err) => {
-                console.log(err);
+                const { data } = err.response;
+                setContainerError({
+                    error: true,
+                    ...data
+                })
             })
             .finally(() => {
                 setLoadingData({ containerDetails: false })
@@ -218,6 +231,7 @@ const WebContext = ({ children }) => {
 
     const getWebByName = useCallback((webName) => {
         setLoadingData({ singleWebLoading: true, containerDetails: true })
+        setContainerError({ error: false })
         axios.get(`${API}/v1/web/get-web/${webName}`)
             .then((res) => {
                 const { status, web } = res.data;
@@ -239,13 +253,10 @@ const WebContext = ({ children }) => {
     // edit env login 
     const onEnvChange = (e, key, idx) => {
         let allEnv = singleWeb.variables;
-
-        if (key === "name") {
-            let value = allEnv[idx].split("=")[1]
-            allEnv[idx] = e.target.value + "=" + value;
+        if (key === "key") {
+            allEnv[idx].key = e.target.value;
         } else {
-            let name = allEnv[idx].split("=")[0]
-            allEnv[idx] = name + "=" + e.target.value;
+            allEnv[idx].value =  e.target.value;
         }
         setSingleWeb(prev => ({
             ...prev,
@@ -272,7 +283,7 @@ const WebContext = ({ children }) => {
 
     //Convert to html 
     const getContainerLogs = (containerId) => {
-        if(!containerId || containerId === undefined ) return;
+        if (!containerId || containerId === undefined) return;
         setLoadingData({ singleContainerLoading: true })
         axios
             .get(`${API}/v1/docker/container-logs/${containerId}`)
@@ -302,6 +313,9 @@ const WebContext = ({ children }) => {
                 fileDeployLogs,
                 customDeployLogs,
                 generalLogs,
+                rebuildLog,
+
+                // loading 
                 loading, setLoadingData,
 
                 // deploy func 
@@ -318,7 +332,8 @@ const WebContext = ({ children }) => {
 
                 // container logs 
                 containerLog, setContainerLog,
-                getContainerLogs
+                getContainerLogs,
+                containerError
 
             }}
         >

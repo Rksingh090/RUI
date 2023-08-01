@@ -12,12 +12,12 @@ const ContainerLogTab = ({ id }) => {
     const terminalRef = React.useRef(null);
     const term = useMemo(() => new Terminal({
         cursorBlink: true,
-        fontSize: 12,
-        fontWeight: 400,
+        fontSize: 10,
+        fontWeight: 300,
         fontWeightBold: 600,
-        cols: 50,
-        rows: 50,
-        lineHeight: 1.35
+        cursorStyle: "underline",
+        lineHeight: 1.2,
+        fontFamily: "Cascadia Code"
     }), []);
 
     const websocket = new WebSocket(`${WS_URL}/v1/docker/container-wslogs/${id}`);

@@ -15,11 +15,12 @@ const TerminalTab = ({ id }) => {
     const term = useMemo(() => new Terminal({
         cursorBlink: true,
         fontSize: 12,
-        fontWeight: 400,
-        fontWeightBold: 600,
+        fontWeight: 300,
+        fontWeightBold: 500,
         cols: 50,
         rows: 50,
-        lineHeight: 1.35
+        lineHeight: 1.35,
+        fontFamily: "Cascadia Code"
     }), []);
 
     const websocket = new WebSocket(`${WS_URL}/v1/docker/container-exec/${id}`);

@@ -8,23 +8,23 @@ export const availableTemplates = [
       exposed_port: 80,
       environments: [
         {
-          name: "WORDPRESS_DB_HOST",
+          key: "WORDPRESS_DB_HOST",
           value: ""
         },
         {
-          name: "WORDPRESS_DB_USER",
+          key: "WORDPRESS_DB_USER",
           value: ""
         },
         {
-          name: "WORDPRESS_DB_PASSWORD",
+          key: "WORDPRESS_DB_PASSWORD",
           value: ""
         },
         {
-          name: "WORDPRESS_DB_NAME",
+          key: "WORDPRESS_DB_NAME",
           value: ""
         },
         {
-          name: "WORDPRESS_TABLE_PREFIX",
+          key: "WORDPRESS_TABLE_PREFIX",
           value: "wp_"
         }
       ],
@@ -38,19 +38,19 @@ export const availableTemplates = [
       exposed_port: 80,
       environments: [
         {
-          name: "MYSQL_DATABASE",
+          key: "MYSQL_DATABASE",
           value: ""
         },
         {
-          name: "MYSQL_USER",
+          key: "MYSQL_USER",
           value: ""
         },
         {
-          name: "MYSQL_PASSWORD",
+          key: "MYSQL_PASSWORD",
           value: ""
         },
         {
-          name: "MYSQL_ROOT_PASSWORD",
+          key: "MYSQL_ROOT_PASSWORD",
           value: ""
         },
       ],
@@ -64,7 +64,7 @@ export const availableTemplates = [
       exposed_port: 8200,
       environments: [
         {
-          name: "VAULT_DEV_ROOT_TOKEN_ID",
+          key: "VAULT_DEV_ROOT_TOKEN_ID",
           value: ""
         },
       ],
@@ -77,7 +77,7 @@ export const availableTemplates = [
       exposed_port: 5432,
       environments: [
         {
-          name: "POSTGRES_PASSWORD",
+          key: "POSTGRES_PASSWORD",
           value: ""
         }
       ],
@@ -92,19 +92,19 @@ export const availableTemplates = [
       exposed_port: 80,
       environments: [
         {
-          name: "JOOMLA_DB_HOST",
+          key: "JOOMLA_DB_HOST",
           value: ""
         },
         {
-          name: "JOOMLA_DB_USER",
+          key: "JOOMLA_DB_USER",
           value: ""
         },
         {
-          name: "JOOMLA_DB_PASSWORD",
+          key: "JOOMLA_DB_PASSWORD",
           value: ""
         },
         {
-          name: "JOOMLA_DB_NAME",
+          key: "JOOMLA_DB_NAME",
           value: ""
         }
       ],
@@ -117,11 +117,11 @@ export const availableTemplates = [
       exposed_port: 80,
       environments: [
         {
-          name: "MYSQL_ROOT_PASSWORD",
+          key: "MYSQL_ROOT_PASSWORD",
           value: ""
         },
         {
-          name: "PMA_HOST",
+          key: "PMA_HOST",
           value: ""
         }
       ],
@@ -206,19 +206,19 @@ export const availableTemplates = [
       exposed_port: 80,
       environments: [
         {
-          name: "ALLOW_EMPTY_PASSWORD",
+          key: "ALLOW_EMPTY_PASSWORD",
           value: "yes"
         },
         {
-          name: "MOODLE_DATABASE_USER",
+          key: "MOODLE_DATABASE_USER",
           value: ""
         },
         {
-          name: "MOODLE_DATABASE_PASSWORD",
+          key: "MOODLE_DATABASE_PASSWORD",
           value: ""
         },
         {
-          name: "MOODLE_DATABASE_NAME",
+          key: "MOODLE_DATABASE_NAME",
           value: ""
         }
       ],
@@ -231,7 +231,7 @@ export const availableTemplates = [
       exposed_port: 9200,
       environments: [
         {
-          name: "discovery.type",
+          key: "discovery.type",
           value: "single-node"
         }
       ],
@@ -244,15 +244,15 @@ export const availableTemplates = [
       exposed_port: 8080,
       environments: [
         {
-          name: "HASURA_GRAPHQL_DATABASE_URL",
+          key: "HASURA_GRAPHQL_DATABASE_URL",
           value: ""
         },
         {
-          name: "HASURA_GRAPHQL_ENABLE_CONSOLE",
+          key: "HASURA_GRAPHQL_ENABLE_CONSOLE",
           value: "true"
         },
         {
-          name: "HASURA_GRAPHQL_ADMIN_SECRET",
+          key: "HASURA_GRAPHQL_ADMIN_SECRET",
           value: ""
         }
       ],

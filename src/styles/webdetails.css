@@ -137,3 +137,9 @@
     font-weight: 400;
     line-height: 20px;
 }
+
+/* tab => rebuild  */
+.rebuildLogs {
+    height: 68vh;
+    overflow-y: auto;
+}

@@ -18,11 +18,12 @@ const Terminal = () => {
   const xterm = useMemo(() => new Xterm({
     cursorBlink: true,
     fontSize: 12,
-    fontWeight: 400,
-    fontWeightBold: 600,
+    fontWeight: 300,
+    fontWeightBold: 500,
     cols: 50,
     rows: 50,
-    lineHeight: 1.35
+    lineHeight: 1.35,
+    fontFamily: "Cascadia Code"
   }), []);
 
   function ab2str(buf) {

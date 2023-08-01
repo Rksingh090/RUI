@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 // components 
 import RInput from '../../common/RInput'
@@ -12,14 +12,14 @@ import { useWeb } from '../../../context/WebContext'
 const GithubDeploy = () => {
 
 
-  const {githubDeployLogs, deployGithubApp, loading} = useWeb()
+  const { githubDeployLogs, deployGithubApp, loading } = useWeb()
 
   const [templateData, setTemplateData] = useState({
     name: "",
     github_url: "",
     exposed_port: "",
     environments: [{
-      name: "",
+      key: "",
       value: ""
     }]
   })
@@ -31,7 +31,7 @@ const GithubDeploy = () => {
       environments: [
         ...prev.environments,
         {
-          name: "",
+          key: "",
           value: ""
         }
       ]
@@ -40,7 +40,7 @@ const GithubDeploy = () => {
 
   const setEnvName = (e, idx) => {
     let envs = templateData.environments;
-    envs[idx].name = e.target.value;
+    envs[idx].key = e.target.value;
     setTemplateData(prev => ({
       ...prev,
       environments: envs
@@ -67,6 +67,16 @@ const GithubDeploy = () => {
     deployGithubApp(templateData)
   }
 
+  const messagesEndRef = useRef(null);
+  useEffect(() => {
+    const scrollToBottom = () => {
+      if (messagesEndRef.current) {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+    scrollToBottom()
+  }, [githubDeployLogs?.length])
+
   return (
     <div className="templateDeployPage">
       <div className="deployGrid">
@@ -89,7 +99,7 @@ const GithubDeploy = () => {
               ...prev,
               github_url: e.target.value
             }))}
-            />
+          />
 
           <RInput
             RClass={"roundSM withShadow "}
@@ -109,7 +119,7 @@ const GithubDeploy = () => {
             templateData.environments &&
             templateData.environments.map((env, idx) => (
               <div className="envVariables" key={idx}>
-                <RInput RClass={"roundSM withShadow "} value={env.name} onChange={(e) => setEnvName(e, idx)} placeholder={"key"} />
+                <RInput RClass={"roundSM withShadow "} value={env.key} onChange={(e) => setEnvName(e, idx)} placeholder={"key"} />
                 <RInput RClass={"roundSM withShadow"} value={env.value} onChange={(e) => setEnvVal(e, idx)} placeholder={"value"} />
                 <div className='deleteIcon withShadow' onClick={() => deleteThis(idx)}>
                   <CgClose size={18} />
@@ -131,6 +141,7 @@ const GithubDeploy = () => {
                 <p key={idx}>{stdOut?.message}</p>
               ))
             }
+            <span ref={messagesEndRef} />
           </div>
         </div>
       </div>
