@@ -45,6 +45,9 @@
     cursor: pointer;
 }
 
+.iconBtn.noPad {
+    padding: 0;
+}
 .iconBtn.round {
     border-radius: 5px;
 }
@@ -55,6 +58,9 @@
 
 .iconBtn.primaryBg {
     background-color: var(--primaryColor);
+}
+.iconBtn.secondaryBg {
+    background-color: var(--secondaryBg);
 }
 
 .iconBtn.primaryBg svg,
@@ -89,8 +95,8 @@
     }
 }
 
-.iconBtn:disabled {
-    background-color: var(--fadeText);
+.iconBtn:not(.noBg):disabled {
+    background-color: var(--secondaryBg);
 }
 
 /* custom inut with --background and --color  */
@@ -103,7 +109,12 @@
     padding: 0 5px;
 }
 
+.RInput.secondaryBg {
+    background-color: var(--secondaryBg);
+}
+
 .RInput>input {
+    color: var(--color);
     border: none;
     outline: none;
     padding: 8px;
@@ -212,4 +223,41 @@
     transform: translate(-50%, -50%);
     font-size: 12px;
     white-space: nowrap;
+}
+
+
+
+.splitHeader {
+    display: flex;
+    width: 100%;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.splitHeader.pad {
+    padding: 7px;
+}
+
+
+/* loading state  */
+.withLoading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.withLoading.mainBg {
+    background-color: var(--background);
+}
+.withLoading.secondaryBg {
+    background-color: var(--secondaryBg);
+}
+
+.withLoading .spinner {
+    animation: spin .8s linear infinite;
+    stroke: var(--primaryColor);
 }

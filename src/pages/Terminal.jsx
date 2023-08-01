@@ -35,8 +35,8 @@ const Terminal = () => {
       websocket.send(new TextEncoder().encode("\x00" + data));
     });
 
-    xterm.onResize(function () {
-      websocket.send(new TextEncoder().encode("\x01" + JSON.stringify({ cols: evt.cols, rows: evt.rows })))
+    xterm.onResize(function (resEvt) {
+      websocket.send(new TextEncoder().encode("\x01" + JSON.stringify({ cols: resEvt.cols, rows: resEvt.rows })))
     });
 
     xterm.onTitleChange(function (title) {

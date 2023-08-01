@@ -38,6 +38,9 @@
 .webDetailCol1 .webDetailItem p,
 .webDetailCol1 .webDetailItem a {
     font-size: 12px;
+    /* overflow: hidden;
+    text-overflow: ellipsis; */
+    word-wrap: break-word;
 }
 
 .webDetailCol1 .webDetailItem .head {
@@ -47,8 +50,6 @@
 
 
 /* column 2  */
-.webDetailCol2 {  
-}
 
 .allTabArea {
     width: 100%;
@@ -56,4 +57,83 @@
     padding: 10px;
     font-size: 12px;
     line-height: 18px;
+}
+
+
+/* tab => containerDetails  */
+.containerDetailTab {
+    max-height: 68vh;
+    overflow: auto;
+    background-color: var(--secondaryBg);
+    padding: 5px;
+}
+.containerDetailTab > pre {
+    font-size: 11px;
+}
+
+/* tab => environment variables */
+.envVariableTab {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+/* tab => proxy details  */
+.proxyDomainsTab {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.proxyDomains {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) minmax(0, 1fr) 100px;
+    gap: 10px;
+    padding: 5px 10px;
+}
+.proxyDomains:nth-child(odd){
+    background-color: var(--secondaryBg);
+}
+.proxyDomains:nth-child(odd) .iconBtn {
+    background-color: transparent;
+}
+
+
+.terminalTab .XtermTerminal{
+    background-color: var(--secondaryBg);
+    width: 100%;
+    height: 68vh;
+    padding: 10px;
+    overflow: hidden;
+} 
+
+.terminalTab .terminal.xterm {
+    width: 100%;
+    height: 100%;
+} 
+
+.terminalTab .xterm .xterm-viewport {
+    background-color: var(--secondaryBg) !important;
+}
+
+.terminalTab .xterm .xterm-viewport::-webkit-scrollbar {
+    display: none;
+}
+
+/* tab=> web container logs  */
+
+.containerLogsTab {
+    background-color: var(--secondaryBg);
+    padding: 15px;
+    max-height: 68vh;
+    overflow-y: auto; 
+}
+.containerLogsTab p {
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: pre;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 20px;
 }

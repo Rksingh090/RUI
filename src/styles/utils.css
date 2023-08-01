@@ -239,6 +239,10 @@ input.noStyle {
     background-color: var(--background);
 }
 
+.TabMenu.fullWidth {
+    width: 100%;
+}
+
 .TabMenu.wrap {
     flex-wrap: wrap;
 }
@@ -326,4 +330,9 @@ input.noStyle {
 }
 .warningBorderTop {
     border-top: 1px solid var(--warning);
+}
+
+/* cursor pointer  */
+.cursorPointer {
+    cursor: pointer;
 }

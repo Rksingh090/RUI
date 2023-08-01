@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import TabBox from '../components/common/TabBox';
 import DeployTemplates from '../components/web/deploy/DeployTemplates';
 import GithubDeploy from '../components/web/deploy/GithubDeploy';
 import FileDeploy from '../components/web/deploy/FileDeploy';
 import CustomDeploy from '../components/web/deploy/CustomDeploy';
+import IconButton from '../components/common/IconButton';
+import { AiOutlineBackward } from 'react-icons/ai';
 
 const AddWeb = () => {
 
   const { hash } = useLocation()
+  const navigate = useNavigate()
   const [tabIdx, setTabIdx] = useState(0);
 
   useEffect(() => {
@@ -34,7 +37,8 @@ const AddWeb = () => {
 
   return (
     <div className="fullXY withPadding flexCol gapSM">
-      <div className="TabMenu">
+      <div className="TabMenu fullWidth wrap round">
+        <IconButton onClick={() => navigate(-1)} Icon={<AiOutlineBackward size={16} />} classList={"noBg gapSM fontMD"} text={"Back"}/>
         <Link className={`tab ${tabIdx === 0 ? "active" : ""}`} to={"/add/web/#templates"}>Deploy Template</Link>
         <Link className={`tab ${tabIdx === 1 ? "active" : ""}`} to={"/add/web/#github-deploy"}>Deploy from Github </Link>
         <Link className={`tab ${tabIdx === 2 ? "active" : ""}`} to={"/add/web/#file-deploy"}>Deploy from Folder</Link>

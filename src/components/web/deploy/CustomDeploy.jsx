@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { AiOutlineCloudUpload, AiOutlinePlus } from "react-icons/ai";
 import { CgClose } from "react-icons/cg";
@@ -7,11 +7,13 @@ import RInput from '../../common/RInput';
 import IconButton from '../../common/IconButton';
 import { availableTemplates } from '../../../config/templates';
 import { useSearchParams } from 'react-router-dom';
+import { useWeb } from '../../../context/WebContext';
 
-import { WS_URL } from '../../../constants';
+
 
 const CustomDeploy = () => {
-    const ws = useMemo(() => new WebSocket(`${WS_URL}/webws`), [])
+
+    const { loading, customDeployLogs, deployTemplateApp } = useWeb()
 
     const [searchParams, setSearchParams] = useSearchParams();
     const [templateData, setTemplateData] = useState({
@@ -21,10 +23,8 @@ const CustomDeploy = () => {
             name: "",
             value: ""
         }],
-        exposed_ports: ""
+        exposed_port: ""
     })
-
-    const [stdOutputs, setStdOutputs] = useState([]);
 
     useEffect(() => {
         let template = searchParams.get("template");
@@ -74,33 +74,15 @@ const CustomDeploy = () => {
         }))
     }
 
-
-
-    ws.onopen = (e) => {
-        console.log("Connection Opened.");
-    }
-    ws.onmessage = (e) => {
-        const { data } = e;
-        
-        if (!data || data === null) return;
-
-        let parsedData = JSON.parse(data);
-        console.log(parsedData);
-
-        setStdOutputs(prev => [
-            ...prev,
-            parsedData
-        ])
-    }
-
-    ws.onclose = (e) => {
-        console.log("Connection Closed.");
+    const deploadCustomTemplate = e => {
+        e.preventDefault();
+        deployTemplateApp(templateData);
     }
 
     return (
         <div className="templateDeployPage">
             <div className="deployGrid">
-                <form className='templateDeployForm '>
+                <form className='templateDeployForm' onSubmit={deploadCustomTemplate}>
                     <RInput
                         value={templateData.name}
                         onChange={(e) => setTemplateData(prev => ({
@@ -117,10 +99,10 @@ const CustomDeploy = () => {
                         }))}
                         RClass={"roundSM withShadow "} placeholder={"Image"} />
                     <RInput
-                        value={templateData.exposed_ports}
+                        value={templateData.exposed_port}
                         onChange={(e) => setTemplateData(prev => ({
                             ...prev,
-                            exposed_ports: e.target.value
+                            exposed_port: e.target.value
                         }))}
                         RClass={"roundSM withShadow "} placeholder={"Exposed Port"} />
                     <div className='envVarHead'>
@@ -139,16 +121,16 @@ const CustomDeploy = () => {
                             </div>
                         ))
                     }
-                    <IconButton type={"submit"} text={"Deploy"} classList={"withShadow roundSM primaryBg gapMD"} Icon={<AiOutlineCloudUpload size={20} />} />
+                    <IconButton type={"submit"} loading={loading?.customLoading} text={"Deploy"} classList={"withShadow roundSM primaryBg gapMD"} Icon={<AiOutlineCloudUpload size={20} />} />
                 </form>
 
                 <div className="templateOutput roundSM withShadow">
-                    <p>Deploy Log</p>
+                    <IconButton classList={"gapMD noPad noBg"} loading={loading.customLoading} text={"Deploy Log"} />
                     <div className="output">
                         {
-                            stdOutputs &&
-                            stdOutputs.length > 0 &&
-                            stdOutputs.map((stdOut, idx) => (
+                            customDeployLogs &&
+                            customDeployLogs.length > 0 &&
+                            customDeployLogs.map((stdOut, idx) => (
                                 <p key={idx}>{stdOut?.message}</p>
                             ))
                         }

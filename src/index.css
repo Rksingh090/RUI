@@ -8,7 +8,7 @@
     --navbarHeight: 50px;
     --bodyHeight: calc(100vh - var(--navbarHeight));
     --success: #00c200;
-    --error: #ff0000;
+    --error: #c90808;
     --warning: #ffa500;
     --info: #1e94fa;
 
@@ -85,14 +85,15 @@
     --background: #2d8e8e;
     --color: #ffffff;
 
-    --secondaryBg: #6dbaba;
-    --secondaryColor: #e1e1e1;
+    --secondaryBg: #4fabab;
+    --secondaryColor: #c7c7c7;
 
-    --primaryColor: #007070;
-    --fadeText: #cbcbcb;
+    --primaryColor: rgb(0, 255, 166);
 
-    --scrollThumb: #2d8e8e;
-    --scrollTrack: #4a8383;
+    --fadeText: #e9e9e9;
+
+    --scrollThumb: #005050;
+    --scrollTrack: #6dbaba;
 
     --shadowSM: 0px 0px 5px rgba(0, 0, 0, .3);
     --transparentBG: rgba(255, 255, 255, .2);
@@ -156,8 +157,7 @@ html,
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-weight: 500;
-    color: var(--color);
+    /* color: var(--color); */
 }
 
 *:not(.XtermTerminal *) {
@@ -166,6 +166,7 @@ html,
 
 ::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -174,6 +175,12 @@ html,
 
 ::-webkit-scrollbar-thumb {
     background-color: var(--scrollThumb);
+}
+
+
+span, p, h1, h2, h3, h4 ,h5, h6, strong, pre, svg, a{
+    color: var(--color);
+    stroke: var(--color);
 }
 
 h1 {

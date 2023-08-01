@@ -5,7 +5,7 @@ export const availableTemplates = [
         " WordPress is a free and open-source content management system written in PHP and paired with a MySQL or MariaDB database.",
       icon: "https://cdn.worldvectorlogo.com/logos/wordpress-blue.svg",
       image: "wordpress",
-      exposed_ports: 80,
+      exposed_port: 80,
       environments: [
         {
           name: "WORDPRESS_DB_HOST",
@@ -35,7 +35,7 @@ export const availableTemplates = [
       description: "Drupal is a free and open-source content-management framework written in PHP and distributed under the GNU General Public License.",
       icon: "https://cdn.worldvectorlogo.com/logos/drupal.svg",
       image: "drupal",
-      exposed_ports: 80,
+      exposed_port: 80,
       environments: [
         {
           name: "MYSQL_DATABASE",
@@ -61,7 +61,7 @@ export const availableTemplates = [
         "Vault is a tool for securely accessing secrets via a unified interface and tight access control.",
       icon: "https://d1q6f0aelx0por.cloudfront.net/product-logos/library-vault-logo.png",
       image: "vault",
-      exposed_ports: 8200,
+      exposed_port: 8200,
       environments: [
         {
           name: "VAULT_DEV_ROOT_TOKEN_ID",
@@ -74,7 +74,7 @@ export const availableTemplates = [
       description: "PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.",
       icon: "https://cdn.worldvectorlogo.com/logos/postgresql.svg",
       image: "supabase/postgres",
-      exposed_ports: 5432,
+      exposed_port: 5432,
       environments: [
         {
           name: "POSTGRES_PASSWORD",
@@ -89,7 +89,7 @@ export const availableTemplates = [
         "Joomla is a free and open-source content management system (CMS) for publishing web content. It is built on a model–view–controller web application framework that can be used independently of the CMS.",
       icon: "https://cdn.worldvectorlogo.com/logos/joomla.svg",
       image: "joomla",
-      exposed_ports: 80,
+      exposed_port: 80,
       environments: [
         {
           name: "JOOMLA_DB_HOST",
@@ -114,18 +114,14 @@ export const availableTemplates = [
       description: "PhpMyAdmin is a free software tool written in PHP, intended to handle the administration of MySQL over the Web.",
       icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/PhpMyAdmin_logo.svg/1280px-PhpMyAdmin_logo.svg.png",
       image: "phpmyadmin/phpmyadmin",
-      exposed_ports: 80,
+      exposed_port: 80,
       environments: [
         {
           name: "MYSQL_ROOT_PASSWORD",
           value: ""
         },
         {
-          name: "MYSQL_USER",
-          value: ""
-        },
-        {
-          name: "MYSQL_PASSWORD",
+          name: "PMA_HOST",
           value: ""
         }
       ],
@@ -135,7 +131,7 @@ export const availableTemplates = [
       description: "CodeIgniter is an open-source PHP web application framework, for use in building dynamic web sites with PHP.",
       icon: "https://cdn.worldvectorlogo.com/logos/codeigniter.svg",
       image: "bitnami/codeigniter",
-      exposed_ports: 80,
+      exposed_port: 80,
       environments: [],
     },
     {
@@ -143,7 +139,7 @@ export const availableTemplates = [
       description: "Open source API development ecosystem",
       icon: "https://avatars.githubusercontent.com/u/56705483",
       image: "hoppscotch/hoppscotch",
-      exposed_ports: 3000,
+      exposed_port: 3000,
       environments: [],
     },
     {
@@ -151,7 +147,7 @@ export const availableTemplates = [
       description: "Jenkins is an open source automation server. It helps to automate the non-human part of the software development process, with continuous integration and facilitating technical aspects of continuous delivery.",
       icon: "https://cdn.worldvectorlogo.com/logos/jenkins.svg",
       image: "jenkins",
-      exposed_ports: 8080,
+      exposed_port: 8080,
       environments: [],
     },
     {
@@ -159,7 +155,7 @@ export const availableTemplates = [
       description: "Kibana is an open source data visualization plugin for Elasticsearch. It provides visualization capabilities on top of the content indexed on an Elasticsearch cluster.",
       icon: "https://cdn.worldvectorlogo.com/logos/elastic-kibana.svg",
       image: "kibana",
-      exposed_ports: 5601,
+      exposed_port: 5601,
       environments: [],
     },
     {
@@ -167,7 +163,7 @@ export const availableTemplates = [
       description: "Apache Solr is an open source enterprise search platform, written in Java, from the Apache Lucene project.",
       icon: "https://cdn.worldvectorlogo.com/logos/solr.svg",
       image: "solr",
-      exposed_ports: 8983,
+      exposed_port: 8983,
       environments: [],
     },
     {
@@ -175,7 +171,7 @@ export const availableTemplates = [
       description: "Rocket.Chat is a free and open source web, desktop and mobile chat platform built on the Meteor JavaScript Application Platform.",
       icon: "https://cdn.worldvectorlogo.com/logos/rocket-chat.svg",
       image: "rocket.chat",
-      exposed_ports: 3000,
+      exposed_port: 3000,
       environments: [],
     },
     {
@@ -183,7 +179,7 @@ export const availableTemplates = [
       description: "Python is an interpreted, interactive, object-oriented, open-source programming language.",
       icon: "https://cdn.worldvectorlogo.com/logos/python-5.svg",
       image: "3.12.0b4-alpine3.18",
-      exposed_ports: 3000,
+      exposed_port: 3000,
       environments: [],
     },
     {
@@ -191,7 +187,7 @@ export const availableTemplates = [
       description: "Postfix Admin is a web based interface used to manage mailboxes, virtual domains and aliases for Postfix, Dovecot and MySQL.",
       icon: "https://styles.redditmedia.com/t5_2ub10/styles/communityIcon_uisxd1pkk2n71.png",
       image: "postfixadmin",
-      exposed_ports: 80,
+      exposed_port: 80,
       environments: [],
     },
     {
@@ -199,7 +195,7 @@ export const availableTemplates = [
       description: "Portainer is a lightweight management UI which allows you to easily manage your Docker host or Swarm cluster.",
       icon: "https://cdn.worldvectorlogo.com/logos/portainer.svg",
       image: "portainer/portainer",
-      exposed_ports: 9000,
+      exposed_port: 9000,
       environments: [],
     },
     {
@@ -207,7 +203,7 @@ export const availableTemplates = [
       description: "Moodle is a free and open-source learning management system (LMS) written in PHP and distributed under the GNU General Public License.",
       icon: "https://cdn.icon-icons.com/icons2/2415/PNG/512/moodle_original_logo_icon_146420.png",
       image: "bitnami/moodle",
-      exposed_ports: 80,
+      exposed_port: 80,
       environments: [
         {
           name: "ALLOW_EMPTY_PASSWORD",
@@ -232,7 +228,7 @@ export const availableTemplates = [
       description: "OpenSearch is a community-driven, open source fork of Elasticsearch.",
       icon: "https://opensearch.org/assets/opensearch-twitter-card.png",
       image: "opensearchproject/opensearch",
-      exposed_ports: 9200,
+      exposed_port: 9200,
       environments: [
         {
           name: "discovery.type",
@@ -245,7 +241,7 @@ export const availableTemplates = [
       description: "Hasura GraphQL Engine is a blazing-fast GraphQL server that gives you instant, realtime GraphQL APIs over Postgres, with webhook triggers on database events for asynchronous business logic.",
       icon: "https://hasura.io/brand-assets/hasura-icon-primary.png",
       image: "hasura/graphql-engine",
-      exposed_ports: 8080,
+      exposed_port: 8080,
       environments: [
         {
           name: "HASURA_GRAPHQL_DATABASE_URL",

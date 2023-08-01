@@ -16,7 +16,7 @@ const Base = () => {
         <Navbar />
         <div className='baseDivider' style={{
           gridTemplateColumns: menuOpen === "true" ? 
-          "200px 1fr" :
+          "160px 1fr" :
           "60px 1fr"
         }}>
             <Sidebar />

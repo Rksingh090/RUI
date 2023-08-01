@@ -7,12 +7,17 @@ import IconButton from '../../common/IconButton'
 // icons 
 import { CgClose } from 'react-icons/cg'
 import { AiOutlineCloudUpload, AiOutlinePlus } from 'react-icons/ai'
+import { useWeb } from '../../../context/WebContext'
 
 const GithubDeploy = () => {
+
+
+  const {githubDeployLogs, deployGithubApp, loading} = useWeb()
+
   const [templateData, setTemplateData] = useState({
     name: "",
     github_url: "",
-    exposed_ports: "",
+    exposed_port: "",
     environments: [{
       name: "",
       value: ""
@@ -57,10 +62,15 @@ const GithubDeploy = () => {
     }))
   }
 
+  const onDeployGithub = (e) => {
+    e.preventDefault();
+    deployGithubApp(templateData)
+  }
+
   return (
     <div className="templateDeployPage">
       <div className="deployGrid">
-        <form className='templateDeployForm '>
+        <form className='templateDeployForm ' onSubmit={onDeployGithub}>
           <RInput
             RClass={"roundSM withShadow"}
             placeholder={"Web Name"}
@@ -79,11 +89,16 @@ const GithubDeploy = () => {
               ...prev,
               github_url: e.target.value
             }))}
-          />
+            />
 
           <RInput
             RClass={"roundSM withShadow "}
             placeholder={"Exposed Port"}
+            value={templateData.exposed_port}
+            onChange={(e) => setTemplateData(prev => ({
+              ...prev,
+              exposed_port: e.target.value
+            }))}
           />
 
           <div className='envVarHead'>
@@ -102,12 +117,21 @@ const GithubDeploy = () => {
               </div>
             ))
           }
-          <IconButton type={"submit"} text={"Deploy"} classList={"withShadow roundSM primaryBg gapMD"} Icon={<AiOutlineCloudUpload size={20} />} />
+          <IconButton type={"submit"} loading={loading.githubLoading} text={"Deploy"} classList={"withShadow roundSM primaryBg gapMD"} Icon={<AiOutlineCloudUpload size={20} />} />
 
         </form>
+
         <div className="templateOutput roundSM withShadow">
-          <p>Deploy Log</p>
-          <div className="output "></div>
+          <IconButton loading={loading.githubLoading} classList={"gapMD noPad noBg"} text={"Deploy Log"} />
+          <div className="output">
+            {
+              githubDeployLogs &&
+              githubDeployLogs.length > 0 &&
+              githubDeployLogs.map((stdOut, idx) => (
+                <p key={idx}>{stdOut?.message}</p>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>

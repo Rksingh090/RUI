@@ -40,29 +40,17 @@
 }
 
 .webBoxData {
-    display: grid;
-    grid-template-columns: 40px minmax(0,3fr);
-    gap: 10px;
-}
-
-.webBoxData .webImage {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-
-.webDetails {
     display: flex;
     flex-direction: column;
     gap: 3px;
 }
-.webDetails .appName {
+
+.webBoxData .appName {
+    font-size: 15px;
     margin-bottom: 5px;
 }
-.webDetails .webLine {
-    font-size: 10px;
+.webBoxData .webLine {
+    font-size: 11px;
     font-weight: 400;
 }
 
@@ -167,6 +155,9 @@
     cursor: pointer;
 }
 
+.envVariables .deleteIcon.secondaryBg {
+    background-color: var(--secondaryBg);
+}
 
 
 .templateOutput {
@@ -174,19 +165,27 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
+    max-height: 75vh;
+    overflow: hidden;
 }
 
-.templateOutput p {
-    font-size: 12px;
-    white-space: break-spaces;
-}
- .output {
+.output {
     background: var(--secondaryBg);
+    padding: 10px 10px 20px 10px;
     height: 100%;
-    padding: 10px;
+    width: 100%;
     min-height: 155px;
-    max-height: 70vh;
+    overflow: hidden;
     overflow-y: auto;
-    overflow-x: hidden;
+}
+
+.templateOutput .output p {
+    width: 100%;
+    font-size: 11px;
+    white-space: pre-wrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
 }

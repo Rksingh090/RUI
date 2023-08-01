@@ -7,8 +7,11 @@ import IconButton from '../../common/IconButton'
 // icons 
 import { CgClose } from 'react-icons/cg'
 import { AiOutlineCloudUpload, AiOutlinePlus } from 'react-icons/ai'
+import { useWeb } from '../../../context/WebContext'
 
 const FileDeploy = () => {
+
+  const {fileDeployLogs} = useWeb();
 
   const [templateData, setTemplateData] = useState({
     name: "",
@@ -107,8 +110,16 @@ const FileDeploy = () => {
 
         </form>
         <div className="templateOutput roundSM withShadow">
-          <p>Deploy Log</p>
-          <div className="output "></div>
+        <IconButton classList={"gapMD noPad noBg"} text={"Deploy Log"} />
+          <div className="output">
+            {
+              fileDeployLogs &&
+              fileDeployLogs.length > 0 &&
+              fileDeployLogs.map((stdOut, idx) => (
+                <p key={idx}>{stdOut?.message}</p>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>

@@ -31,7 +31,7 @@ const router = createBrowserRouter([
         element: <Web />,
       },
       {
-        path: "/web/:containerId",
+        path: "/web/:containerId/:webName",
         element: <WebDetails />
       },
       {

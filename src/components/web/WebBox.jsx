@@ -1,20 +1,15 @@
 import React from 'react';
-
-import {BiLogoNodejs} from 'react-icons/bi'
 import { Link } from 'react-router-dom';
 
-const WebBox = () => {
+const WebBox = ({ data }) => {
   return (
-    <Link to={`/web/sf45sgs7gqwa125va`} className='webBox withShadow round'>
+    <Link to={`/web/${data?._id}/${data?.name}`} className='webBox withShadow round'>
+
       <div className="webBoxData">
-        <div className="webImage">
-          <BiLogoNodejs size={35} />
-        </div>
-        <div className="webDetails">
-          <h4 className='appName'>Node JS</h4>
-          <p className='webLine'>App Port: 84500</p>
-          <p className='webLine'>Container Port: 5000</p>
-        </div>
+          <h4 className='appName'>{data?.name}</h4>
+          <p className='webLine'>App Port: {data?.exposed_port || 80}</p>
+          <p className='webLine'>Container Port: {data?.bind_port}</p>
+          <p className='webLine primaryText'>http://localhost:{data?.bind_port}</p>
       </div>
     </Link>
   )
