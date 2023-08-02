@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Terminal } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
 import { WS_URL } from '../../constants';
 import "xterm/css/xterm.css";
 import { useMemo } from 'react';
+import { useWeb } from '../../context/WebContext';
 
 const TerminalTab = ({ id }) => {
 
 
     const terminalRef = React.useRef(null);
+    const {isRebuilding} = useWeb();
 
     const term = useMemo(() => new Terminal({
         cursorBlink: true,
@@ -22,7 +24,7 @@ const TerminalTab = ({ id }) => {
         fontFamily: "Fira Code"
     }), []);
 
-    const websocket = new WebSocket(`${WS_URL}/v1/docker/container-exec/${id}`);
+    const websocket = useMemo(() => new WebSocket(`${WS_URL}/v1/docker/container-exec/${id}`), [id]);
     websocket.binaryType = "arraybuffer";
 
 
@@ -66,13 +68,21 @@ const TerminalTab = ({ id }) => {
 
     React.useEffect(() => {
         if (!terminalRef.current) return;
-        term.open(terminalRef.current);
+        if(isRebuilding){
+            websocket.close();
+            term.dispose()
+        }else{
+            term.open(terminalRef.current);
+            const fitAddon = new FitAddon();
+            term.loadAddon(fitAddon);
+            fitAddon.fit();
+        }
 
-        const fitAddon = new FitAddon();
-        term.loadAddon(fitAddon);
-        fitAddon.fit();
-    }, [terminalRef, term]);
-
+        return () => {
+            term.dispose();
+            websocket.close();
+        }
+    }, [isRebuilding, terminalRef, term]);
 
     return (
         <div className='terminalTab'>

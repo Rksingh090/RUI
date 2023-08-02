@@ -1,14 +1,14 @@
 import React from 'react'
 
-const RModal = ({ show }) => {
+const RModal = ({ children,formClass, show, width, height }) => {
     return (<>
         {
-            show ? (
+            show && (
                 <div className={"RModal"}  >
-
+                    <div className={`modalForm ${formClass}`} style={{width: width || "500px", height: height || "400px"}}>
+                        {children}
+                    </div>
                 </div>
-            ) : (
-                <span></span>
             )
         }
     </>

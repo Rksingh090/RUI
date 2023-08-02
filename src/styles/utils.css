@@ -318,7 +318,6 @@ input.noStyle {
     border-top: 1px solid var(--info);
 }
 
-
 .warningBG {
     background-color: var(--warning);
 }
@@ -335,4 +334,19 @@ input.noStyle {
 /* cursor pointer  */
 .cursorPointer {
     cursor: pointer;
+}
+
+/* grid util */
+
+.RGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+.RGrid .col3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.RGrid .col4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }

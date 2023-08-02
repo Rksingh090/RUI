@@ -284,10 +284,25 @@
 /* rmodal  */
 .RModal {
     position: fixed;
+    background-color: var(--modalBG);
     top: 0;
     left: 0;
-    bottom: 0;
-    right: 0;
+    height: 100vh;
+    width: 100%;
     z-index: 54564;
-    background-color: var(--modalBG);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.RModal .modalForm {
+    background-color: var(--background);
+    padding: 15px;
+    border-radius: var(--roundSM);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+

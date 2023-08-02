@@ -12,6 +12,9 @@ const WebContext = ({ children }) => {
     // websocket connection for all web related msg 
     const ws = useMemo(() => new WebSocket(`${WS_URL}/webws`), [])
 
+    // is rebuilding 
+    const [isRebuilding, setIsRebuilding] = useState(false)
+
     // loading state 
     const [loading, setLoading] = useState({
         allWebsiteLoading: false,
@@ -22,6 +25,11 @@ const WebContext = ({ children }) => {
         singleWebLoading: false,
         containerDetails: false,
         singleContainerLoading: true
+    })
+
+    // loading state 
+    const [modalState, setModalState] = useState({
+        envModal: false
     })
 
     // all websites 
@@ -103,7 +111,7 @@ const WebContext = ({ children }) => {
 
     // deploy custom template
     const deployTemplateApp = (data) => {
-        
+
         if (!data.name || data.name === "") return;
         if (!data.image || data.image === "") return;
         if (!data.exposed_port || data.exposed_port === "") return;
@@ -239,7 +247,7 @@ const WebContext = ({ children }) => {
         if (key === "key") {
             allEnv[idx].key = e.target.value;
         } else {
-            allEnv[idx].value =  e.target.value;
+            allEnv[idx].value = e.target.value;
         }
         setSingleWeb(prev => ({
             ...prev,
@@ -247,12 +255,30 @@ const WebContext = ({ children }) => {
         }))
     }
 
-    // add new env 
-    const addNewEnv = () => {
-        setSingleWeb(prev => ({
+    // change modal state 
+    const changeModalState = (data) => {
+        setModalState(prev => ({
             ...prev,
-            variables: [...prev.variables, {key: "", value: ""}]
+            ...data
         }))
+    }
+
+    // add new env 
+    const addNewEnv = (data) => {
+        axios.post(`${API}/v1/web/add-variable`, { id: singleWeb?._id, variables: data })
+            .then((res) => {
+                const { status } = res.data;
+                if (status === "success") {
+                    setSingleWeb(pre => ({
+                        ...pre,
+                        variables: [...pre.variables, data]
+                    }))
+                }
+            }).catch(err => {
+                console.log(err);
+            }).finally(() => {
+                changeModalState({ envState: false })
+            })
     }
 
     // on delete env 
@@ -283,6 +309,27 @@ const WebContext = ({ children }) => {
                 setLoadingData({ singleContainerLoading: false })
             })
     };
+
+    const rebuildWebsite = () => {
+        setIsRebuilding(true)
+        axios.post(`${API}/v1/web/rebuild-web`, {
+            name: singleWeb.name
+        }).then((res) => {
+            const {status, container_id} = res.data;
+            if(status === "success"){
+                setSingleWeb(prev => ({
+                    ...prev,
+                    container_id
+                }))
+            }
+            console.log(res.data)
+        })
+        .finally(() => {
+            setIsRebuilding(false)
+        })
+    }
+
+
 
     return (
         <webContext.Provider
@@ -316,7 +363,14 @@ const WebContext = ({ children }) => {
                 // container logs 
                 containerLog, setContainerLog,
                 getContainerLogs,
-                containerError
+                containerError,
+
+                // modal state 
+                modalState, changeModalState,
+
+                // rebuilding state 
+                rebuildWebsite,
+                isRebuilding, setIsRebuilding
 
             }}
         >

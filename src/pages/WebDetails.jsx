@@ -14,13 +14,27 @@ import WebDetailsHeader from '../components/webdetails/WebDetailsHeader';
 import RModal from '../components/common/RModal';
 
 const WebDetails = () => {
-    const [tabIdx, setTabIdx] = useState(0);
     const { webName } = useParams();
     const {
         loading, getWebByName, singleWeb, onEnvChange,
         addNewEnv, onDeleteEnv, getContainerLogs, containerError,
-        rebuildLog
+        rebuildLog, modalState, changeModalState
     } = useWeb()
+
+
+    const [tabIdx, setTabIdx] = useState(0);
+    const [envData, setEnvData] = useState({
+        key: "",
+        value: ""
+    });
+
+    const onChangeEnv = (e, key) => {
+        setEnvData(pre => ({
+            ...pre,
+            [key]: e.target.value
+        }))
+    }
+
 
     useEffect(() => {
         if (!webName || webName === null || webName === undefined) return;
@@ -31,7 +45,21 @@ const WebDetails = () => {
         <div className="withPadding flexCol gapMD webDetailsPage">
 
             <WebDetailsHeader />
-            <RModal />
+            <RModal show={modalState?.envState} height={"auto"} formClass={"roundMD"}>
+                <h4>Add New Env</h4>
+                <div className="RGrid">
+                    <RInput placeholder={"Key"} RClass={"roundSM secondaryBg"}
+                     value={envData?.key} onChange={(e) => onChangeEnv(e, "key")}
+                     />
+                    <RInput placeholder={"Value"} RClass={"roundSM secondaryBg"}
+                     value={envData?.value} onChange={(e) => onChangeEnv(e, "value")}
+                     />
+                </div>
+                <div className="flexRow gapMD" style={{ width: "100%" }}>
+                    <IconButton text={"cancle"} classList={"secondaryBg roundSM"} onClick={() => changeModalState({ envState: false })} />
+                    <IconButton text={"save"} classList={"primaryBg roundSM"} onClick={() => addNewEnv(envData)} />
+                </div>
+            </RModal>
 
             <div className="mainWebGrid">
                 <WithLoading classList={"mainBg roundSM withShadow"} min={"200px"} spinnerSize={35} loading={loading?.singleWebLoading}>
@@ -157,9 +185,13 @@ const WebDetails = () => {
                                 <TabBox show={tabIdx === 3}>
                                     <div className='envVariableTab'>
                                         <div className="flexRow gapMD">
-                                            <IconButton onClick={addNewEnv} type={"button"} Icon={<AiOutlinePlus size={15} />} text={"Add More"} classList={"secondaryBg roundSM gapSM fontSM"} />
-                                            <IconButton type={"button"} text={"save"} classList={"primaryBg roundSM gapSM fontSM"} />
-
+                                            <IconButton
+                                                onClick={() => changeModalState({ envState: true })}
+                                                type={"button"}
+                                                Icon={<AiOutlinePlus size={15} />}
+                                                text={"Add More"}
+                                                classList={"secondaryBg roundSM gapSM fontSM"}
+                                            />
                                         </div>
                                         {
                                             singleWeb?.variables &&

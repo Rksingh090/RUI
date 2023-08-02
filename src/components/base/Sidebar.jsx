@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // utils 
 import { useTheme } from '../../context/ThemeContext'
@@ -8,60 +8,72 @@ import { Link } from 'react-router-dom';
 import { LiaDocker } from 'react-icons/lia';
 import { FiSettings } from 'react-icons/fi';
 import { RxDashboard } from 'react-icons/rx';
+import { BiNetworkChart } from 'react-icons/bi';
 import { BsAppIndicator, BsDatabase, BsFolder2Open, BsTerminalDash } from 'react-icons/bs';
 
 const Sidebar = () => {
   const { menuOpen } = useTheme();
+  const [sidebarMenu, setSidebarMenu] = useState({
+    links: [
+      {
+        name: "Dashboard",
+        href: "/",
+        icon: <RxDashboard size={18} />
+      },
+      {
+        name: "Web App",
+        href: "/web",
+        icon: <BsAppIndicator size={18} />
+      },
+      {
+        name: "Files",
+        href: "/files",
+        icon: <BsFolder2Open size={18} />
+      },
+      {
+        name: "Database",
+        href: "/database",
+        icon: <BsDatabase size={18} />
+      },
+      {
+        name: "Network",
+        href: "/network",
+        icon: <BiNetworkChart size={18} />
+      },
+      {
+        name: "Terminal",
+        href: "/terminal",
+        icon: <BsTerminalDash size={18} />
+      },
+      {
+        name: "Docker",
+        href: "/docker",
+        icon: <LiaDocker size={18} />
+      },
+      {
+        name: "Setting",
+        href: "/setting",
+        icon: <FiSettings size={18} />
+      },
+    ]
+  })
 
 
   return (
     <div className={`Sidebar ${menuOpen === "true" ? "open" : "close"}`}>
       <ul className="sidebarInner flexCol">
-        <li className="sidebarItem">
-          <Link className="flexRow gapMD" to="/">
-            <RxDashboard size={18} />
-            <span>Dashboard</span>
-          </Link>
-        </li>
-        <li className="sidebarItem">
-          <Link className="flexRow gapMD" to="/web">
-            <BsAppIndicator size={18} />
-            <span>Web Apps</span>
-          </Link>
-        </li>
-        <li className="sidebarItem">
-          <Link className="flexRow gapMD" to="/files">
-            <BsFolder2Open size={18} />
-            <span>Files</span>
-          </Link>
-        </li>
-        <li className="sidebarItem">
-          <Link className="flexRow gapMD" to="/database">
-            <BsDatabase size={18} />
-            <span>Database</span>
-          </Link>
-
-        </li>
-        <li className="sidebarItem">
-          <Link className="flexRow gapMD" to="/terminal">
-            <BsTerminalDash size={18} />
-            <span>Terminal</span>
-          </Link>
-        </li>
-        <li className="sidebarItem">
-          <Link className="flexRow gapMD" to="/docker">
-            <LiaDocker size={18} />
-            <span>Docker</span>
-          </Link>
-
-        </li>
-        <li className="sidebarItem">
-          <Link className="flexRow gapMD" to="/settings">
-            <FiSettings size={18} />
-            <span>Settings</span>
-          </Link>
-
-        </li>
+        {
+          sidebarMenu.links &&
+          sidebarMenu.links.length > 0 &&
+          sidebarMenu.links.map((meniItem, idx) => (
+            <li className="sidebarItem" key={idx}>
+              <Link className="flexRow gapMD" to={meniItem?.href}>
+                {meniItem?.icon}
+                <span>{meniItem?.name}</span>
+              </Link>
+            </li>
+          ))
+        }
       </ul>
     </div>
   )

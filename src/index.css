@@ -5,6 +5,8 @@
     --padSM: 10px;
     --padXSM: 0 10px;
     --padYSM: 10px 0;
+    --roundSM: 4px;
+    --roundMD: 10px;
     --navbarHeight: 50px;
     --bodyHeight: calc(100vh - var(--navbarHeight));
     --success: #00c200;

@@ -15,6 +15,7 @@ import Terminal from './pages/Terminal';
 import Settings from './pages/Settings';
 import WebDetails from './pages/WebDetails';
 import AddWeb from './pages/AddWeb';
+import DockerNetwork from './pages/DockerNetwork';
 
 
 const router = createBrowserRouter([
@@ -51,11 +52,15 @@ const router = createBrowserRouter([
         element: <Database />
       },
       {
+        path: "/network",
+        element: <DockerNetwork />
+      },
+      {
         path: "/terminal",
         element: <Terminal />
       },
       {
-        path: "/settings",
+        path: "/setting",
         element: <Settings />
       },
 
