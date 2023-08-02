@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const WebHeader = () => {
     return (
-        <div className="webHeader roundSM">
+        <div className="webHeader withShadow roundSM">
             <div className="webStart">
                 <Link to={"/add/web"}>
                     <IconButton text={"Add Website"} classList={"gapSM primaryBg roundSM fontSM"} Icon={<AiOutlinePlus size={14} />} />

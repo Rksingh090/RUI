@@ -6,10 +6,12 @@ import { Terminal as Xterm } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
 
 import { WS_URL } from '../constants';
-import "xterm/css/xterm.css";
+import { useTheme } from '../context/ThemeContext';
+// import "xterm/css/xterm.css";
 
 const Terminal = () => {
   const xtermRef = useRef(null);
+  const {theme}= useTheme();
 
   const websocket = useMemo(() => new WebSocket(`${WS_URL}/v1/terminal/ws`), []);
   websocket.binaryType = "arraybuffer";
@@ -23,7 +25,7 @@ const Terminal = () => {
     cols: 50,
     rows: 50,
     lineHeight: 1.35,
-    fontFamily: "Cascadia Code"
+    fontFamily: "Cascadia Code",
   }), []);
 
   function ab2str(buf) {
@@ -74,11 +76,6 @@ const Terminal = () => {
     fitAddon.fit();
   }, [xterm])
 
-  window.addEventListener('resize', () => {
-    const fitAddon = new FitAddon();
-    xterm.loadAddon(fitAddon);
-    fitAddon.fit();
-  });
 
   return (
     <div className='fullXY withPadding terminalPage' >

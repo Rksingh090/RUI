@@ -103,17 +103,15 @@ const WebContext = ({ children }) => {
 
     // deploy custom template
     const deployTemplateApp = (data) => {
-        const envString = buildEnv(data.environments);
-        setLoadingData({ customLoading: true })
-        setCustomDeployLogs([]);
-
+        
         if (!data.name || data.name === "") return;
         if (!data.image || data.image === "") return;
         if (!data.exposed_port || data.exposed_port === "") return;
-
+        setLoadingData({ customLoading: true })
+        setCustomDeployLogs([]);
 
         axios.post(`${API}/v1/web/template-deploy`, {
-            variables: envString,
+            variables: data.environments,
             exposed_port: String(data.exposed_port),
             image: data.image,
             name: data.name
@@ -134,8 +132,6 @@ const WebContext = ({ children }) => {
 
     // deploat github app 
     const deployGithubApp = (data) => {
-        const envString = buildEnv(data.environments);
-
         if (!data.name || data.name === "") return;
         if (!data.github_url || data.github_url === "") return;
         if (!data.exposed_port || data.exposed_port === "") return;
@@ -144,7 +140,7 @@ const WebContext = ({ children }) => {
 
 
         axios.post(`${API}/v1/web/github-deploy`, {
-            variables: envString,
+            variables: data.environments,
             exposed_port: String(data.exposed_port),
             url: data.github_url,
             name: data.name
@@ -161,19 +157,6 @@ const WebContext = ({ children }) => {
             .finally(() => {
                 setLoadingData({ githubLoading: false })
             })
-    }
-
-    // build env 
-    // [{name: "MYSQL_RP", value: "Rishab"}] => ["MYSQL_RP=Rishab"]
-    // filter and remove object if any of name or value is empty or undefined 
-    const buildEnv = (envArray) => {
-        let envString = envArray.filter((item) => {
-            if (!item.name || item.name === "" || item.name === undefined) return false;
-            if (!item.value || item.value === "" || item.value === undefined) return false;
-            return true;
-        })
-            .map((item) => item.name + "=" + item.value)
-        return envString;
     }
 
     // get lits of all websites 
@@ -268,7 +251,7 @@ const WebContext = ({ children }) => {
     const addNewEnv = () => {
         setSingleWeb(prev => ({
             ...prev,
-            variables: [...prev.variables, "="]
+            variables: [...prev.variables, {key: "", value: ""}]
         }))
     }
 

@@ -2,7 +2,6 @@ import React from 'react'
 
 import { Terminal } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
-
 import { WS_URL } from '../../constants';
 import "xterm/css/xterm.css";
 import { useMemo } from 'react';
@@ -10,8 +9,8 @@ import { useMemo } from 'react';
 const TerminalTab = ({ id }) => {
 
 
-
     const terminalRef = React.useRef(null);
+
     const term = useMemo(() => new Terminal({
         cursorBlink: true,
         fontSize: 12,
@@ -20,7 +19,7 @@ const TerminalTab = ({ id }) => {
         cols: 50,
         rows: 50,
         lineHeight: 1.35,
-        fontFamily: "Cascadia Code"
+        fontFamily: "Fira Code"
     }), []);
 
     const websocket = new WebSocket(`${WS_URL}/v1/docker/container-exec/${id}`);
@@ -68,6 +67,7 @@ const TerminalTab = ({ id }) => {
     React.useEffect(() => {
         if (!terminalRef.current) return;
         term.open(terminalRef.current);
+
         const fitAddon = new FitAddon();
         term.loadAddon(fitAddon);
         fitAddon.fit();

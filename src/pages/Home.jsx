@@ -49,7 +49,7 @@ const Home = () => {
 					<p>Disk Space</p>
 				</div>
 				<div className="dashboardCard roundSM withShadow">
-					<CircleBar Icon={<BsCpu size={20} />} percent={10} maxValue={10} customUnit={"Pc."} type={"value"} />
+					<CircleBar Icon={<BsCpu size={20} />} percent={8} maxValue={10} customUnit={"Pc."} type={"value"} />
 					<p>Web Limit</p>
 				</div>
 				<div className="dashboardCard roundSM withShadow">

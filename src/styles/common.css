@@ -261,3 +261,33 @@
     animation: spin .8s linear infinite;
     stroke: var(--primaryColor);
 }
+
+
+/* container status with color  */
+.containerStatus {
+    text-transform: capitalize;
+}
+.containerStatus.running {
+    color: var(--success);
+}
+.containerStatus.paused{
+    color: var(--warning);
+}
+.containerStatus.exited{
+    color: var(--error);
+}
+.containerStatus.restarting{
+    color: var(--info);
+}
+
+
+/* rmodal  */
+.RModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 54564;
+    background-color: var(--modalBG);
+}

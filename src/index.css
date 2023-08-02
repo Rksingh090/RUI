@@ -27,6 +27,8 @@
 
     --shadowSM: 0px 0px 5px rgba(0, 0, 0, .1);
     --transparentBG: rgba(0, 0, 0, .1);
+
+    --modalBG: rgba(0,0,0,.3);
 }
 
 [data-theme="dark"] {
@@ -44,6 +46,8 @@
 
     --shadowSM: 0px 0px 5px rgba(0, 0, 0, .4);
     --transparentBG: rgba(255, 255, 255, .2);
+
+    --modalBG: rgba(255,255,255,.3);
 }
 
 
@@ -62,6 +66,8 @@
 
     --shadowSM: 0px 0px 5px rgba(0, 0, 0, .3);
     --transparentBG: rgba(255, 255, 255, .2);
+
+    --modalBG: rgba(0,0,0,.3);
 }
 
 [data-theme="pink"] {
@@ -79,6 +85,8 @@
 
     --shadowSM: 0px 0px 5px rgba(0, 0, 0, .3);
     --transparentBG: rgba(255, 255, 255, .2);
+
+    --modalBG: rgba(0,0,0,.3);
 }
 
 [data-theme="teal"] {
@@ -97,6 +105,8 @@
 
     --shadowSM: 0px 0px 5px rgba(0, 0, 0, .3);
     --transparentBG: rgba(255, 255, 255, .2);
+
+    --modalBG: rgba(0,0,0,.3);
 }
 
 [data-theme="dracula"] {
@@ -114,6 +124,8 @@
 
     --shadowSM: 0px 0px 5px rgba(0, 0, 0, .3);
     --transparentBG: rgba(255, 255, 255, .2);
+
+    --modalBG: rgba(255,255,255,.3);
 }
 
 [data-theme="purple"] {
@@ -131,6 +143,8 @@
 
     --shadowSM: 0px 0px 5px rgba(0, 0, 0, .3);
     --transparentBG: rgba(255, 255, 255, .2);
+
+    --modalBG: rgba(0,0,0,.3);
 }
 
 [data-theme="yellow"] {
@@ -148,6 +162,8 @@
 
     --shadowSM: 0px 0px 5px rgba(0, 0, 0, .3);
     --transparentBG: rgba(255, 255, 255, .2);
+
+    --modalBG: rgba(0,0,0,.3);
 }
 
 
@@ -157,11 +173,15 @@ html,
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* color: var(--color); */
 }
 
+/* xterm commons  */
 *:not(.XtermTerminal *) {
     font-family: "Poppins", sans-serif;
+}
+
+.xterm-selection div {
+    background-color: var(--primaryColor) !important;
 }
 
 ::-webkit-scrollbar {

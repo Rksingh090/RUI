@@ -11,6 +11,7 @@ import { CgClose } from 'react-icons/cg';
 import TerminalTab from '../components/webdetails/TerminalTab';
 import ContainerLogTab from '../components/webdetails/ContainerLogTab';
 import WebDetailsHeader from '../components/webdetails/WebDetailsHeader';
+import RModal from '../components/common/RModal';
 
 const WebDetails = () => {
     const [tabIdx, setTabIdx] = useState(0);
@@ -30,6 +31,7 @@ const WebDetails = () => {
         <div className="withPadding flexCol gapMD webDetailsPage">
 
             <WebDetailsHeader />
+            <RModal />
 
             <div className="mainWebGrid">
                 <WithLoading classList={"mainBg roundSM withShadow"} min={"200px"} spinnerSize={35} loading={loading?.singleWebLoading}>
@@ -59,13 +61,19 @@ const WebDetails = () => {
                             <p>{singleWeb?.host_path}</p>
                         </div>
                         <div className="webDetailItem">
-                            <p className="fw500 head">Container Link: </p>
+                            <p className="fw500 head">Hots Url: </p>
                             <Link to={`http://localhost:${singleWeb?.bind_port}`} target='_blank' className='primaryText'>http://localhost:{singleWeb?.bind_port}</Link>
                         </div>
                         <div className="webDetailItem">
                             <WithLoading loading={loading?.containerDetails}>
                                 <p className="fw500 head">Container Ip: </p>
-                                <p>{singleWeb?.container_detail?.NetworkSettings?.IPAddress}</p>
+                                <p>{singleWeb?.container_detail?.NetworkSettings?.IPAddress || "-"}</p>
+                            </WithLoading>
+                        </div>
+                        <div className="webDetailItem">
+                            <WithLoading loading={loading?.containerDetails}>
+                                <p className="fw500 head">Status: </p>
+                                <p className={`containerStatus ${singleWeb?.container_detail?.State?.Status}`}>{singleWeb?.container_detail?.State?.Status}</p>
                             </WithLoading>
                         </div>
                     </div>
