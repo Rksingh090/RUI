@@ -81,7 +81,7 @@ const FileDeploy = () => {
             value={templateData.folder_path}
             onChange={(e) => setTemplateData(prev => ({
               ...prev,
-              github_url: e.target.value
+              folder_path: e.target.value
             }))}
           />
 

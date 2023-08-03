@@ -2,19 +2,24 @@
 .mainBG {
     background-color: var(--background);
 }
+.mainText {
+    color: var(--color);
+}
+.mainIcon {
+    fill: var(--color);
+}
 
 .secondaryBG {
     background-color: var(--secondaryBg);
-    color: var(--secondaryColor);
+}
+.secondaryText {
+    color: var(--secondaryBg);
+}
+.fadeText {
+    color: var(--fadeText);
 }
 
-.mainIcon {
-    fill: var(--secondaryColor);
-}
 
-.mainText {
-    color: var(--secondaryColor);
-}
 
 .primaryText {
     color: var(--primaryColor);
@@ -259,6 +264,9 @@ input.noStyle {
     padding: 7px 10px;
     cursor: pointer;
     white-space: nowrap;
+}
+.TabMenu .tab.small {
+    padding: 5px 8px;
 }
 
 .TabMenu.round {

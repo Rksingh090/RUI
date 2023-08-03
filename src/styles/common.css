@@ -44,6 +44,15 @@
     padding: 6px 12px;
     cursor: pointer;
 }
+.iconBtn.small {
+    padding: 4px 7px;
+    font-size: 11px;
+}
+
+.iconBtn span,
+.iconBtn svg {
+    color: inherit;
+}
 
 .iconBtn.noPad {
     padding: 0;
@@ -60,6 +69,7 @@
     background-color: var(--primaryColor);
 }
 .iconBtn.secondaryBg {
+    color: var(--color);
     background-color: var(--secondaryBg);
 }
 
@@ -95,9 +105,28 @@
     }
 }
 
+.iconBtn.success {
+    background-color: var(--success);
+    color: white;
+}
+.iconBtn.warning {
+    background-color: var(--warning);
+    color: white;
+}
+.iconBtn.error {
+    background-color: var(--error);
+    color: white;
+}
+.iconBtn.info {
+    background-color: var(--info);
+    color: white;
+}
+
 .iconBtn:not(.noBg):disabled {
     background-color: var(--secondaryBg);
+    color: var(--color);
 }
+
 
 /* custom inut with --background and --color  */
 .RInput {
@@ -141,9 +170,11 @@
     padding: 10px;
     font-size: 12px;
     text-align: left;
+    color: var(--color);
 }
 
 .RTable td {
+    color: var(--color);
     text-align: left;
     font-size: 12px;
     padding: 4px 10px;

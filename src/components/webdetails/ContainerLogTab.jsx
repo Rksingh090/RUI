@@ -20,7 +20,7 @@ const ContainerLogTab = ({ id }) => {
         fontFamily: "Cascadia Code"
     }), []);
 
-    const websocket = new WebSocket(`${WS_URL}/v1/docker/container-wslogs/${id}`);
+    const websocket = useMemo(() => new WebSocket(`${WS_URL}/v1/docker/container-wslogs/${id}`), [id]);
     websocket.binaryType = "arraybuffer";
 
 

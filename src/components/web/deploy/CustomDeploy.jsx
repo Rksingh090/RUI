@@ -23,6 +23,7 @@ const CustomDeploy = () => {
             key: "",
             value: ""
         }],
+        host_port: "",
         exposed_port: ""
     })
 
@@ -102,19 +103,37 @@ const CustomDeploy = () => {
                         RClass={"roundSM withShadow "}
                         placeholder={"Web Name"}
                     />
-                    <RInput value={templateData.image}
+
+                    <RInput
+                        value={templateData.image}
                         onChange={(e) => setTemplateData(prev => ({
                             ...prev,
                             image: e.target.value
                         }))}
-                        RClass={"roundSM withShadow "} placeholder={"Image"} />
+                        RClass={"roundSM withShadow "}
+                        placeholder={"Image"}
+                    />
+
                     <RInput
                         value={templateData.exposed_port}
                         onChange={(e) => setTemplateData(prev => ({
                             ...prev,
                             exposed_port: e.target.value
                         }))}
-                        RClass={"roundSM withShadow "} placeholder={"Exposed Port"} />
+                        RClass={"roundSM withShadow "}
+                        placeholder={"Exposed Port"}
+                    />
+
+                    <RInput
+                        value={templateData.host_port}
+                        onChange={(e) => setTemplateData(prev => ({
+                            ...prev,
+                            host_port: e.target.value
+                        }))}
+                        RClass={"roundSM withShadow "}
+                        placeholder={"Host Port"}
+                    />
+                    
                     <div className='envVarHead'>
                         <p>Environment Variables</p>
                         <IconButton onClick={onAddEnv} type={"button"} Icon={<AiOutlinePlus size={15} />} text={"Add More"} classList={"withShadow roundSM gapSM fontSM"} />

@@ -37,23 +37,23 @@ const Home = () => {
 		<div className='homePage fullXY withPadding'>
 			<div className="homePageStats">
 				<div className="dashboardCard roundSM withShadow">
-					<CircleBar Icon={<BsCpu size={20} />} percent={stats?.cpu_usage || 10} />
+					<CircleBar Icon={<BsCpu size={20} />} percent={stats?.cpu_usage || 0} />
 					<p>CPU Usage</p>
 				</div>
 				<div className="dashboardCard roundSM withShadow">
-					<CircleBar Icon={<BsCpu size={20} />} percent={stats?.memory_usage || 10} />
+					<CircleBar Icon={<BsCpu size={20} />} percent={stats?.memory_usage || 0} />
 					<p>Memory Usage</p>
 				</div>
 				<div className="dashboardCard roundSM withShadow">
-					<CircleBar Icon={<BsCpu size={20} />} percent={stats?.disk_usage} />
+					<CircleBar Icon={<BsCpu size={20} />} percent={stats?.disk_usage || 0} />
 					<p>Disk Space</p>
 				</div>
 				<div className="dashboardCard roundSM withShadow">
-					<CircleBar Icon={<BsCpu size={20} />} percent={8} maxValue={10} customUnit={"Pc."} type={"value"} />
+					<CircleBar Icon={<BsCpu size={20} />} percent={4} maxValue={10} customUnit={"Pc."} type={"value"} />
 					<p>Web Limit</p>
 				</div>
 				<div className="dashboardCard roundSM withShadow">
-					<CircleBar Icon={<BsCpu size={20} />} percent={3} maxValue={20} customUnit={"Pc."} type={"value"} />
+					<CircleBar Icon={<BsCpu size={20} />} percent={18} maxValue={20} customUnit={"Pc."} type={"value"} />
 					<p>User Limit</p>
 				</div>
 			</div>

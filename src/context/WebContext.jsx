@@ -12,8 +12,7 @@ const WebContext = ({ children }) => {
     // websocket connection for all web related msg 
     const ws = useMemo(() => new WebSocket(`${WS_URL}/webws`), [])
 
-    // is rebuilding 
-    const [isRebuilding, setIsRebuilding] = useState(false)
+    const [tabIdx, setTabIdx] = useState(0);
 
     // loading state 
     const [loading, setLoading] = useState({
@@ -23,8 +22,15 @@ const WebContext = ({ children }) => {
         customLoading: false,
         generalLoading: false,
         singleWebLoading: false,
-        containerDetails: false,
-        singleContainerLoading: true
+        containerDetails: false
+    })
+
+    const [actionLoading, setActionLoading] = useState({
+        rebuilding: false,
+        restarting: false,
+        starting: false,
+        stoping: false,
+        deleting: false
     })
 
     // loading state 
@@ -45,7 +51,6 @@ const WebContext = ({ children }) => {
     const [generalLogs, setGeneralLogs] = useState([]);
 
     // single container
-    const [containerLog, setContainerLog] = useState("");
     const [containerError, setContainerError] = useState({
         error: false
     });
@@ -115,12 +120,14 @@ const WebContext = ({ children }) => {
         if (!data.name || data.name === "") return;
         if (!data.image || data.image === "") return;
         if (!data.exposed_port || data.exposed_port === "") return;
+
         setLoadingData({ customLoading: true })
         setCustomDeployLogs([]);
 
         axios.post(`${API}/v1/web/template-deploy`, {
             variables: data.environments,
             exposed_port: String(data.exposed_port),
+            host_port: String(data.host_port),
             image: data.image,
             name: data.name
         })
@@ -143,13 +150,14 @@ const WebContext = ({ children }) => {
         if (!data.name || data.name === "") return;
         if (!data.github_url || data.github_url === "") return;
         if (!data.exposed_port || data.exposed_port === "") return;
+
         setLoadingData({ githubLoading: true })
         setGithubDeployLogs([]);
-
 
         axios.post(`${API}/v1/web/github-deploy`, {
             variables: data.environments,
             exposed_port: String(data.exposed_port),
+            host_port: String(data.host_port),
             url: data.github_url,
             name: data.name
         })
@@ -263,6 +271,13 @@ const WebContext = ({ children }) => {
         }))
     }
 
+    const changeActionLoading = (data) => {
+        setActionLoading(prev => ({
+            ...prev,
+            ...data
+        }))
+    }
+
     // add new env 
     const addNewEnv = (data) => {
         axios.post(`${API}/v1/web/add-variable`, { id: singleWeb?._id, variables: data })
@@ -290,50 +305,126 @@ const WebContext = ({ children }) => {
         }))
     }
 
-    //Convert to html 
-    const getContainerLogs = (containerId) => {
-        if (!containerId || containerId === undefined) return;
-        setLoadingData({ singleContainerLoading: true })
-        axios
-            .get(`${API}/v1/docker/container-logs/${containerId}`)
-            .then((res) => {
-                const { status, log } = res.data;
+    // rebuild website 
+    const rebuildContainer = () => {
+        changeActionLoading({ rebuilding: true })
+        setLoadingData({ singleWebLoading: true, containerDetails: true })
 
-                if (status === "success") {
-                    setContainerLog(log);
-                }
-            })
-            .catch((e) => {
-                console.log(e);
-            }).finally(() => {
-                setLoadingData({ singleContainerLoading: false })
-            })
-    };
+        setRebuildLog([]);
+        setTabIdx(6);
 
-    const rebuildWebsite = () => {
-        setIsRebuilding(true)
         axios.post(`${API}/v1/web/rebuild-web`, {
             name: singleWeb.name
         }).then((res) => {
-            const {status, container_id} = res.data;
-            if(status === "success"){
+            const { status, message, container_id } = res.data;
+            if (status === "success") {
                 setSingleWeb(prev => ({
                     ...prev,
                     container_id
                 }))
+
+                alert(message)
             }
             console.log(res.data)
         })
-        .finally(() => {
-            setIsRebuilding(false)
-        })
+            .finally(() => {
+                changeActionLoading({ rebuilding: false })
+                setLoadingData({ singleWebLoading: false, containerDetails: false })
+            })
     }
 
+    // restart container 
+    const restartContainer = () => {
+        changeActionLoading({ restarting: true })
+
+        axios.post(`${API}/v1/docker/restart-container`, {
+            id: singleWeb.container_id
+        }).then((res) => {
+            console.log(res.data)
+        })
+            .finally(() => {
+                changeActionLoading({ restarting: false })
+            })
+    }
+
+    // start container 
+    const startContainer = () => {
+        changeActionLoading({ starting: true })
+        axios.post(`${API}/v1/docker/start-container`, {
+            id: singleWeb.container_id
+        }).then((res) => {
+            const { status } = res.data;
+            if (status === "success") {
+                setSingleWeb(prev => ({
+                    ...prev,
+                    container_detail: {
+                        ...prev.container_detail,
+                        State: {
+                            ...prev.container_detail.State,
+                            Status: "running"
+                        }
+                    }
+                }))
+            }
+            console.log(res.data)
+        })
+            .finally(() => {
+                changeActionLoading({ starting: false })
+            })
+    }
+
+    // stop container 
+    const stopContainer = () => {
+        changeActionLoading({ stoping: true })
+        axios.post(`${API}/v1/docker/stop-container`, {
+            id: singleWeb.container_id
+        }).then((res) => {
+            const { status } = res.data;
+            if (status === "success") {
+                setSingleWeb(prev => ({
+                    ...prev,
+                    container_detail: {
+                        ...prev.container_detail,
+                        State: {
+                            ...prev.container_detail.State,
+                            Status: "exited"
+                        }
+                    }
+                }))
+            }
+            console.log(res.data)
+        })
+            .finally(() => {
+                changeActionLoading({ stoping: false })
+            })
+
+    }
+
+    // delete web 
+    const deleteWebsite = () => {
+        changeActionLoading({ deleting: true })
+        axios.post(`${API}/v1/web/delete-web`, {
+            name: singleWeb.name
+        }).then((res) => {
+            const { status } = res.data;
+            if (status === "success") {
+                window.location.href = "/web"
+            }
+            console.log(res.data)
+        })
+            .finally(() => {
+                changeActionLoading({ deleting: false })
+            })
+    }
 
 
     return (
         <webContext.Provider
             value={{
+                // tab index 
+                tabIdx, setTabIdx,
+
+
                 // data 
                 websites, setWebsites,
                 singleWeb, setSingleWeb,
@@ -361,17 +452,20 @@ const WebContext = ({ children }) => {
                 onDeleteEnv,
 
                 // container logs 
-                containerLog, setContainerLog,
-                getContainerLogs,
                 containerError,
 
                 // modal state 
                 modalState, changeModalState,
 
                 // rebuilding state 
-                rebuildWebsite,
-                isRebuilding, setIsRebuilding
+                rebuildContainer,
+                startContainer,
+                restartContainer,
+                stopContainer,
+                deleteWebsite,
 
+                // action loadings 
+                actionLoading, changeActionLoading
             }}
         >
             {children}

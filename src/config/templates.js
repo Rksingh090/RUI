@@ -70,6 +70,50 @@ export const availableTemplates = [
       ],
     },
     {
+      name: "MongoDB",
+      description:
+        "MongoDB is a free and open-source cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schemata. ",
+      icon: "https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg",
+      image: "mongo",
+      exposed_port: 27017,
+      environments: [
+        {
+          key: "MONGO_INITDB_ROOT_USERNAME",
+          value: ""
+        },
+        {
+          key: "MONGO_INITDB_ROOT_PASSWORD",
+          value: ""
+        },
+      ],
+    },
+    {
+      name: "MongoExpress",
+      description:
+        "MongoDB is a free and open-source cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schemata. ",
+      icon: "https://cdn.worldvectorlogo.com/logos/mango-4.svg",
+      image: "mongo-express",
+      exposed_port: 8081,
+      environments: [
+        {
+          key: "ME_CONFIG_MONGODB_ADMINUSERNAME",
+          value: ""
+        },
+        {
+          key: "ME_CONFIG_MONGODB_ADMINPASSWORD",
+          value: ""
+        },
+        {
+          key: "ME_CONFIG_MONGODB_URL",
+          value: "mongodb://root:example@mongo:27017/"
+        },
+        {
+          key: "ME_CONFIG_MONGODB_SERVER",
+          value: ""
+        }
+      ],
+    },
+    {
       name: "PostgreSQL",
       description: "PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.",
       icon: "https://cdn.worldvectorlogo.com/logos/postgresql.svg",

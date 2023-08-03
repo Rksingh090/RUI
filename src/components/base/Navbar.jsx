@@ -1,63 +1,42 @@
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 
 import { useTheme } from '../../context/ThemeContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ValidThemes } from '../../config/themes';
 
 import { AiOutlineSearch } from 'react-icons/ai';
 import { IoColorPaletteOutline } from 'react-icons/io5';
 import { HiOutlineMenuAlt2 } from 'react-icons/hi';
 import { CiGlobe } from 'react-icons/ci';
+import { useWeb } from '../../context/WebContext';
+import { timeSince } from '../../func/timesince';
 
 
 
 
 const Navbar = () => {
+	const { websites } = useWeb();
 	const { changeMenu, setNamedTheme } = useTheme();
 	const [showThemeSelect, setShowThemeSelect] = useState(false)
 
+	const navigate = useNavigate();
 	const [filterData, setFilterData] = useState([]);
-
 	const [searchText, setSearchText] = useState("");
 
-	const searchData = useMemo(() => [
-		{
-			type: "web",
-			name: "Node_app",
-			image: "Node",
-			portBinding: "46052:4000",
-			containerId: "acr345545agrreesf22"
-		},
-		{
-			type: "web",
-			name: "myWordPress",
-			image: "wordpress",
-			portBinding: "3000:80",
-			containerId: "acr345545agrreesf22"
-		},
-		{
-			type: "web",
-			name: "PhpMyAdmin",
-			image: "phpmyadmin/phpmyadmin",
-			portBinding: "5000:80",
-			containerId: "acr345545agrreesf22"
-		},
-	], [])
-
 	const onSearchText = (e) => {
-		const { value} = e.target;
+		const { value } = e.target;
 		setSearchText(value);
 
-		if(value === "") {
+		if (value === "") {
 			setFilterData([])
 			return;
 		}
 
-		let searchFilter = searchData.filter((item) => {
-			if(String(item.image).toLowerCase().includes(String(value).toLowerCase())) return true;
-			else if(String(item.name).toLowerCase().includes(String(value).toLowerCase())) return true;
+		let searchFilter = websites.filter((item) => {
+			if (String(item.image).toLowerCase().includes(String(value).toLowerCase())) return true;
+			else if (String(item.name).toLowerCase().includes(String(value).toLowerCase())) return true;
 			return false;
-		}) 
+		})
 
 		setFilterData(searchFilter);
 	}
@@ -81,7 +60,10 @@ const Navbar = () => {
 						<div className='navSearchResult'>
 							{
 								filterData.map((searchItem, idx) => (
-									<div key={idx} className="navSearchItem">
+									<div onClick={() => {
+										setFilterData([])
+										navigate(`/web/${searchItem?._id}/${searchItem?.name}`);
+										}} key={idx} className="navSearchItem">
 										<div className='itemIcon'>
 											<CiGlobe size={30} />
 										</div>
@@ -89,10 +71,10 @@ const Navbar = () => {
 											<h4>{searchItem?.name}</h4>
 											<div className='lineData'>
 												<p>Type: {searchItem?.type}</p>
-												<p>Port Binding: {searchItem?.portBinding}</p>
+												<p>Port Binding: {searchItem?.bind_port}:{searchItem?.exposed_port}</p>
 											</div>
 											<div className='lineData'>
-												<p>Container Id: {searchItem?.containerId}</p>
+												<p>Created At: {timeSince(new Date(searchItem?.created_at))}</p>
 											</div>
 										</div>
 									</div>

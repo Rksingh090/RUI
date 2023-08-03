@@ -18,6 +18,7 @@ const GithubDeploy = () => {
     name: "",
     github_url: "",
     exposed_port: "",
+    host_port: "",
     environments: [{
       key: "",
       value: ""
@@ -108,6 +109,16 @@ const GithubDeploy = () => {
             onChange={(e) => setTemplateData(prev => ({
               ...prev,
               exposed_port: e.target.value
+            }))}
+          />
+
+          <RInput
+            RClass={"roundSM withShadow "}
+            placeholder={"Host Port"}
+            value={templateData.host_port}
+            onChange={(e) => setTemplateData(prev => ({
+              ...prev,
+              host_port: e.target.value
             }))}
           />
 

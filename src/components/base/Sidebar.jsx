@@ -6,10 +6,11 @@ import { Link } from 'react-router-dom';
 
 // icons 
 import { LiaDocker } from 'react-icons/lia';
-import { FiSettings } from 'react-icons/fi';
+import { LuSettings } from 'react-icons/lu';
 import { RxDashboard } from 'react-icons/rx';
 import { BiNetworkChart } from 'react-icons/bi';
-import { BsAppIndicator, BsDatabase, BsFolder2Open, BsTerminalDash } from 'react-icons/bs';
+import { GiSpiderWeb } from 'react-icons/gi';
+import { BsDatabase, BsFolder2Open, BsTerminalDash } from 'react-icons/bs';
 
 const Sidebar = () => {
   const { menuOpen } = useTheme();
@@ -23,7 +24,7 @@ const Sidebar = () => {
       {
         name: "Web App",
         href: "/web",
-        icon: <BsAppIndicator size={18} />
+        icon: <GiSpiderWeb size={18} />
       },
       {
         name: "Files",
@@ -53,7 +54,7 @@ const Sidebar = () => {
       {
         name: "Setting",
         href: "/setting",
-        icon: <FiSettings size={18} />
+        icon: <LuSettings size={18} />
       },
     ]
   })

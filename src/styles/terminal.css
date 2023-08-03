@@ -3,6 +3,7 @@
     height: 100%;
 }
 
+.RXtermTerminal,
 .terminalPage .XtermTerminal {
     width: 100%;
     height: 100%;
@@ -11,11 +12,13 @@
     padding: 10px;
 }
 
+.RXtermTerminal .terminal.xterm,
 .terminalPage .terminal.xterm {
     width: 100%;
     height: 100%;
 } 
 
+.RXtermTerminal .xterm .xterm-viewport,
 .terminalPage .xterm .xterm-viewport {
     background-color: var(--background) !important;
 }

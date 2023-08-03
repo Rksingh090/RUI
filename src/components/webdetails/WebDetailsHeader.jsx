@@ -1,27 +1,61 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-
-import IconButton from '../common/IconButton'
-import { AiOutlineBackward, AiOutlineDelete } from 'react-icons/ai';
-import { FaPlay, FaStop } from 'react-icons/fa';
-import { VscDebugRestart } from 'react-icons/vsc';
 import { useWeb } from '../../context/WebContext';
+import IconButton from '../common/IconButton'
+
+import { AiOutlineBackward, AiOutlineDelete } from 'react-icons/ai';
+import { RxStop } from 'react-icons/rx';
+import { PiHammer,PiPlay } from 'react-icons/pi';
+import { RiRestartLine } from 'react-icons/ri';
 
 const WebDetailsHeader = () => {
     const navigate = useNavigate();
 
-    const { rebuildWebsite } = useWeb();
+    const {
+        singleWeb, rebuildContainer, startContainer,
+        stopContainer, deleteWebsite, restartContainer,
+        actionLoading
+    } = useWeb();
 
 
     return (
-        <div className="splitHeader withShadow roundSM">
-            <IconButton onClick={() => navigate(-1)} Icon={<AiOutlineBackward size={16} />} classList={"noBg gapSM fontMD"} text={"Back"} />
+        <div className="splitHeader withShadow padSM roundSM">
+            <IconButton onClick={() => navigate(-1)} Icon={<AiOutlineBackward size={16} />} classList={"gapSM secondaryBg small roundSM"} text={"Back"} />
 
-            <div className='flexRow gapLG padXSM'>
-                <FaPlay title={'Start'} className='successText cursorPointer' size={15} />
-                <FaStop title={'Stop'} className='errorText cursorPointer' size={15} />
-                <VscDebugRestart title={"Rebuil Container"} className='infoText cursorPointer' size={18} onClick={rebuildWebsite} />
-                <IconButton text={"Delete"} classList={"gapSM"} Icon={<AiOutlineDelete size={15} />} />
+            <div className='flexRow gapMD padXSM'>
+                {(
+                    singleWeb.container_detail?.State?.Status === "exited" ||
+                    singleWeb.container_detail?.State?.Status === "paushed"
+                ) && (
+                        <IconButton
+                            loadingSize={14} loading={actionLoading?.starting}
+                            text={"Start"} Icon={<PiPlay size={14} />}
+                            classList={"gapSM primaryBg small roundSM"}
+                            onClick={startContainer}
+                        />
+                    )}
+                {singleWeb.container_detail?.State?.Status === "running" && (
+                    <IconButton
+                        loadingSize={14} loading={actionLoading?.stoping}
+                        text={"Stop"} Icon={<RxStop size={14} />}
+                        classList={"gapSM primaryBg small roundSM"}
+                        onClick={stopContainer} />
+                )}
+                <IconButton
+                    loadingSize={14} loading={actionLoading?.restarting}
+                    text={"Restart"} Icon={<RiRestartLine size={14} />}
+                    classList={"gapSM success small roundSM "}
+                    onClick={restartContainer} />
+                <IconButton
+                    loadingSize={14} loading={actionLoading?.rebuilding}
+                    text={"Rebuild"} Icon={<PiHammer size={14} />}
+                    classList={"gapSM info small roundSM "}
+                    onClick={rebuildContainer} />
+                <IconButton
+                    loadingSize={14} loading={actionLoading?.deleting}
+                    text={"Delete"} Icon={<AiOutlineDelete size={14} />}
+                    classList={"gapSM error small roundSM"}
+                    onClick={deleteWebsite} />
             </div>
         </div>
     )

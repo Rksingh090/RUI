@@ -1,7 +1,7 @@
 .webBoxes {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
 }
 
@@ -35,23 +35,31 @@
 .webBox.round {
     border-radius: 5px;
 }
+
 .webBox.withShadow {
-    box-shadow: var(--shadowSM );
+    box-shadow: var(--shadowSM);
 }
 
 .webBoxData {
     display: flex;
     flex-direction: column;
     gap: 3px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .webBoxData .appName {
+    width: 100%;
     font-size: 15px;
     margin-bottom: 5px;
 }
+
 .webBoxData .webLine {
     font-size: 11px;
     font-weight: 400;
+    word-break: break-all;
+    white-space: wrap;
+    overflow: hidden;
 }
 
 
@@ -67,7 +75,7 @@
     padding: 10px 0;
 }
 
-.deployTemplates .template{
+.deployTemplates .template {
     background-color: var(--background);
     transition: all .5s ease;
     overflow: hidden;
@@ -86,6 +94,7 @@
 .deployTemplates .template:hover {
     background-color: var(--secondaryBg);
 }
+
 .deployTemplates .template:hover p {
     color: var(--primaryColor);
 }
@@ -139,6 +148,7 @@
     justify-content: space-between;
     width: 100%;
 }
+
 .envVariables {
     width: 100%;
     display: grid;
@@ -167,16 +177,15 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    max-height: 75vh;
+    height: 68vh;
     overflow: hidden;
 }
 
 .output {
     background: var(--secondaryBg);
     padding: 10px 10px 20px 10px;
-    height: 100%;
     width: 100%;
-    min-height: 155px;
+    height: 100%;
     overflow: hidden;
     overflow-y: auto;
 }

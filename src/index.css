@@ -2,17 +2,19 @@
 
 :root {
     /* global styles  */
-    --padSM: 10px;
-    --padXSM: 0 10px;
-    --padYSM: 10px 0;
+    --padSM: 5px;
+    --padXSM: 0 5px;
+    --padYSM: 5px 0;
     --roundSM: 4px;
     --roundMD: 10px;
     --navbarHeight: 50px;
     --bodyHeight: calc(100vh - var(--navbarHeight));
-    --success: #00c200;
-    --error: #c90808;
+
+    /* action colors  */
+    --success: #06dd06;
+    --error: #e33939;
     --warning: #ffa500;
-    --info: #1e94fa;
+    --info: #7dc1fc;
 
     /* theme styles  */
     --background: #ffffff;
@@ -40,7 +42,7 @@
     --secondaryBg: #1a2d3b;
     --secondaryColor: #d5d5d5;
 
-    --primaryColor: #e65800;
+    --primaryColor: #ff27ac;
     --fadeText: #cdcdcd;
 
     --scrollThumb: #051b2b;
@@ -98,9 +100,9 @@
     --secondaryBg: #4fabab;
     --secondaryColor: #c7c7c7;
 
-    --primaryColor: rgb(0, 255, 166);
+    --primaryColor: rgb(37, 37, 37);
 
-    --fadeText: #e9e9e9;
+    --fadeText: #d2d2d2;
 
     --scrollThumb: #005050;
     --scrollTrack: #6dbaba;
@@ -171,7 +173,7 @@
 
 html,
 * {
-    transition: color 1s ease, background-color 1s ease;
+    transition: color .6s ease, background-color .6s ease, stroke .6s ease;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -180,6 +182,11 @@ html,
 /* xterm commons  */
 *:not(.XtermTerminal *) {
     font-family: "Poppins", sans-serif;
+}
+
+::selection {
+    background-color: var(--primaryColor);
+    color: white;
 }
 
 .xterm-selection div {

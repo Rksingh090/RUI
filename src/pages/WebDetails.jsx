@@ -12,17 +12,17 @@ import TerminalTab from '../components/webdetails/TerminalTab';
 import ContainerLogTab from '../components/webdetails/ContainerLogTab';
 import WebDetailsHeader from '../components/webdetails/WebDetailsHeader';
 import RModal from '../components/common/RModal';
+import RebuildLogTab from '../components/webdetails/RebuildLogTab';
 
 const WebDetails = () => {
     const { webName } = useParams();
     const {
         loading, getWebByName, singleWeb, onEnvChange,
         addNewEnv, onDeleteEnv, getContainerLogs, containerError,
-        rebuildLog, modalState, changeModalState
+        modalState, changeModalState,
+        tabIdx, setTabIdx,
     } = useWeb()
 
-
-    const [tabIdx, setTabIdx] = useState(0);
     const [envData, setEnvData] = useState({
         key: "",
         value: ""
@@ -49,11 +49,11 @@ const WebDetails = () => {
                 <h4>Add New Env</h4>
                 <div className="RGrid">
                     <RInput placeholder={"Key"} RClass={"roundSM secondaryBg"}
-                     value={envData?.key} onChange={(e) => onChangeEnv(e, "key")}
-                     />
+                        value={envData?.key} onChange={(e) => onChangeEnv(e, "key")}
+                    />
                     <RInput placeholder={"Value"} RClass={"roundSM secondaryBg"}
-                     value={envData?.value} onChange={(e) => onChangeEnv(e, "value")}
-                     />
+                        value={envData?.value} onChange={(e) => onChangeEnv(e, "value")}
+                    />
                 </div>
                 <div className="flexRow gapMD" style={{ width: "100%" }}>
                     <IconButton text={"cancle"} classList={"secondaryBg roundSM"} onClick={() => changeModalState({ envState: false })} />
@@ -62,7 +62,7 @@ const WebDetails = () => {
             </RModal>
 
             <div className="mainWebGrid">
-                <WithLoading classList={"mainBg roundSM withShadow"} min={"200px"} spinnerSize={35} loading={loading?.singleWebLoading}>
+                <WithLoading classList={"mainBg roundSM withShadow"} min={"200px"} spinnerSize={40} loading={loading?.singleWebLoading}>
                     <div className="webDetailCol1 withShadow roundSM">
                         <div className="webDetailItem">
                             <p className="fw500 head">Name: </p>
@@ -84,6 +84,23 @@ const WebDetails = () => {
                             <p className="fw500 head">Container Port: </p>
                             <p>{singleWeb?.bind_port}</p>
                         </div>
+                        <div className="webDetailItem">
+                            <p className="fw500 head">Deployed With: </p>
+                            <p>{singleWeb?.deploy_with}</p>
+                        </div>
+                        {singleWeb?.deploy_with === "docker_image" && (
+                            <div className="webDetailItem">
+                                <p className="fw500 head">Image: </p>
+                                <p>{singleWeb?.deploy_source}</p>
+                            </div>
+                        )}
+                        {singleWeb?.deploy_with === "github" && (
+                            <div className="webDetailItem">
+                                <p className="fw500 head">Git Url:  </p>
+                                <p>{singleWeb?.deploy_source}</p>
+                            </div>
+                        )}
+
                         <div className="webDetailItem">
                             <p className="fw500 head">Host Path: </p>
                             <p>{singleWeb?.host_path}</p>
@@ -108,36 +125,70 @@ const WebDetails = () => {
                 </WithLoading>
 
                 <div className="webDetailCol2  withShadow roundSM">
-                    {
-                        containerError.error && containerError.key === "container_not_found" && (
-                            <div className='messageBox error withPadding flexCol gapMD'>
-                                <h3>Container Not Found</h3>
-                                <p>Container not found, check docker if container is deleted or not. Alternatively check if docker is running correctly</p>
-                            </div>
-                        )
-                    }
+                    {containerError.error && containerError.key === "container_not_found" && (
+                        <div className='messageBox error withPadding flexCol gapMD'>
+                            <h3>Container Not Found</h3>
+                            <p>Container not found, check docker if container is deleted or not. Alternatively check if docker is running correctly</p>
+                        </div>
+                    )}
                     {!containerError.error && (
                         <>
                             <div className="TabMenu scrollX">
-                                <p className={`tab ${tabIdx === 0 ? "active" : ""}`} onClick={() => setTabIdx(0)}>Container Details</p>
-                                <p className={`tab ${tabIdx === 1 ? "active" : ""}`} onClick={() => setTabIdx(1)}>Terminal</p>
-                                <p className={`tab ${tabIdx === 2 ? "active" : ""}`} onClick={() => setTabIdx(2)}>Proxy (Domain)</p>
-                                <p className={`tab ${tabIdx === 3 ? "active" : ""}`} onClick={() => setTabIdx(3)}>Environment</p>
-                                <p className={`tab ${tabIdx === 4 ? "active" : ""}`}
-                                    onClick={() => {
-                                        getContainerLogs(singleWeb?.container_id)
-                                        setTabIdx(4);
-                                    }}>
+                                <p className={`tab small ${tabIdx === 0 ? "active" : ""}`}
+                                    onClick={() => { setTabIdx(0); }}>
                                     Logs
                                 </p>
-                                <p className={`tab ${tabIdx === 5 ? "active" : ""}`} onClick={() => setTabIdx(5)}>Nginx File</p>
-                                <p className={`tab ${tabIdx === 6 ? "active" : ""}`} onClick={() => setTabIdx(6)}>Rebuild Log</p>
+                                <p className={`tab small ${tabIdx === 1 ? "active" : ""}`} onClick={() => setTabIdx(1)}>Terminal</p>
+                                <p className={`tab small ${tabIdx === 2 ? "active" : ""}`} onClick={() => setTabIdx(2)}>Environment</p>
+                                <p className={`tab small ${tabIdx === 3 ? "active" : ""}`} onClick={() => setTabIdx(3)}>Container Details</p>
+                                <p className={`tab small ${tabIdx === 4 ? "active" : ""}`} onClick={() => setTabIdx(4)}>Proxy (Domain)</p>
+                                <p className={`tab small ${tabIdx === 5 ? "active" : ""}`} onClick={() => setTabIdx(5)}>Nginx File</p>
+                                <p className={`tab small ${tabIdx === 6 ? "active" : ""}`} onClick={() => setTabIdx(6)}>Rebuild Log</p>
                             </div>
-
                             <div className="allTabArea">
 
-                                {/* tab => container details  */}
+                                {/* tab => container logs  */}
                                 <TabBox show={tabIdx === 0}>
+                                    <WithLoading spinnerSize={40} loading={loading?.singleWebLoading} min={"68vh"}>
+                                        <ContainerLogTab id={singleWeb.container_id} />
+                                    </WithLoading>
+                                </TabBox>
+
+                                {/* tab => terminal  */}
+                                <TabBox show={tabIdx === 1}>
+                                    <TerminalTab id={singleWeb?.container_id} />
+                                </TabBox>
+
+                                {/* tab => env variables  */}
+                                <TabBox show={tabIdx === 2}>
+                                    <div className='envVariableTab'>
+                                        <div className="flexRow gapMD">
+                                            <IconButton
+                                                onClick={() => changeModalState({ envState: true })}
+                                                type={"button"}
+                                                Icon={<AiOutlinePlus size={15} />}
+                                                text={"Add More"}
+                                                classList={"secondaryBg roundSM gapSM fontSM"}
+                                            />
+                                        </div>
+                                        {
+                                            singleWeb?.variables &&
+                                            singleWeb?.variables.length > 0 &&
+                                            singleWeb?.variables.map((env, idx) => (
+                                                <div className="envVariables" key={idx}>
+                                                    <RInput RClass={"secondaryBg roundSM"} onChange={(e) => onEnvChange(e, "key", idx)} value={env.key} placeholder={"key"} />
+                                                    <RInput RClass={"secondaryBg roundSM"} onChange={(e) => onEnvChange(e, "value", idx)} value={env.value} placeholder={"value"} />
+                                                    <div className='deleteIcon  secondaryBg' onClick={() => onDeleteEnv(idx)}>
+                                                        <CgClose size={18} />
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </TabBox>
+
+                                {/* tab => container details  */}
+                                <TabBox show={tabIdx === 3}>
                                     <WithLoading min={"68vh"} spinnerSize={30} loading={loading?.containerDetails}>
                                         <div className='containerDetailTab roundSM '>
                                             <pre>
@@ -147,13 +198,8 @@ const WebDetails = () => {
                                     </WithLoading>
                                 </TabBox>
 
-                                {/* tab => terminal  */}
-                                <TabBox show={tabIdx === 1}>
-                                    <TerminalTab id={singleWeb?.container_id} />
-                                </TabBox>
-
                                 {/* proxy domains  */}
-                                <TabBox show={tabIdx === 2}>
+                                <TabBox show={tabIdx === 4}>
                                     <div className="proxyDomainsTab">
                                         <div className="flexRow gapMD">
                                             <IconButton type={"button"} Icon={<AiOutlinePlus size={15} />} text={"Add More"} classList={"secondaryBg roundSM gapSM fontSM"} />
@@ -181,55 +227,12 @@ const WebDetails = () => {
                                     </div>
                                 </TabBox>
 
-                                {/* tab => env variables  */}
-                                <TabBox show={tabIdx === 3}>
-                                    <div className='envVariableTab'>
-                                        <div className="flexRow gapMD">
-                                            <IconButton
-                                                onClick={() => changeModalState({ envState: true })}
-                                                type={"button"}
-                                                Icon={<AiOutlinePlus size={15} />}
-                                                text={"Add More"}
-                                                classList={"secondaryBg roundSM gapSM fontSM"}
-                                            />
-                                        </div>
-                                        {
-                                            singleWeb?.variables &&
-                                            singleWeb?.variables.length > 0 &&
-                                            singleWeb?.variables.map((env, idx) => (
-                                                <div className="envVariables" key={idx}>
-                                                    <RInput RClass={"secondaryBg roundSM"} onChange={(e) => onEnvChange(e, "key", idx)} value={env.key} placeholder={"key"} />
-                                                    <RInput RClass={"secondaryBg roundSM"} onChange={(e) => onEnvChange(e, "value", idx)} value={env.value} placeholder={"value"} />
-                                                    <div className='deleteIcon  secondaryBg' onClick={() => onDeleteEnv(idx)}>
-                                                        <CgClose size={18} />
-                                                    </div>
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
-                                </TabBox>
-
-                                {/* tab => container logs  */}
-                                <TabBox show={tabIdx === 4}>
-                                    <WithLoading height={"70vh"} loading={loading.singleContainerLoading} spinnerSize={30}>
-                                        <ContainerLogTab id={singleWeb.container_id} />
-                                    </WithLoading>
-                                </TabBox>
-
                                 {/* tab => nginx file  */}
                                 <TabBox show={tabIdx === 5}></TabBox>
 
                                 {/* tab => nginx file  */}
                                 <TabBox show={tabIdx === 6}>
-                                    <div className='containerDetailTab roundSM rebuildLogs'>
-                                        <pre>
-                                            {
-                                                rebuildLog &&
-                                                rebuildLog.length > 0 &&
-                                                rebuildLog.map((rlog) => rlog.message)
-                                            }
-                                        </pre>
-                                    </div>
+                                    <RebuildLogTab />
                                 </TabBox>
 
                             </div>
