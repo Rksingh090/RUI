@@ -10,7 +10,7 @@ export const useWeb = () => useContext(webContext);
 const WebContext = ({ children }) => {
 
     // websocket connection for all web related msg 
-    const ws = useMemo(() => new WebSocket(`${WS_URL}/webws`), [])
+    const ws = useMemo(() => new WebSocket(`${WS_URL}/v1/webws`), [])
 
     const [tabIdx, setTabIdx] = useState(0);
 

@@ -4,9 +4,11 @@ import { formatSizeUnits } from '../../func/formatSize';
 
 const ImagesTab = () => {
     const { allImages, getAllImages } = useDocker();
+    
     useEffect(() => {
-        getAllImages()
-    }, [getAllImages])
+        getAllImages();
+    }, [getAllImages]);
+
     return (
         <div className="dockerItems">
             {

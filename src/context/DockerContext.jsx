@@ -24,8 +24,8 @@ const DockerContext = ({ children }) => {
         setLoadinData({ containerLoading: true })
         axios.get(`${API}/v1/docker/all-container`)
             .then((res) => {
-                const {status, containers} = res.data;
-                if(status === "success"){
+                const { status, containers } = res.data;
+                if (status === "success") {
                     setAllContainers(containers);
                 }
             })
@@ -36,13 +36,14 @@ const DockerContext = ({ children }) => {
                 setLoadinData({ containerLoading: false })
             });
     }, []);
+
     const getAllImages = useCallback(() => {
         setLoadinData({ imageLoading: true })
         axios.get(`${API}/v1/docker/all-images`)
             .then((res) => {
-                const {status, volumes} = res.data;
-                if(status === "success"){
-                    setAllVolumes(volumes);
+                const { status, images } = res.data;
+                if (status === "success") {
+                    setAllImages(images);
                 }
             })
             .catch((e) => {
@@ -52,13 +53,14 @@ const DockerContext = ({ children }) => {
                 setLoadinData({ imageLoading: false })
             });
     }, []);
+
     const getAllVolumes = useCallback(() => {
         setLoadinData({ volumeLoading: true })
-        axios.get(`${API}/v1/docker/all-images`)
+        axios.get(`${API}/v1/docker/all-volumes`)
             .then((res) => {
-                const {status, images} = res.data;
-                if(status === "success"){
-                    setAllImages(images);
+                const { status, volumes } = res.data;
+                if (status === "success") {
+                    setAllVolumes(volumes);
                 }
             })
             .catch((e) => {
@@ -79,14 +81,14 @@ const DockerContext = ({ children }) => {
     return (
         <dockerContext.Provider value={{
             loading,
-            
+
             // container action 
             allContainers,
             getAllContainers,
 
             // image action 
             allImages,
-            getAllImages, 
+            getAllImages,
 
             allVolumes,
             getAllVolumes

@@ -4,6 +4,7 @@ import TabBox from '../components/common/TabBox';
 import "../styles/docker.css";
 import ContainerTab from '../components/docker/ContainerTab';
 import ImagesTab from '../components/docker/ImagesTab';
+import VolumeTab from '../components/docker/VolumeTab';
 
 
 const Docker = () => {
@@ -25,44 +26,7 @@ const Docker = () => {
                 <ImagesTab />
             </TabBox>
             <TabBox show={tabIndex === 2}>
-                <div className="dockerItems">
-                    <div className="dockerItem withShadow flexCol gapMD roundSM">
-                        <p className="dockerLine">
-                            <span>Volume Id: </span>
-                            <span>sfsd65fdsg4d5s4g57df54gh5d4f5h7df5h744545sdg5ds4g57sd85g5sdg</span>
-                        </p>
-                        <p className="dockerLine">
-                            <span>Path: </span>
-                            <span>/var/lib/docker/volumes</span>
-                        </p>
-                        <p className="dockerLine">
-                            <span>Scope: </span>
-                            <span>local</span>
-                        </p>
-                        <p className="dockerLine">
-                            <span>Created At: </span>
-                            <span>10 Hours ago</span>
-                        </p>
-                    </div>
-                    <div className="dockerItem withShadow flexCol gapMD roundSM">
-                        <p className="dockerLine">
-                            <span>Volume Id: </span>
-                            <span>sfsd65fd85s4g5sd5g42sd4g587wtkjhk5d4zg8sa7sdg5ds4g57sd85g5sdg</span>
-                        </p>
-                        <p className="dockerLine">
-                            <span>Path: </span>
-                            <span>/var/lib/docker/volumes</span>
-                        </p>
-                        <p className="dockerLine">
-                            <span>Scope: </span>
-                            <span>local</span>
-                        </p>
-                        <p className="dockerLine">
-                            <span>Created At: </span>
-                            <span>2 Days ago</span>
-                        </p>
-                    </div>
-                </div>
+                <VolumeTab />
             </TabBox>
 
         </div>
