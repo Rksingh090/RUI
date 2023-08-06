@@ -12,7 +12,7 @@ export const useFile = () => useContext(fileCtx)
 const FileContext = ({ children }) => {
 
     // current wordking dir path 
-    const [currentPath, setCurrentPath] = useState("/var/apps/Rpanel");
+    const [currentPath, setCurrentPath] = useState("/");
 
     const [renderState, setRenderState] = useState("");
 
