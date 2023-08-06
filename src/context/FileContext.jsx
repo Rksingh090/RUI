@@ -13,7 +13,7 @@ const FileContext = ({ children }) => {
 
     // current wordking dir path 
     const [currentPath, setCurrentPath] = useState("/var/apps/Rpanel");
-    
+
     const [renderState, setRenderState] = useState("");
 
     // file and folder input for create api
@@ -68,16 +68,17 @@ const FileContext = ({ children }) => {
             path: currentPath,
             name: createFileName
         })
-        .then((res) =>{
-            const {status, file} = res.data;
-            if(status === "success"){
-                setAllFiles(prev => [...prev, file]);
-            }
-        }).catch((err) => {
-            console.warn(err);
-        }).finally(() => {
-            setRenderState("")
-        })
+            .then((res) => {
+                const { status, file } = res.data;
+                if (status === "success") {
+                    setAllFiles(prev => [...prev, file]);
+                }
+            }).catch((err) => {
+                console.warn(err);
+            }).finally(() => {
+                setRenderState("")
+                setCreateFileName("")
+            })
     }
 
     // create new folder
@@ -86,16 +87,17 @@ const FileContext = ({ children }) => {
             path: currentPath,
             name: createFolderName
         })
-        .then((res) =>{
-            const {status, folder} = res.data;
-            if(status === "success"){
-                setAllFiles(prev => [...prev, folder]);
-            }
-        }).catch((err) => {
-            console.warn(err);
-        }).finally(() => {
-            setRenderState("")
-        })
+            .then((res) => {
+                const { status, folder } = res.data;
+                if (status === "success") {
+                    setAllFiles(prev => [...prev, folder]);
+                }
+            }).catch((err) => {
+                console.warn(err);
+            }).finally(() => {
+                setRenderState("")
+                setCreateFolderName("")
+            })
     }
 
     return (
@@ -113,22 +115,26 @@ const FileContext = ({ children }) => {
                 renderState, setRenderState
             }}
         >
+
+            {/* create file modal  */}
             <RModal show={renderState === "fileCreate"} width={"250px"} formClass={"flexCol"} height={"auto"}>
                 <RInput placeholder={"File Name"} value={createFileName} onChange={(e) => setCreateFileName(e.target.value)} RClass={"secondaryBg roundSM"} />
                 <div className='flexRow fullX gapMD'>
-                <IconButton onClick={createNewFile} text={"Create"} Icon={<AiOutlinePlus />} classList={"primaryBg gapSM roundSM"}  />
-                <IconButton onClick={() => setRenderState("")} text={"Cancle"} classList={"secondaryBg roundSM"}  />
-                </div>
-            </RModal>
-            <RModal show={renderState === "folderCreate"} width={"250px"} formClass={"flexCol"} height={"auto"}>
-                <RInput placeholder={"Folder Name"} value={createFolderName} onChange={(e) => setCreateFolderName(e.target.value)} RClass={"secondaryBg roundSM"} />
-                <div className='flexRow fullX gapMD'>
-                <IconButton onClick={createNewFolder} text={"Create"} Icon={<AiOutlinePlus />} classList={"primaryBg gapSM roundSM"}  />
-                <IconButton onClick={() => setRenderState("")} text={"Cancle"} classList={"secondaryBg roundSM"}  />
+                    <IconButton onClick={() => setRenderState("")} text={"Cancle"} classList={"secondaryBg roundSM"} />
+                    <IconButton onClick={createNewFile} text={"Create"} Icon={<AiOutlinePlus />} classList={"primaryBg gapSM roundSM"} />
                 </div>
             </RModal>
 
-            
+            {/* create folder modal  */}
+            <RModal show={renderState === "folderCreate"} width={"250px"} formClass={"flexCol"} height={"auto"}>
+                <RInput placeholder={"Folder Name"} value={createFolderName} onChange={(e) => setCreateFolderName(e.target.value)} RClass={"secondaryBg roundSM"} />
+                <div className='flexRow fullX gapMD'>
+                    <IconButton onClick={() => setRenderState("")} text={"Cancle"} classList={"secondaryBg roundSM"} />
+                    <IconButton onClick={createNewFolder} text={"Create"} Icon={<AiOutlinePlus />} classList={"primaryBg gapSM roundSM"} />
+                </div>
+            </RModal>
+
+
             {children}
         </fileCtx.Provider>
     )

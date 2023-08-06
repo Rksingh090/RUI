@@ -8,7 +8,10 @@ const FileBox = ({ fileData }) => {
 
     const { goNextDir } = useFile()
     return (
-        <div className='fileBox withPointer roundSM withShadow gapSM' onDoubleClick={() => goNextDir(fileData)}>
+        <div className='fileBox withPointer roundSM withShadow gapSM'
+                onDoubleClick={() => goNextDir(fileData)}
+                // onContextMenu={(e) => set}
+        >
             <div className='fileIconCol roundSM'>
                 {
                     !fileData?.isDir ? (

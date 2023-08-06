@@ -106,7 +106,7 @@ const Settings = () => {
             </TabBox>
 
             <div className="fixedBottomBar" style={{
-                left: menuOpen === "true" ? "200px" : "60px"
+                left: menuOpen === "true" ? "160px" : "60px"
             }}>
                 <p>Version: v 1.0.0</p>
                 <p>Copyright &copy;2023 - Rpanel@Rishab Singh</p>
