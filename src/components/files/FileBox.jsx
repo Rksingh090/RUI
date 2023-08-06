@@ -1,28 +1,30 @@
 import React from 'react'
 import FileIcon from './FileIcon'
+import { BsFolder } from 'react-icons/bs'
+import { formatSizeUnits } from '../../func/formatSize'
+import { useFile } from '../../context/FileContext'
 
 const FileBox = ({ fileData }) => {
 
+    const { goNextDir } = useFile()
     return (
-        <div className='fileBox withPointer roundSM withShadow gapSM'>
+        <div className='fileBox withPointer roundSM withShadow gapSM' onDoubleClick={() => goNextDir(fileData)}>
             <div className='fileIconCol roundSM'>
                 {
-                    fileData.type === "file" ? (
-                        <FileIcon filename={fileData?.fileName || ""} />
+                    !fileData?.isDir ? (
+                        <FileIcon filename={fileData?.name || ""} />
                     ) : (
-                        <FileIcon filename={fileData?.folderName || ""} />
+                        <BsFolder size={18} />
                     )
                 }
             </div>
             <div className='fileDataCol'>
+                <p className='name'>{fileData?.name}</p>
                 {
-                    fileData.type === "file" ? (
-                        <p className='name'>{fileData?.fileName}</p>
-                    ) : (
-                        <p className='name'>{fileData?.folderName}</p>
+                    !fileData.isDir && (
+                        <p className='size'>{formatSizeUnits(fileData?.size)}</p>
                     )
                 }
-                <p className='size'>10 MB</p>
             </div>
         </div>
     )

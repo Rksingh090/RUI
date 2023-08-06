@@ -20,6 +20,9 @@
     gap: 15px;
 }
 
+.fullX {
+    width: 100%;
+}
 .fullXY {
     width: 100%;
     min-height: 100%;

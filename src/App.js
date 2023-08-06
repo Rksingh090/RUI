@@ -16,6 +16,7 @@ import Settings from './pages/Settings';
 import WebDetails from './pages/WebDetails';
 import AddWeb from './pages/AddWeb';
 import DockerNetwork from './pages/DockerNetwork';
+import FileContext from './context/FileContext';
 
 
 const router = createBrowserRouter([
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/files",
-        element: <FileFolder />
+        element: <FileContext><FileFolder /></FileContext>
       },
       {
         path: "/database",
