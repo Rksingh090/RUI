@@ -13,7 +13,9 @@ const FileContext = ({ children }) => {
 
     // current wordking dir path 
     const [currentPath, setCurrentPath] = useState("/");
+    const [inputFilePath, setInputFilePath] = useState("/")
 
+    // state for showing modal forms 
     const [renderState, setRenderState] = useState("");
 
     // file and folder input for create api
@@ -43,12 +45,14 @@ const FileContext = ({ children }) => {
         let filterPath = splitPath.filter((item) => String(item).trim() !== "");
         if (filterPath.length <= 1) {
             setCurrentPath("/");
+            setInputFilePath("/")
             return;
         }
         filterPath.pop();
         let newPath = "/";
         newPath += filterPath.join("/");
         setCurrentPath(newPath);
+        setInputFilePath(newPath)
     }
 
     // go to clicked path if isDir
@@ -57,9 +61,16 @@ const FileContext = ({ children }) => {
         let hasEndSlash = currentPath.charAt(currentPath.length - 1) === "/";
         if (hasEndSlash) {
             setCurrentPath(prev => prev + fileData.name)
+            setInputFilePath(prev => prev + fileData.name)
         } else {
             setCurrentPath(prev => prev + "/" + fileData.name)
+            setInputFilePath(prev => prev + "/" + fileData.name)
         }
+    }
+
+    const changePathToInputPath = () => {
+        if(inputFilePath.length <= 0) return;
+        setCurrentPath(inputFilePath)
     }
 
     // create new file 
@@ -106,10 +117,11 @@ const FileContext = ({ children }) => {
                 getAllFiles,
                 allFiles,
                 currentPath,
+                inputFilePath, setInputFilePath,
                 goBack,
                 goNextDir,
 
-
+                changePathToInputPath,
                 createFileName, setCreateFileName,
                 createFolderName, setCreateFolderName,
                 renderState, setRenderState

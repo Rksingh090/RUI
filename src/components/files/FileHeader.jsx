@@ -8,14 +8,21 @@ import { useFile } from '../../context/FileContext';
 
 const FileHeader = () => {
 
-    const { goBack, currentPath, setRenderState } = useFile();
+    const { goBack,inputFilePath, changePathToInputPath, setInputFilePath, setRenderState } = useFile();
 
     return (
         <div className='fileHeader round withShadow'>
             <div className="start">
                 <IconButton onClick={goBack} Icon={<BiArrowBack size={15} />} text={"Back"} classList={"gapSM"} />
                 <div className='filePath'>
-                    <input placeholder={"/"} readOnly value={currentPath} className='noStyle fsm' />
+                    <input 
+                    placeholder={"/"} 
+                    onBlur={() => changePathToInputPath()} 
+                    onChange={(e) => setInputFilePath(e.target.value)} 
+                    onKeyDown={(e) => e.key === "Enter" ? changePathToInputPath() : {}} 
+                    value={inputFilePath} 
+                    className='noStyle fsm' />
+
                 </div>
             </div>
             <div className="end">
