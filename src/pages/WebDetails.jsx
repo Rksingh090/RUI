@@ -1,26 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import "../styles/webdetails.css";
 import { Link, useParams } from 'react-router-dom';
+import { useWeb } from '../context/WebContext';
+
+// icons 
+import { AiOutlineDelete, AiOutlinePlus } from 'react-icons/ai';
+import { CgClose } from 'react-icons/cg';
+
+// utilities 
 import TabBox from '../components/common/TabBox';
 import IconButton from '../components/common/IconButton';
-import { AiOutlineDelete, AiOutlinePlus } from 'react-icons/ai';
-import { useWeb } from '../context/WebContext';
-import WithLoading from '../components/common/WithLoading';
 import RInput from '../components/common/RInput';
-import { CgClose } from 'react-icons/cg';
+import WithLoading from '../components/common/WithLoading';
+import RModal from '../components/common/RModal';
+
+// tabs 
 import TerminalTab from '../components/webdetails/TerminalTab';
 import ContainerLogTab from '../components/webdetails/ContainerLogTab';
 import WebDetailsHeader from '../components/webdetails/WebDetailsHeader';
-import RModal from '../components/common/RModal';
 import RebuildLogTab from '../components/webdetails/RebuildLogTab';
+import ProxyDomainTab from '../components/webdetails/ProxyDomainTab';
 
 const WebDetails = () => {
     const { webName } = useParams();
     const {
         loading, getWebByName, singleWeb, onEnvChange,
-        addNewEnv, onDeleteEnv, getContainerLogs, containerError,
+        addNewEnv, onDeleteEnv, containerError,
         modalState, changeModalState,
         tabIdx, setTabIdx,
+        domainInput, setDomainInput, addProxyDomain,
     } = useWeb()
 
     const [envData, setEnvData] = useState({
@@ -45,7 +53,9 @@ const WebDetails = () => {
         <div className="withPadding flexCol gapMD webDetailsPage">
 
             <WebDetailsHeader />
-            <RModal show={modalState?.envState} height={"auto"} formClass={"roundMD"}>
+
+            {/* add new env variable modal */}
+            <RModal show={modalState?.envModal} height={"auto"} formClass={"roundMD"}>
                 <h4>Add New Env</h4>
                 <div className="RGrid">
                     <RInput placeholder={"Key"} RClass={"roundSM secondaryBg"}
@@ -56,8 +66,21 @@ const WebDetails = () => {
                     />
                 </div>
                 <div className="flexRow gapMD" style={{ width: "100%" }}>
-                    <IconButton text={"cancle"} classList={"secondaryBg roundSM"} onClick={() => changeModalState({ envState: false })} />
+                    <IconButton text={"cancle"} classList={"secondaryBg roundSM"} onClick={() => changeModalState({ envModal: false })} />
                     <IconButton text={"save"} classList={"primaryBg roundSM"} onClick={() => addNewEnv(envData)} />
+                </div>
+            </RModal>
+
+
+            {/* add new domain (proxy) modal  */}
+            <RModal show={modalState.domainModal} height={"auto"} formClass={"roundMD"} width={"350px"}>
+                <h4>Add Domain</h4>
+                <RInput placeholder={"Domain"} RClass={"roundSM secondaryBg"}
+                    value={domainInput} onChange={(e) => setDomainInput(e.target.value)}
+                />
+                <div className="flexRow gapMD" style={{ width: "100%" }}>
+                    <IconButton text={"cancle"} classList={"secondaryBg roundSM"} onClick={() => changeModalState({ domainModal: false })} />
+                    <IconButton text={"save"} classList={"primaryBg roundSM"} onClick={() => addProxyDomain()} />
                 </div>
             </RModal>
 
@@ -164,7 +187,7 @@ const WebDetails = () => {
                                     <div className='envVariableTab'>
                                         <div className="flexRow gapMD">
                                             <IconButton
-                                                onClick={() => changeModalState({ envState: true })}
+                                                onClick={() => changeModalState({ envModal: true })}
                                                 type={"button"}
                                                 Icon={<AiOutlinePlus size={15} />}
                                                 text={"Add More"}
@@ -200,31 +223,7 @@ const WebDetails = () => {
 
                                 {/* proxy domains  */}
                                 <TabBox show={tabIdx === 4}>
-                                    <div className="proxyDomainsTab">
-                                        <div className="flexRow gapMD">
-                                            <IconButton type={"button"} Icon={<AiOutlinePlus size={15} />} text={"Add More"} classList={"secondaryBg roundSM gapSM fontSM"} />
-                                        </div>
-
-                                        <div className="proxyDomains">
-                                            <p>Sr. No.</p>
-                                            <p>Domain</p>
-                                            <p>Created At</p>
-                                            <p>Action</p>
-
-                                        </div>
-                                        <div className="proxyDomains">
-                                            <p>1</p>
-                                            <p>http://localhost:9000</p>
-                                            <p>31th July 2023</p>
-                                            <div style={{
-                                                paddingLeft: "5px",
-                                                paddingRight: "5px",
-                                                cursor: "pointer"
-                                            }}>
-                                                <AiOutlineDelete size={15} />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <ProxyDomainTab />
                                 </TabBox>
 
                                 {/* tab => nginx file  */}

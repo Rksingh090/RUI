@@ -25,6 +25,7 @@ const WebContext = ({ children }) => {
         containerDetails: false
     })
 
+    // action loading (web header actions)
     const [actionLoading, setActionLoading] = useState({
         rebuilding: false,
         restarting: false,
@@ -35,12 +36,14 @@ const WebContext = ({ children }) => {
 
     // loading state 
     const [modalState, setModalState] = useState({
-        envModal: false
+        envModal: false,
+        domainModal: false
     })
 
     // all websites 
     const [websites, setWebsites] = useState([]);
 
+    // one website data 
     const [singleWeb, setSingleWeb] = useState({});
 
     // logs 
@@ -54,6 +57,8 @@ const WebContext = ({ children }) => {
     const [containerError, setContainerError] = useState({
         error: false
     });
+
+    const [domainInput, setDomainInput] = useState("");
 
     // on ws open 
     ws.onopen = (e) => {
@@ -417,6 +422,52 @@ const WebContext = ({ children }) => {
             })
     }
 
+    // create proxy 
+    const addProxyDomain = () => {
+        axios.post(`${API}/v1/proxy/create-proxy/${singleWeb?._id}`, {
+            domain: domainInput
+        })
+            .then((res) => {
+                const { status, data } = res.data;
+                if (status === "success") {
+                    setSingleWeb(prev => ({
+                        ...prev,
+                        domains: [
+                            ...prev.domains,
+                            data
+                        ]
+                    }))
+                }
+            })
+            .catch(err => {
+                console.warn(err);
+            })
+            .finally(() => {
+                changeModalState({ domainModal: false })
+            })
+
+    }
+
+    const deleteProxyDomain = (domainId) => {
+        axios.patch(`${API}/v1/proxy/delete-proxy/${singleWeb?._id}`, {
+            _id: domainId
+        })
+            .then((res) => {
+                const { status } = res.data;
+                if (status === "success") {
+                    let domains = singleWeb.domains.filter((domain) => domain._id !== domainId);
+                    setSingleWeb(prev => ({
+                        ...prev,
+                        domains
+                    }))
+                }
+            }).catch(err => {
+                console.warn(err);
+            })
+    }
+
+
+
 
     return (
         <webContext.Provider
@@ -465,7 +516,11 @@ const WebContext = ({ children }) => {
                 deleteWebsite,
 
                 // action loadings 
-                actionLoading, changeActionLoading
+                actionLoading, changeActionLoading,
+
+                // domain states 
+                domainInput, setDomainInput,
+                addProxyDomain, deleteProxyDomain
             }}
         >
             {children}
