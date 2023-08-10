@@ -31,6 +31,8 @@ const WebDetails = () => {
         domainInput, setDomainInput, addProxyDomain,
     } = useWeb()
 
+    const hostName = window.location.hostname;
+
     const [envData, setEnvData] = useState({
         key: "",
         value: ""
@@ -130,7 +132,7 @@ const WebDetails = () => {
                         </div>
                         <div className="webDetailItem">
                             <p className="fw500 head">Hots Url: </p>
-                            <Link to={`http://localhost:${singleWeb?.bind_port}`} target='_blank' className='primaryText'>http://localhost:{singleWeb?.bind_port}</Link>
+                            <Link to={`http://${hostName}:${singleWeb?.bind_port}`} target='_blank' className='primaryText'>http://{hostName}:{singleWeb?.bind_port}</Link>
                         </div>
                         <div className="webDetailItem">
                             <WithLoading loading={loading?.containerDetails}>

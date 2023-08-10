@@ -466,7 +466,9 @@ const WebContext = ({ children }) => {
             })
     }
 
+    const eneableSSL = () => {
 
+    }
 
 
     return (
@@ -520,7 +522,10 @@ const WebContext = ({ children }) => {
 
                 // domain states 
                 domainInput, setDomainInput,
-                addProxyDomain, deleteProxyDomain
+                addProxyDomain, deleteProxyDomain,
+
+                // ssl settings 
+                eneableSSL,
             }}
         >
             {children}

@@ -170,18 +170,5 @@ export const availableTemplates = [
       ],
 
     },
-    {
-      name: "new template",
-      description: "MySQL is a widely used, open-source relational database management system (RDBMS).",
-      icon: "https://cdn.worldvectorlogo.com/logos/facebook-haha.svg",
-      image: "dfhgdfh",
-      exposed_port: 3307,
-      environments: [
-        {
-          key: "MYSQL_ROOT_PASSWORD",
-          value: ""
-        }
-      ],
-
-    }
+   
   ];

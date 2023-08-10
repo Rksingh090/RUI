@@ -23,6 +23,7 @@
 .fullX {
     width: 100%;
 }
+
 .fullXY {
     width: 100%;
     min-height: 100%;
@@ -47,6 +48,7 @@
     padding: 6px 12px;
     cursor: pointer;
 }
+
 .iconBtn.small {
     padding: 4px 7px;
     font-size: 11px;
@@ -60,6 +62,7 @@
 .iconBtn.noPad {
     padding: 0;
 }
+
 .iconBtn.round {
     border-radius: 5px;
 }
@@ -71,6 +74,7 @@
 .iconBtn.primaryBg {
     background-color: var(--primaryColor);
 }
+
 .iconBtn.secondaryBg {
     color: var(--color);
     background-color: var(--secondaryBg);
@@ -90,9 +94,11 @@
 .iconBtn.fontSM {
     font-size: 10px;
 }
+
 .iconBtn.fontMD {
     font-size: 12px;
 }
+
 .iconBtn.fontLG {
     font-size: 14px;
 }
@@ -103,7 +109,7 @@
 }
 
 @keyframes spin {
-    to{
+    to {
         transform: rotateZ(360deg);
     }
 }
@@ -112,14 +118,17 @@
     background-color: var(--success);
     color: white;
 }
+
 .iconBtn.warning {
     background-color: var(--warning);
     color: white;
 }
+
 .iconBtn.error {
     background-color: var(--error);
     color: white;
 }
+
 .iconBtn.info {
     background-color: var(--info);
     color: white;
@@ -284,9 +293,11 @@
     justify-content: center;
     align-items: center;
 }
+
 .withLoading.mainBg {
     background-color: var(--background);
 }
+
 .withLoading.secondaryBg {
     background-color: var(--secondaryBg);
 }
@@ -301,16 +312,20 @@
 .containerStatus {
     text-transform: capitalize;
 }
+
 .containerStatus.running {
     color: var(--success);
 }
-.containerStatus.paused{
+
+.containerStatus.paused {
     color: var(--warning);
 }
-.containerStatus.exited{
+
+.containerStatus.exited {
     color: var(--error);
 }
-.containerStatus.restarting{
+
+.containerStatus.restarting {
     color: var(--info);
 }
 
@@ -340,3 +355,75 @@
     gap: 15px;
 }
 
+
+
+/* r toggle switch */
+.RToggleSwitch {
+    position: relative;
+    display: inline-block;
+    height: 18px;
+    aspect-ratio: 1.8;
+}
+
+.RToggleSwitch.MD {
+    height: 22px;
+}
+
+.RToggleSwitch.withShadow {
+    box-shadow: none;
+}
+
+.RToggleSwitch input[type="checkbox"] {
+    display: none;
+}
+
+.RToggleSwitch .switch {
+    position: absolute;
+    cursor: pointer;
+    background-color: var(--fadeText);
+    border-radius: 18px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: background-color 0.2s ease;
+}
+
+.RToggleSwitch.MD .switch {
+    border-radius: 22px;
+}
+
+.RToggleSwitch.withShadow .switch {
+    box-shadow: var(--shadowSM);
+}
+
+
+.RToggleSwitch .switch::before {
+    position: absolute;
+    content: "";
+    left: 2px;
+    top: 2px;
+    width: 14px;
+    height: 14px;
+    background-color: var(--background);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.RToggleSwitch.MD .switch::before {
+    width: 18px;
+    height: 18px;
+}
+
+.RToggleSwitch input[type="checkbox"]:checked+.switch::before {
+    transform: translateX(14px);
+    background-color: var(--primaryColor);
+}
+
+.RToggleSwitch.MD input[type="checkbox"]:checked+.switch::before {
+    transform: translateX(17px);
+}
+
+.RToggleSwitch input[type="checkbox"]:checked+.switch {
+    background-color: var(--background);
+}

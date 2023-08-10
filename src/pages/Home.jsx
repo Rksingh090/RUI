@@ -5,6 +5,8 @@ import { BsCpu } from "react-icons/bs";
 import CircleBar from '../components/common/CircleBar';
 import { WS_URL } from '../constants';
 
+import {BiHome} from "react-icons/bi";
+
 const Home = () => {
 
 	const socket = useMemo(() => new WebSocket(`${WS_URL}/v1/stats/dashboard`), [])
@@ -53,7 +55,7 @@ const Home = () => {
 					<p>Web Limit</p>
 				</div>
 				<div className="dashboardCard roundSM withShadow">
-					<CircleBar Icon={<BsCpu size={20} />} percent={18} maxValue={20} customUnit={"Pc."} type={"value"} />
+					<CircleBar Icon={<BsCpu size={20} />} percent={10} maxValue={20} customUnit={"Pc."} type={"value"} />
 					<p>User Limit</p>
 				</div>
 			</div>
