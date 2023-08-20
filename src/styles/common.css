@@ -49,6 +49,11 @@
     cursor: pointer;
 }
 
+.iconBtn,
+.iconBtn * {
+    transition: all .1s ease;
+}
+
 .iconBtn.small {
     padding: 4px 7px;
     font-size: 11px;
@@ -137,6 +142,32 @@
 .iconBtn:not(.noBg):disabled {
     background-color: var(--secondaryBg);
     color: var(--color);
+}
+
+.iconBtn.hoverMain:hover{
+    color: white;
+    background-color: var(--primaryColor);
+}
+
+.iconBtn.hoverSuccess:hover{
+    color: white;
+    background-color: var(--success);
+}
+.iconBtn.hoverError:hover{
+    color: white;
+    background-color: var(--error);
+}
+.iconBtn.hoverWarning:hover{
+    color: white;
+    background-color: var(--warning);
+}
+.iconBtn.hoverWarning:hover{
+    color: white;
+    background-color: var(--warning);
+}
+.iconBtn.hoverInfo:hover{
+    color: white;
+    background-color: var(--info);
 }
 
 

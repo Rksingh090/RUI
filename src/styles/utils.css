@@ -277,6 +277,11 @@ input.noStyle {
     color: white;
     background-color: var(--primaryColor);
 }
+.TabMenu.activeBorder .tab.active {
+    color: var(--color);
+    background-color: inherit;
+    border-bottom: 2px solid var(--primaryColor);
+}
 
 
 /* links style  */

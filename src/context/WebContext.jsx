@@ -297,7 +297,7 @@ const WebContext = ({ children }) => {
             }).catch(err => {
                 console.log(err);
             }).finally(() => {
-                changeModalState({ envState: false })
+                changeModalState({ envModal: false })
             })
     }
 

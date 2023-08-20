@@ -158,7 +158,7 @@ const WebDetails = () => {
                     )}
                     {!containerError.error && (
                         <>
-                            <div className="TabMenu scrollX">
+                            <div className="TabMenu activeBorder scrollX">
                                 <p className={`tab small ${tabIdx === 0 ? "active" : ""}`}
                                     onClick={() => { setTabIdx(0); }}>
                                     Logs
@@ -193,7 +193,7 @@ const WebDetails = () => {
                                                 type={"button"}
                                                 Icon={<AiOutlinePlus size={15} />}
                                                 text={"Add More"}
-                                                classList={"secondaryBg roundSM gapSM fontSM"}
+                                                classList={"primaryBg roundSM gapSM fontSM"}
                                             />
                                         </div>
                                         {
