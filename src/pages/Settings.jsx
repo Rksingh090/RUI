@@ -12,11 +12,12 @@ import IconButton from '../components/common/IconButton';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { ValidThemes } from '../config/themes';
+import FixedFooter from '../components/common/FixedFooter';
 
 const Settings = () => {
     const [tabIndex, setTabIndex] = useState(0);
 
-    const { setNamedTheme, menuOpen } = useTheme();
+    const { setNamedTheme } = useTheme();
 
     return (
         <div className='fullXY withPadding settingPage'>
@@ -105,13 +106,7 @@ const Settings = () => {
                 </div>
             </TabBox>
 
-            <div className="fixedBottomBar" style={{
-                left: menuOpen === "true" ? "160px" : "60px"
-            }}>
-                <p>Version: v 1.0.0</p>
-                <p>Copyright &copy;2023 - Rpanel@Rishab Singh</p>
-                <p></p>
-            </div>
+            <FixedFooter />
         </div>
     )
 }
