@@ -18,52 +18,73 @@ import AddWeb from './pages/AddWeb';
 import DockerNetwork from './pages/DockerNetwork';
 import FileContext from './context/FileContext';
 
+// auth 
+import Login from './auth/Login';
+import Protected from './auth/Protected';
+
+import WebContext from './context/WebContext';
+import DockerContext from './context/DockerContext';
 
 const router = createBrowserRouter([
   {
     path: "",
-    element: <Base />,
     children: [
       {
         path: "/",
-        element: <Home />,
+        element:
+          <DockerContext>
+            <WebContext>
+              <Protected><Base /></Protected>
+            </WebContext>
+          </DockerContext>
+        ,
+        children: [
+          {
+            path: "",
+            element: <Home />,
+          },
+          {
+            path: "/web",
+            element: <Web />,
+          },
+          {
+            path: "/web/:containerId/:webName",
+            element: <WebDetails />
+          },
+          {
+            path: "/add/web",
+            element: <AddWeb />
+          },
+          {
+            path: "/docker",
+            element: <Docker />
+          },
+          {
+            path: "/files",
+            element: <FileContext><FileFolder /></FileContext>
+          },
+          {
+            path: "/database",
+            element: <Database />
+          },
+          {
+            path: "/network",
+            element: <DockerNetwork />
+          },
+          {
+            path: "/terminal",
+            element: <Terminal />
+          },
+          {
+            path: "/setting",
+            element: <Settings />
+          },
+        ]
       },
       {
-        path: "/web",
-        element: <Web />,
-      },
-      {
-        path: "/web/:containerId/:webName",
-        element: <WebDetails />
-      },
-      {
-        path: "/add/web",
-        element: <AddWeb />
-      },
-      {
-        path: "/docker",
-        element: <Docker />
-      },
-      {
-        path: "/files",
-        element: <FileContext><FileFolder /></FileContext>
-      },
-      {
-        path: "/database",
-        element: <Database />
-      },
-      {
-        path: "/network",
-        element: <DockerNetwork />
-      },
-      {
-        path: "/terminal",
-        element: <Terminal />
-      },
-      {
-        path: "/setting",
-        element: <Settings />
-      },
+        path: "/login",
+        element: <Protected reverse={true}><Login /></Protected>
+      }
 
     ],
     errorElement: <Error404 />

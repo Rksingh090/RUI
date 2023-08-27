@@ -15,7 +15,7 @@ import { ValidThemes } from '../config/themes';
 import FixedFooter from '../components/common/FixedFooter';
 
 const Settings = () => {
-    const [tabIndex, setTabIndex] = useState(0);
+    const [tabIndex, setTabIndex] = useState(1);
 
     const { setNamedTheme } = useTheme();
 
@@ -23,20 +23,20 @@ const Settings = () => {
         <div className='fullXY withPadding settingPage'>
             {/* Settings */}
             <div className="TabMenu">
-                <p className={`tab ${tabIndex === 0 ? "active" : ""}`} onClick={() => setTabIndex(0)}>Profile</p>
+                {/* <p className={`tab ${tabIndex === 0 ? "active" : ""}`} onClick={() => setTabIndex(0)}>Profile</p> */}
                 <p className={`tab ${tabIndex === 1 ? "active" : ""}`} onClick={() => setTabIndex(1)}>Users</p>
                 <p className={`tab ${tabIndex === 2 ? "active" : ""}`} onClick={() => setTabIndex(2)}>Password</p>
                 <p className={`tab ${tabIndex === 3 ? "active" : ""}`} onClick={() => setTabIndex(3)}>Info</p>
                 <p className={`tab ${tabIndex === 4 ? "active" : ""}`} onClick={() => setTabIndex(4)}>Themes</p>
             </div>
 
-            <TabBox show={tabIndex === 0}>
+            {/* <TabBox show={tabIndex === 0}>
                 <form className="padYSM profileTab">
                     <RInput placeholder={"Name"} Icon={<PiTextAUnderlineDuotone size={18} />} width={"300px"} RClass={"withShadow roundSM"} />
                     <RInput placeholder={"Email"} Icon={<MdOutlineAlternateEmail size={18} />} width={"300px"} RClass={"withShadow roundSM"} />
                     <IconButton text={"Update"} classList={"withShadow round primaryBg"} />
                 </form>
-            </TabBox>
+            </TabBox> */}
             <TabBox show={tabIndex === 1}>
                 <div className="padYSM">
                     <h2>Users</h2>
