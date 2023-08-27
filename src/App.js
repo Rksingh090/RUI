@@ -24,6 +24,7 @@ import Protected from './auth/Protected';
 
 import WebContext from './context/WebContext';
 import DockerContext from './context/DockerContext';
+import { useEffect } from 'react';
 
 const router = createBrowserRouter([
   {
@@ -93,10 +94,19 @@ const router = createBrowserRouter([
 
 function App() {
 
-  const { theme } = useTheme();
+  const { theme, splashShowed, setSplashShowed } = useTheme();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSplashShowed(true)
+    }, 2500)
+  }, [])
 
   return (
     <div data-theme={theme} className='mainApp'>
+      <div className={`${splashShowed ? "hideSplace" : "showSplash"}`}>
+        <span className='splashAnimation'></span>
+      </div>
       <RouterProvider router={router} />
     </div>
   );

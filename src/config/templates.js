@@ -3,7 +3,7 @@ export const availableTemplates = [
       name: "WordPress",
       description:
         " WordPress is a free and open-source content management system written in PHP and paired with a MySQL or MariaDB database.",
-      icon: "https://worldvectorlogo.com/download/wordpress-icon-1.svg",
+      icon: "https://cdn.worldvectorlogo.com/logos/wordpress-icon.svg",
       image: "wordpress",
       exposed_port: 80,
       environments: [

@@ -8,6 +8,7 @@ export const useTheme = () => useContext(themeCtx);
 
 const ThemeContext = ({ children }) => {
 
+    const [splashShowed, setSplashShowed] = useState(false);
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
     const [menuOpen, setMenuOpen] = useState(localStorage.getItem("menuState") || "true");
 
@@ -39,7 +40,8 @@ const ThemeContext = ({ children }) => {
             theme, setTheme,
             changeTheme, setNamedTheme,
             menuOpen, setMenuOpen,
-            changeMenu
+            changeMenu,
+            splashShowed, setSplashShowed
         }}>
             {children}
         </themeCtx.Provider>

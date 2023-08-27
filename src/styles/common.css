@@ -11,6 +11,9 @@
     align-items: center;
     justify-content: center;
 }
+.rectScreen.oHidden {
+    overflow: hidden;
+}
 
 .rectScreen.gapSM {
     gap: 7px;
@@ -28,6 +31,63 @@
     width: 100%;
     min-height: 100%;
 }
+
+/* splash animation  */
+.showSplash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background);
+    z-index: 88768;
+}
+
+.splashAnimation {
+    font-size: 45px;
+    position: relative;
+}
+
+.splashAnimation::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100px;
+    animation: fadeIn 2.5s 1 linear;
+}
+
+
+@keyframes fadeIn {
+    0% {
+        content: "R";
+    }
+    25% {
+        content: "RP";
+    }
+    40% {
+        content: "RPA";
+    }
+    55% {
+        content: "RPAN";
+    }
+    70% {
+        content: "RPANE";
+    }
+    85% {
+        content: "RPANEL";
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(20);
+        opacity: 0;
+    }
+}
+
 
 /* min height class  */
 .minHeightDiv {
@@ -108,7 +168,7 @@
     font-size: 14px;
 }
 
-.iconBtn .iconLoading {
+.iconLoading {
     animation: spin 1s infinite;
     animation-timing-function: linear;
 }

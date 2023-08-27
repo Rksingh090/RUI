@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { API } from '../constants'
 import { useNavigate } from 'react-router-dom'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 const Protected = ({ children, reverse }) => {
 
@@ -16,31 +17,42 @@ const Protected = ({ children, reverse }) => {
             .then((res) => {
                 const { isLogged } = res.data;
 
-                if(reverse && reverse === true){
+                if (reverse && reverse === true) {
                     if (isLogged) {
-                        return navigate('/')
+                        setTimeout(() => {
+                            return navigate('/')
+                        }, 1000);
                     } else {
-                        return setIsLoggedIn(true)
+                        setTimeout(() => {
+                            return setIsLoggedIn(true)
+                        }, 1000);
                     }
                 }
 
                 if (isLogged) {
-                    return setIsLoggedIn(isLogged)
+                    setTimeout(() => {
+                        return setIsLoggedIn(isLogged)
+                    }, 1000);
                 } else {
-                    return navigate('/login')
+                    setTimeout(() => {
+                        navigate('/login')
+                    }, 1000)
+                    return;
                 }
             })
             .catch(() => {
                 alert("Something Wrong, Check internet connection")
             })
-    }, [])
+    }, [navigate, reverse])
 
     return (
         <>
             {
                 isLoggedIn ? children
                     : (
-                        <h2>Loading...</h2>
+                        <div className='loginPage'>
+                            <AiOutlineLoading3Quarters className={"iconLoading"} size={45} />
+                        </div>
                     )
             }
 

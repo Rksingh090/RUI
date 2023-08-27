@@ -49,6 +49,7 @@ const Login = () => {
                     }))}
                 />
                 <RInput
+                    type={"password"}
                     placeholder={"Password"}
                     RClass={"secondaryBg roundSM loginInput"}
                     Icon={<BiLockAlt size={20} />}

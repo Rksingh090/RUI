@@ -7,7 +7,8 @@ const RInput = ({
     classList,
     RClass,
     Icon,
-    width
+    width,
+    type
 }) => {
     return (
         <div 
@@ -17,7 +18,7 @@ const RInput = ({
         }}
         >
             {Icon && Icon}
-            <input placeholder={placeholder} value={value} onChange={onChange} className={`${classList || ""}`} />
+            <input type={type || "text"} placeholder={placeholder} value={value} onChange={onChange} className={`${classList || ""}`} />
         </div>
     )
 }
