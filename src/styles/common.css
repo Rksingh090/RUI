@@ -532,20 +532,43 @@
 
 
 /* monaco editor  */
-.monacoEditorParent {
-    position: fixed;
-    top: 90px;
-    bottom: 90px;
-    left: 90px;
-    right: 90px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 3888745;
-}
-
-.codeEditor {
-    background-color: var(--background);
+.RCodeEditorWrapper {
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.CodeEditorHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding: 5px;
+}
+
+.CodeEditorHeader>.start,
+.CodeEditorHeader>.end {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.RCodeEditor {
+    height: 100%;
+    width: 100%;
+}
+
+.RCodeEditor .overflow-guard div {
+    /* background-color: var(--background); */
+    /* color: #ffd580; */
+}
+
+.RCodeEditor .scrollbar {
+    display: none;
 }

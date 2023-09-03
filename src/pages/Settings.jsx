@@ -4,8 +4,7 @@ import TabBox from '../components/common/TabBox';
 import "../styles/settings.css";
 import RInput from '../components/common/RInput';
 
-import { MdOutlineAlternateEmail } from "react-icons/md"
-import { PiPasswordLight, PiTextAUnderlineDuotone } from "react-icons/pi"
+import { PiPasswordLight } from "react-icons/pi"
 import { CiLock } from "react-icons/ci";
 
 import IconButton from '../components/common/IconButton';

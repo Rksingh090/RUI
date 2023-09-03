@@ -6,12 +6,10 @@ import { Terminal as Xterm } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
 
 import { WS_URL } from '../constants';
-import { useTheme } from '../context/ThemeContext';
 // import "xterm/css/xterm.css";
 
 const Terminal = () => {
   const xtermRef = useRef(null);
-  const { theme } = useTheme();
 
   const websocket = useMemo(() => new WebSocket(`${WS_URL}/v1/terminal/ws`), []);
   websocket.binaryType = "arraybuffer";

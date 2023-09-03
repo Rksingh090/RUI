@@ -5,22 +5,20 @@ import { BsCpu } from "react-icons/bs";
 import CircleBar from '../components/common/CircleBar';
 import { WS_URL } from '../constants';
 
-import {BiHome} from "react-icons/bi";
-
 const Home = () => {
 
 	const socket = useMemo(() => new WebSocket(`${WS_URL}/v1/stats/dashboard`), [])
 
-	const [stats, setStat]= useState({
+	const [stats, setStat] = useState({
 		cpu_usage: "",
 		disk_usage: "",
 		memory_usage: ""
-	}) 
+	})
 
-	
+
 	socket.onmessage = (e) => {
 		try {
-			const {data} = e;
+			const { data } = e;
 			let jsonData = JSON.parse(data);
 
 			setStat({
@@ -33,7 +31,7 @@ const Home = () => {
 			console.log(error);
 		}
 	}
-	
+
 
 	return (
 		<div className='homePage fullXY withPadding'>

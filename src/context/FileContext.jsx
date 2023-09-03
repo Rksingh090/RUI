@@ -6,6 +6,7 @@ import RInput from '../components/common/RInput';
 import IconButton from '../components/common/IconButton';
 import { AiOutlinePlus } from 'react-icons/ai';
 import EditorBox from '../components/files/EditorBox';
+import { getLanguageByExt } from '../func/getLanguageByExt';
 
 const fileCtx = createContext({});
 export const useFile = () => useContext(fileCtx)
@@ -13,8 +14,8 @@ export const useFile = () => useContext(fileCtx)
 const FileContext = ({ children }) => {
 
     // current wordking dir path 
-    const [currentPath, setCurrentPath] = useState("/");
-    const [inputFilePath, setInputFilePath] = useState("/")
+    const [currentPath, setCurrentPath] = useState("/var/apps/Rpanel/newui");
+    const [inputFilePath, setInputFilePath] = useState("/var/apps/Rpanel/newui")
 
     // state for showing modal forms 
     const [renderState, setRenderState] = useState("");
@@ -29,6 +30,7 @@ const FileContext = ({ children }) => {
     // code editor open state 
     const [codeEditorData, setCodeEditorData] = useState("")
     const [codeEditorOpened, setCodeEditorOpened] = useState(false)
+    const [editorLanguageModel, setEditorLanguageModel] = useState("");
 
 
     const getAllFiles = useCallback(() => {
@@ -60,12 +62,26 @@ const FileContext = ({ children }) => {
         setInputFilePath(newPath)
     }
 
-    // go to clicked path if isDir
-    const goNextDir = (fileData) => {
+    const readFileData = async (filepath) => {
+        try {
+            const res = await axios.post(`${API}/v1/files/read-file`, { path: filepath })
+            return res.data;
+        } catch (error) {
+            console.warn(error);
+        }
+    }
 
+    // go to clicked path if isDir else open in editor
+    const goNextDir = (fileData) => {
         // if it is a file open a editor and push the code
         if (!fileData.isDir || fileData.isDir === undefined) {
-
+            const fileLanguageModel = getLanguageByExt(fileData?.ext)
+            setEditorLanguageModel(fileLanguageModel)
+            readFileData(`${fileData?.currentPath}/${fileData.name}`).then((data) => {
+                setCodeEditorData(data?.data)
+                setCodeEditorOpened(true)
+            })
+            return;
         };
 
         let hasEndSlash = currentPath.charAt(currentPath.length - 1) === "/";
@@ -138,7 +154,8 @@ const FileContext = ({ children }) => {
 
                 // code editor 
                 codeEditorOpened, setCodeEditorOpened,
-                codeEditorData, setCodeEditorData
+                codeEditorData, setCodeEditorData,
+                editorLanguageModel, setEditorLanguageModel
             }}
         >
 
@@ -160,7 +177,9 @@ const FileContext = ({ children }) => {
                 </div>
             </RModal>
 
-            <EditorBox />
+            <RModal show={codeEditorOpened} width={"95vw"} height={"95vh"}>
+                <EditorBox />
+            </RModal>
 
             {children}
         </fileCtx.Provider>
