@@ -1,13 +1,10 @@
 import React from 'react'
 import { useFile } from '../../context/FileContext';
 
-import hljs from 'highlight.js'
 
 const EditorBox = () => {
 
     const { codeEditorData, setCodeEditorData } = useFile()
-
-    const highlightedCode = hljs.highlightAuto(`let a = document.getElementById("DG")`).value
 
     return (
         <div className='monacoEditorParent'>

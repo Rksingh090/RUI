@@ -11,7 +11,7 @@ import { useTheme } from '../context/ThemeContext';
 
 const Terminal = () => {
   const xtermRef = useRef(null);
-  const {theme}= useTheme();
+  const { theme } = useTheme();
 
   const websocket = useMemo(() => new WebSocket(`${WS_URL}/v1/terminal/ws`), []);
   websocket.binaryType = "arraybuffer";

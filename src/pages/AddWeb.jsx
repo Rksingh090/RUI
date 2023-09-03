@@ -38,7 +38,7 @@ const AddWeb = () => {
   return (
     <div className="fullXY withPadding flexCol gapSM">
       <div className="TabMenu fullWidth wrap round">
-        <IconButton onClick={() => navigate(-1)} Icon={<AiOutlineBackward size={16} />} classList={"noBg gapSM fontMD"} text={"Back"}/>
+        <IconButton onClick={() => navigate(-1)} Icon={<AiOutlineBackward size={16} />} classList={"noBg gapSM fontMD"} text={"Back"} />
         <Link className={`tab ${tabIdx === 0 ? "active" : ""}`} to={"/add/web/#templates"}>Deploy Template</Link>
         <Link className={`tab ${tabIdx === 1 ? "active" : ""}`} to={"/add/web/#github-deploy"}>Deploy from Github </Link>
         <Link className={`tab ${tabIdx === 2 ? "active" : ""}`} to={"/add/web/#file-deploy"}>Deploy from Folder</Link>

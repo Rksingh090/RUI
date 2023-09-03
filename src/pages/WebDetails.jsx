@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useWeb } from '../context/WebContext';
 
 // icons 
-import { AiOutlineDelete, AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlinePlus } from 'react-icons/ai';
 import { CgClose } from 'react-icons/cg';
 
 // utilities 
