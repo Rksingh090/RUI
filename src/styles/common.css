@@ -11,6 +11,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .rectScreen.oHidden {
     overflow: hidden;
 }
@@ -65,23 +66,29 @@
     0% {
         content: "R";
     }
+
     25% {
         content: "RP";
     }
+
     40% {
         content: "RPA";
     }
+
     55% {
         content: "RPAN";
     }
+
     70% {
         content: "RPANE";
     }
+
     85% {
         content: "RPANEL";
         transform: scale(1);
         opacity: 1;
     }
+
     100% {
         transform: scale(20);
         opacity: 0;
@@ -204,28 +211,32 @@
     color: var(--color);
 }
 
-.iconBtn.hoverMain:hover{
+.iconBtn.hoverMain:hover {
     color: white;
     background-color: var(--primaryColor);
 }
 
-.iconBtn.hoverSuccess:hover{
+.iconBtn.hoverSuccess:hover {
     color: white;
     background-color: var(--success);
 }
-.iconBtn.hoverError:hover{
+
+.iconBtn.hoverError:hover {
     color: white;
     background-color: var(--error);
 }
-.iconBtn.hoverWarning:hover{
+
+.iconBtn.hoverWarning:hover {
     color: white;
     background-color: var(--warning);
 }
-.iconBtn.hoverWarning:hover{
+
+.iconBtn.hoverWarning:hover {
     color: white;
     background-color: var(--warning);
 }
-.iconBtn.hoverInfo:hover{
+
+.iconBtn.hoverInfo:hover {
     color: white;
     background-color: var(--info);
 }
@@ -517,4 +528,24 @@
 
 .RToggleSwitch input[type="checkbox"]:checked+.switch {
     background-color: var(--background);
+}
+
+
+/* monaco editor  */
+.monacoEditorParent {
+    position: fixed;
+    top: 90px;
+    bottom: 90px;
+    left: 90px;
+    right: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3888745;
+}
+
+.codeEditor {
+    background-color: var(--background);
+    height: 100%;
+    width: 100%;
 }

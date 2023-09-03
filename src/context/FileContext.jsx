@@ -5,6 +5,7 @@ import RModal from '../components/common/RModal';
 import RInput from '../components/common/RInput';
 import IconButton from '../components/common/IconButton';
 import { AiOutlinePlus } from 'react-icons/ai';
+import EditorBox from '../components/files/EditorBox';
 
 const fileCtx = createContext({});
 export const useFile = () => useContext(fileCtx)
@@ -24,6 +25,10 @@ const FileContext = ({ children }) => {
 
     // all files list of current path 
     const [allFiles, setAllFiles] = useState([]);
+
+    // code editor open state 
+    const [codeEditorData, setCodeEditorData] = useState("")
+    const [codeEditorOpened, setCodeEditorOpened] = useState(false)
 
 
     const getAllFiles = useCallback(() => {
@@ -57,7 +62,12 @@ const FileContext = ({ children }) => {
 
     // go to clicked path if isDir
     const goNextDir = (fileData) => {
-        if (!fileData.isDir || fileData.isDir === undefined) return;
+
+        // if it is a file open a editor and push the code
+        if (!fileData.isDir || fileData.isDir === undefined) {
+
+        };
+
         let hasEndSlash = currentPath.charAt(currentPath.length - 1) === "/";
         if (hasEndSlash) {
             setCurrentPath(prev => prev + fileData.name)
@@ -69,7 +79,7 @@ const FileContext = ({ children }) => {
     }
 
     const changePathToInputPath = () => {
-        if(inputFilePath.length <= 0) return;
+        if (inputFilePath.length <= 0) return;
         setCurrentPath(inputFilePath)
     }
 
@@ -124,7 +134,11 @@ const FileContext = ({ children }) => {
                 changePathToInputPath,
                 createFileName, setCreateFileName,
                 createFolderName, setCreateFolderName,
-                renderState, setRenderState
+                renderState, setRenderState,
+
+                // code editor 
+                codeEditorOpened, setCodeEditorOpened,
+                codeEditorData, setCodeEditorData
             }}
         >
 
@@ -146,6 +160,7 @@ const FileContext = ({ children }) => {
                 </div>
             </RModal>
 
+            <EditorBox />
 
             {children}
         </fileCtx.Provider>

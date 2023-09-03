@@ -104,9 +104,9 @@ function App() {
 
   return (
     <div data-theme={theme} className='mainApp'>
-      <div className={`${splashShowed ? "hideSplace" : "showSplash"}`}>
-        <span className='splashAnimation'></span>
-      </div>
+      {/* <div className={`${splashShowed ? "hideSplace" : "showSplash"}`}>
+        <span className='splashAnimation'>{window.APP_PORT}</span>
+      </div> */}
       <RouterProvider router={router} />
     </div>
   );
