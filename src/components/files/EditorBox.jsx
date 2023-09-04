@@ -12,7 +12,7 @@ import darkTheme from './darktheme.json'
 
 const EditorBox = () => {
 
-    const { editorLanguageModel, setCodeEditorOpened, codeEditorData, setCodeEditorData } = useFile()
+    const { editorLanguageModel, handleFileSave, setCodeEditorOpened, codeEditorData, setCodeEditorData } = useFile()
     const { theme } = useTheme()
 
     const options = {
@@ -55,6 +55,7 @@ const EditorBox = () => {
                     <IconButton
                         text={"Save"}
                         classList={"secondaryBg roundSM fontSM hoverSuccess"}
+                        onClick={handleFileSave}
                     />
                     <IconButton
                         text={"Cancle"}

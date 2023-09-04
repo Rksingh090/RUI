@@ -1,17 +1,16 @@
 import React, { useMemo } from 'react'
 import { BiLogoCss3, BiLogoGoLang } from 'react-icons/bi';
 import {
-    
     BsFiletypeCsv, BsFiletypeDocx,
-    BsFiletypeExe, BsFiletypeGif, BsFiletypeHeic, 
+    BsFiletypeExe, BsFiletypeGif, BsFiletypeHeic,
     BsFiletypeJsx, BsFiletypeMd, BsFiletypeMp3,
     BsFiletypePdf, BsFiletypePhp, BsFiletypeSh, BsFiletypeTxt, BsGit
 } from 'react-icons/bs';
 
-import {VscJson, VscFile} from 'react-icons/vsc';
-import {LiaDocker} from 'react-icons/lia';
-import {DiJavascript1, DiSass} from 'react-icons/di';
-import {SiPython} from 'react-icons/si';
+import { VscJson, VscFile } from 'react-icons/vsc';
+import { LiaDocker } from 'react-icons/lia';
+import { DiJavascript1, DiSass } from 'react-icons/di';
+import { SiPython } from 'react-icons/si';
 import { AiFillHtml5 } from 'react-icons/ai';
 import { GoFileZip } from 'react-icons/go';
 import { PiFilePngLight, PiFileJpgLight } from 'react-icons/pi';
@@ -130,10 +129,10 @@ const FileIcon = ({ filename }) => {
     const getFileType = () => {
         let fileExt = filename;
         const splitFileName = filename.split(".");
-        if(splitFileName.length === 2) {
+        if (splitFileName.length === 2) {
             fileExt = splitFileName[1];
-        }else if(splitFileName.length > 2){
-            fileExt = splitFileName[splitFileName.length-1];
+        } else if (splitFileName.length > 2) {
+            fileExt = splitFileName[splitFileName.length - 1];
         }
         const fileIndex = fileTypes.findIndex((item) => item.type.includes(fileExt));
         if (fileIndex !== -1) {

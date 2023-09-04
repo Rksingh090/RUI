@@ -31,6 +31,7 @@ const FileContext = ({ children }) => {
     const [codeEditorData, setCodeEditorData] = useState("")
     const [codeEditorOpened, setCodeEditorOpened] = useState(false)
     const [editorLanguageModel, setEditorLanguageModel] = useState("");
+    const [openedFilePath, setOpenedFilePath] = useState("");
 
 
     const getAllFiles = useCallback(() => {
@@ -73,11 +74,14 @@ const FileContext = ({ children }) => {
 
     // go to clicked path if isDir else open in editor
     const goNextDir = (fileData) => {
+
         // if it is a file open a editor and push the code
         if (!fileData.isDir || fileData.isDir === undefined) {
             const fileLanguageModel = getLanguageByExt(fileData?.ext)
             setEditorLanguageModel(fileLanguageModel)
-            readFileData(`${fileData?.currentPath}/${fileData.name}`).then((data) => {
+            const filePath = `${fileData?.currentPath}/${fileData.name}`;
+            setOpenedFilePath(filePath)
+            readFileData(filePath).then((data) => {
                 setCodeEditorData(data?.data)
                 setCodeEditorOpened(true)
             })
@@ -137,6 +141,26 @@ const FileContext = ({ children }) => {
             })
     }
 
+    // save the edited file content 
+    const handleFileSave = async () => {
+        try {
+            const fileRes = await axios.post(`${API}/v1/files/update-file`, {
+                path: openedFilePath,
+                content: codeEditorData
+            })
+            const { status } = fileRes.data;
+
+            if (status === "success") {
+                setCodeEditorData("")
+                setOpenedFilePath("")
+                setCodeEditorOpened(false)
+            }
+
+        } catch (error) {
+            console.warn(error);
+        }
+    }
+
     return (
         <fileCtx.Provider
             value={{
@@ -155,7 +179,9 @@ const FileContext = ({ children }) => {
                 // code editor 
                 codeEditorOpened, setCodeEditorOpened,
                 codeEditorData, setCodeEditorData,
-                editorLanguageModel, setEditorLanguageModel
+                editorLanguageModel, setEditorLanguageModel,
+                openedFilePath, setOpenedFilePath,
+                handleFileSave
             }}
         >
 
