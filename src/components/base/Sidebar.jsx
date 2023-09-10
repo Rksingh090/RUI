@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo } from 'react'
 
 // utils 
 import { useTheme } from '../../context/ThemeContext'
@@ -10,11 +10,12 @@ import { LuSettings } from 'react-icons/lu';
 import { RxDashboard } from 'react-icons/rx';
 import { BiNetworkChart } from 'react-icons/bi';
 import { GiSpiderWeb } from 'react-icons/gi';
+import { FiGithub } from 'react-icons/fi';
 import { BsDatabase, BsFolder2Open, BsTerminalDash } from 'react-icons/bs';
 
 const Sidebar = () => {
   const { menuOpen } = useTheme();
-  const [sidebarMenu, setSidebarMenu] = useState({
+  const sidebarMenu = useMemo(() => ({
     links: [
       {
         name: "Dashboard",
@@ -52,12 +53,17 @@ const Sidebar = () => {
         icon: <LiaDocker size={18} />
       },
       {
+        name: "Github",
+        href: "/github",
+        icon: <FiGithub size={18} />
+      },
+      {
         name: "Setting",
         href: "/setting",
         icon: <LuSettings size={18} />
       },
     ]
-  })
+  }), [])
 
 
   return (

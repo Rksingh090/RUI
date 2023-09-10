@@ -2,9 +2,11 @@
 .mainBG {
     background-color: var(--background);
 }
+
 .mainText {
     color: var(--color);
 }
+
 .mainIcon {
     fill: var(--color);
 }
@@ -12,9 +14,11 @@
 .secondaryBG {
     background-color: var(--secondaryBg);
 }
+
 .secondaryText {
     color: var(--secondaryBg);
 }
+
 .fadeText {
     color: var(--fadeText);
 }
@@ -83,6 +87,13 @@ input.noStyle {
 
 
 /* flex  */
+.flexCenter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .flexRow {
     display: flex;
     flex-direction: row;
@@ -251,10 +262,12 @@ input.noStyle {
 .TabMenu.wrap {
     flex-wrap: wrap;
 }
+
 .TabMenu.scrollX {
     overflow-y: hidden;
     overflow-x: auto;
 }
+
 .TabMenu.scrollX::-webkit-scrollbar {
     height: 4px;
 }
@@ -265,6 +278,7 @@ input.noStyle {
     cursor: pointer;
     white-space: nowrap;
 }
+
 .TabMenu .tab.small {
     padding: 5px 8px;
 }
@@ -273,10 +287,12 @@ input.noStyle {
     overflow: hidden;
     border-radius: 5px;
 }
+
 .tab.active {
     color: white;
     background-color: var(--primaryColor);
 }
+
 .TabMenu.activeBorder .tab.active {
     color: var(--color);
     background-color: inherit;
@@ -295,12 +311,15 @@ input.noStyle {
 .successBG {
     background-color: var(--success);
 }
+
 .successText {
     color: var(--success);
 }
+
 .successBorderAll {
     border: 1px solid var(--success);
 }
+
 .successBorderTop {
     border-top: 1px solid var(--success);
 }
@@ -308,12 +327,15 @@ input.noStyle {
 .errorBG {
     background-color: var(--error);
 }
+
 .errorText {
     color: var(--error);
 }
+
 .errorBorderAll {
     border: 1px solid var(--error);
 }
+
 .errorBorderTop {
     border-top: 1px solid var(--error);
 }
@@ -321,12 +343,15 @@ input.noStyle {
 .infoBG {
     background-color: var(--info);
 }
+
 .infoText {
     color: var(--info);
 }
+
 .infoBorderAll {
     border: 1px solid var(--info);
 }
+
 .infoBorderTop {
     border-top: 1px solid var(--info);
 }
@@ -334,12 +359,15 @@ input.noStyle {
 .warningBG {
     background-color: var(--warning);
 }
+
 .warningText {
     color: var(--warning);
 }
+
 .warningBorderAll {
     border: 1px solid var(--warning);
 }
+
 .warningBorderTop {
     border-top: 1px solid var(--warning);
 }
@@ -357,9 +385,11 @@ input.noStyle {
     gap: 15px;
     width: 100%;
 }
+
 .RGrid .col3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+
 .RGrid .col4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
 }

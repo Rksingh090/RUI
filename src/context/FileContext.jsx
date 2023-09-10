@@ -187,7 +187,13 @@ const FileContext = ({ children }) => {
 
             {/* create file modal  */}
             <RModal show={renderState === "fileCreate"} width={"250px"} formClass={"flexCol"} height={"auto"}>
-                <RInput placeholder={"File Name"} value={createFileName} onChange={(e) => setCreateFileName(e.target.value)} RClass={"secondaryBg roundSM"} />
+                <RInput
+                    placeholder={"File Name"}
+                    value={createFileName}
+                    onChange={(e) => setCreateFileName(e.target.value)}
+                    RClass={"secondaryBg roundSM"}
+                    autoFocus
+                />
                 <div className='flexRow fullX gapMD'>
                     <IconButton onClick={() => setRenderState("")} text={"Cancle"} classList={"secondaryBg roundSM"} />
                     <IconButton onClick={createNewFile} text={"Create"} Icon={<AiOutlinePlus />} classList={"primaryBg gapSM roundSM"} />
@@ -196,7 +202,12 @@ const FileContext = ({ children }) => {
 
             {/* create folder modal  */}
             <RModal show={renderState === "folderCreate"} width={"250px"} formClass={"flexCol"} height={"auto"}>
-                <RInput placeholder={"Folder Name"} value={createFolderName} onChange={(e) => setCreateFolderName(e.target.value)} RClass={"secondaryBg roundSM"} />
+                <RInput
+                    placeholder={"Folder Name"}
+                    value={createFolderName}
+                    onChange={(e) => setCreateFolderName(e.target.value)}
+                    RClass={"secondaryBg roundSM"}
+                />
                 <div className='flexRow fullX gapMD'>
                     <IconButton onClick={() => setRenderState("")} text={"Cancle"} classList={"secondaryBg roundSM"} />
                     <IconButton onClick={createNewFolder} text={"Create"} Icon={<AiOutlinePlus />} classList={"primaryBg gapSM roundSM"} />

@@ -8,17 +8,25 @@ const RInput = ({
     RClass,
     Icon,
     width,
-    type
+    type,
+    autoFocus
 }) => {
     return (
-        <div 
-        className={`RInput ${RClass || ""}`}
-        style={{
-            width: width || "100%"
-        }}
+        <div
+            className={`RInput ${RClass || ""}`}
+            style={{
+                width: width || "100%"
+            }}
         >
             {Icon && Icon}
-            <input type={type || "text"} placeholder={placeholder} value={value} onChange={onChange} className={`${classList || ""}`} />
+            <input
+                type={type || "text"}
+                placeholder={placeholder}
+                value={value}
+                onChange={onChange}
+                className={`${classList || ""}`}
+                autoFocus={autoFocus || false}
+            />
         </div>
     )
 }

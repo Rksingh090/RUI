@@ -1,12 +1,12 @@
 // let protocol = new URL(window.location.href).protocol;
 // protocol = protocol.replace(":", "");
 
-// let WS_URL = "ws://"+window.location.hostname+":"+window.location.port;
-// let API = "http://"+window.location.hostname+":"+window.location.port;
+// let WS_URL = "ws://" + window.location.hostname + ":" + window.location.port;
+// let API = "http://" + window.location.hostname + ":" + window.location.port;
 
-// if(protocol === "https"){
-//     WS_URL = "wss://"+window.location.hostname+":"+window.location.port;
-//     API = "https://"+window.location.hostname+":"+window.location.port;
+// if (protocol === "https") {
+//     WS_URL = "wss://" + window.location.hostname + ":" + window.location.port;
+//     API = "https://" + window.location.hostname + ":" + window.location.port;
 // }
 
 // export {

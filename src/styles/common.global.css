@@ -211,6 +211,11 @@
     color: var(--color);
 }
 
+.iconBtn.changeSVG:hover svg,
+.iconBtn.changeSVG:hover path {
+    stroke: white;
+}
+
 .iconBtn.hoverMain:hover {
     color: white;
     background-color: var(--primaryColor);

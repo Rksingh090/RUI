@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import ThemeContext from './context/ThemeContext';
 
-import './index.css';
-import './styles/utils.css';
-import './styles/common.css';
+import './index.global.css';
+import './styles/utils.global.css';
+import './styles/common.global.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

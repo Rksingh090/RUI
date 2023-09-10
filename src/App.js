@@ -1,3 +1,5 @@
+// import { useEffect } from 'react';
+
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { useTheme } from './context/ThemeContext';
 
@@ -16,15 +18,16 @@ import Settings from './pages/Settings';
 import WebDetails from './pages/WebDetails';
 import AddWeb from './pages/AddWeb';
 import DockerNetwork from './pages/DockerNetwork';
-import FileContext from './context/FileContext';
+import Github from './pages/Github';
 
 // auth 
 import Login from './auth/Login';
 import Protected from './auth/Protected';
 
+// contexts 
+import FileContext from './context/FileContext';
 import WebContext from './context/WebContext';
 import DockerContext from './context/DockerContext';
-import { useEffect } from 'react';
 
 const router = createBrowserRouter([
   {
@@ -32,13 +35,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element:
+        element: (
           <DockerContext>
             <WebContext>
-              <Protected><Base /></Protected>
+              <Protected>
+                <Base />
+              </Protected>
             </WebContext>
           </DockerContext>
-        ,
+        ),
         children: [
           {
             path: "",
@@ -77,6 +82,10 @@ const router = createBrowserRouter([
             element: <Terminal />
           },
           {
+            path: "/github",
+            element: <Github />
+          },
+          {
             path: "/setting",
             element: <Settings />
           },
@@ -94,13 +103,17 @@ const router = createBrowserRouter([
 
 function App() {
 
-  const { theme, splashShowed, setSplashShowed } = useTheme();
+  const {
+    theme,
+    // splashShowed, 
+    // setSplashShowed 
+  } = useTheme();
 
-  useEffect(() => {
-    setTimeout(() => {
-      setSplashShowed(true)
-    }, 2500)
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setSplashShowed(true)
+  //   }, 2500)
+  // }, [])
 
   return (
     <div data-theme={theme} className='mainApp'>
