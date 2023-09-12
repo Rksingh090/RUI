@@ -55,7 +55,7 @@ const Settings = () => {
                 <div className="padYSM">
                     <h4>Panel Info</h4>
                     <div className='settingInfoTab'>
-                        <table className='RTable bordered zebra '>
+                        <table className='RTable gridTwo bordered zebra '>
                             <tbody>
                                 <tr>
                                     <td>Installed Version</td>
@@ -96,8 +96,8 @@ const Settings = () => {
                                         backgroundColor: theme?.background
                                     }}
                                     onClick={() => setNamedTheme(theme?.title)}>
-                                        {theme?.text}
-                                    
+                                    {theme?.text}
+
                                 </div>
                             ))
                         }

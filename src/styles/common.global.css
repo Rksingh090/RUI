@@ -301,12 +301,19 @@
 
 .RTable tr {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 }
 
 /* bordered table  */
 .RTable.bordered {
     border: 1px solid var(--secondaryBg);
+}
+
+
+.RTable.noWrap td,
+.RTable.noWrap th {
+    word-break: keep-all;
+    text-wrap: nowrap;
 }
 
 

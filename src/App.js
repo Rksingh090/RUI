@@ -28,6 +28,8 @@ import Protected from './auth/Protected';
 import FileContext from './context/FileContext';
 import WebContext from './context/WebContext';
 import DockerContext from './context/DockerContext';
+import GithubSetup from './pages/GithubSetup';
+import GithubContext from './context/GithubContext';
 
 const router = createBrowserRouter([
   {
@@ -36,13 +38,15 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: (
-          <DockerContext>
-            <WebContext>
-              <Protected>
-                <Base />
-              </Protected>
-            </WebContext>
-          </DockerContext>
+          <GithubContext>
+            <DockerContext>
+              <WebContext>
+                <Protected>
+                  <Base />
+                </Protected>
+              </WebContext>
+            </DockerContext>
+          </GithubContext>
         ),
         children: [
           {
@@ -83,13 +87,17 @@ const router = createBrowserRouter([
           },
           {
             path: "/github",
-            element: <Github />
+            element: <Github />,
           },
           {
             path: "/setting",
             element: <Settings />
           },
         ]
+      },
+      {
+        path: "/github/setup",
+        element: <GithubSetup />
       },
       {
         path: "/login",
