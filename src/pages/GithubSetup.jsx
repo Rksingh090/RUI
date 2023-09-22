@@ -39,6 +39,12 @@ const GithubSetup = () => {
         }
     }, [URLSearchParam])
 
+    const handleClose = () => {
+        if (window?.opener?.closeParent) {
+            window.opener.closeParent()
+        }
+        window.close()
+    }
     return (
         <div className='gitHubConfigurePage' >
             {
@@ -52,10 +58,10 @@ const GithubSetup = () => {
                 <p className='githubConfiguredMessage'>Now you can close this window. All looks good 👍</p>
             }
             <IconButton
-                onClick={() => window.close()}
+                onClick={handleClose}
                 loading={disable}
                 classList={"fontLG gapMD round withShadow primaryBg hoverError"}
-                text={"Close This Window"}
+                text={disable ? "Wait...." : "Close This Window"}
             />
         </div>
     )

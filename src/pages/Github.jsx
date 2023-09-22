@@ -19,8 +19,8 @@ const Github = () => {
         window.open("https://github.com/apps/rpanel/installations/new", "_blank")
     }
 
-    window.hello = function () {
-        alert("Window Closed")
+    window.closeParent = function () {
+        window.location.reload()
     }
 
     const { repoLoaded, isLoading, isConfigured, allRepositories, getAllRepositories } = useGithub();
@@ -58,7 +58,6 @@ const Github = () => {
                                     <tr>
                                         <th>Git Repo No.</th>
                                         <th>Repository</th>
-                                        <th>Owner</th>
                                         <th>Created At</th>
                                         <th>Language</th>
                                         <th>Visiblity</th>
@@ -73,7 +72,6 @@ const Github = () => {
                                             <tr key={repo.id}>
                                                 <td>{repo?.id}</td>
                                                 <td>{repo?.name}</td>
-                                                <td>{repo?.owner?.login}</td>
                                                 <td>{new Date(repo?.created_at).toDateString()}</td>
                                                 <td>{repo?.language}</td>
                                                 <td >
