@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 import '../styles/github.css';
 import IconButton from '../components/common/IconButton';
@@ -23,16 +23,13 @@ const Github = () => {
         window.location.reload()
     }
 
-    const { repoLoaded, isLoading, isConfigured, allRepositories, getAllRepositories } = useGithub();
+    const { isLoading, isConfigured, allRepositories, getAllRepositories } = useGithub();
 
     useEffect(() => {
-        if (!repoLoaded) {
+        if (!allRepositories?.loaded) {
             getAllRepositories()
         }
-    }, [repoLoaded])
-
-
-
+    }, [getAllRepositories, allRepositories?.loaded])
 
     return (
         <div className='fullXY withPadding githubPage'>
@@ -66,9 +63,9 @@ const Github = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        allRepositories &&
-                                        allRepositories?.length > 0 &&
-                                        allRepositories?.map((repo) => (
+                                        allRepositories?.data &&
+                                        allRepositories?.data?.length > 0 &&
+                                        allRepositories?.data?.map((repo) => (
                                             <tr key={repo.id}>
                                                 <td>{repo?.id}</td>
                                                 <td>{repo?.name}</td>

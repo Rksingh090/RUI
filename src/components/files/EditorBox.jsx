@@ -39,6 +39,7 @@ const EditorBox = () => {
         }
 
         if (monaco?.editor) {
+            // monaco.editor?.setModelLanguage(editor?.getModel(), editorLanguageModel)
             monaco.editor?.setModelLanguage(editor?.getModel(), editorLanguageModel)
 
             editor.getModel().updateOptions({ tabSize: 6, insertSpaces: true });

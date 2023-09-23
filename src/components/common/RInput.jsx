@@ -9,7 +9,9 @@ const RInput = ({
     Icon,
     width,
     type,
-    autoFocus
+    autoFocus,
+    end,
+    inputProps
 }) => {
     return (
         <div
@@ -18,7 +20,7 @@ const RInput = ({
                 width: width || "100%"
             }}
         >
-            {Icon && Icon}
+            {(Icon && !end) && Icon}
             <input
                 type={type || "text"}
                 placeholder={placeholder}
@@ -26,7 +28,9 @@ const RInput = ({
                 onChange={onChange}
                 className={`${classList || ""}`}
                 autoFocus={autoFocus || false}
+                {...inputProps}
             />
+            {(Icon && end) && Icon}
         </div>
     )
 }

@@ -8,10 +8,12 @@ import { Link } from 'react-router-dom';
 import { LiaDocker } from 'react-icons/lia';
 import { LuSettings } from 'react-icons/lu';
 import { RxDashboard } from 'react-icons/rx';
-import { BiNetworkChart } from 'react-icons/bi';
 import { GiSpiderWeb } from 'react-icons/gi';
 import { FiGithub } from 'react-icons/fi';
-import { BsDatabase, BsFolder2Open, BsTerminalDash } from 'react-icons/bs';
+import { BsFolder2Open, BsTerminalDash } from 'react-icons/bs';
+
+// import { BsDatabase } from 'react-icons/bs';
+// import { BiNetworkChart } from 'react-icons/bi';
 
 const Sidebar = () => {
   const { menuOpen } = useTheme();
@@ -32,16 +34,16 @@ const Sidebar = () => {
         href: "/files",
         icon: <BsFolder2Open size={18} />
       },
-      {
-        name: "Database",
-        href: "/database",
-        icon: <BsDatabase size={18} />
-      },
-      {
-        name: "Network",
-        href: "/network",
-        icon: <BiNetworkChart size={18} />
-      },
+      // {
+      //   name: "Database",
+      //   href: "/database",
+      //   icon: <BsDatabase size={18} />
+      // },
+      // {
+      //   name: "Network",
+      //   href: "/network",
+      //   icon: <BiNetworkChart size={18} />
+      // },
       {
         name: "Terminal",
         href: "/terminal",

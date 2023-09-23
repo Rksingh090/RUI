@@ -30,6 +30,7 @@ import WebContext from './context/WebContext';
 import DockerContext from './context/DockerContext';
 import GithubSetup from './pages/GithubSetup';
 import GithubContext from './context/GithubContext';
+import { useEffect } from 'react';
 
 const router = createBrowserRouter([
   {
@@ -113,15 +114,15 @@ function App() {
 
   const {
     theme,
-    // splashShowed, 
-    // setSplashShowed 
+    // splashShowed,
+    setSplashShowed
   } = useTheme();
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setSplashShowed(true)
-  //   }, 2500)
-  // }, [])
+  useEffect(() => {
+    setTimeout(() => {
+      setSplashShowed(true)
+    }, 2500)
+  }, [setSplashShowed])
 
   return (
     <div data-theme={theme} className='mainApp'>

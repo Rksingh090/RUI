@@ -31,6 +31,10 @@ const fileExtMap = [
         exts: [".css"],
         name: "css",
     },
+    {
+        exts: [".java"],
+        name: "java",
+    },
 ]
 export const getLanguageByExt = (ext) => {
     if (ext === "" || !ext) return "bash";

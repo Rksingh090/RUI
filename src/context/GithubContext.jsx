@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { createContext, useContext } from "react";
 
 import axios from 'axios';
@@ -12,10 +12,13 @@ const GithubContext = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isConfigured, setIsConfigured] = useState(false);
 
-    const [repoLoaded, setRepoLoaded] = useState(false)
 
-    const [allRepositories, setAllRepositories] = useState([])
+    const [allRepositories, setAllRepositories] = useState({
+        loaded: false,
+        data: []
+    })
 
+    // get all repos 
     const getAllRepositories = useCallback(() => {
         setIsLoading(true)
         axios.get(`${API}/v1/git/repositories`, {
@@ -23,8 +26,10 @@ const GithubContext = ({ children }) => {
         }).then((res) => {
             const { error, repositories, configured } = res.data;
             if (error === false) {
-                setAllRepositories(repositories)
-                setRepoLoaded(true)
+                setAllRepositories({
+                    loaded: true,
+                    data: repositories
+                })
             }
             setIsConfigured(configured && configured === true);
         })
@@ -36,25 +41,29 @@ const GithubContext = ({ children }) => {
             })
     }, []);
 
-    const getGitConfig = useCallback(() => {
-        axios.get(`${API}/v1/git/get-config`, {
+    const getGitConfig = () => {
+        axios.get(`${API}/v1/git/check-configuration`, {
             withCredentials: true
         }).then((res) => {
-            const { status, config } = res.data;
+            const { status, configured } = res.data;
             if (status === "success") {
-                setIsConfigured(config)
+                setIsConfigured(configured)
             }
         })
             .catch((err) => {
                 console.log(err?.response?.data);
             })
-    })
+    }
+
+    useEffect(() => {
+        getGitConfig()
+    }, [])
 
     return (
         <gitContext.Provider value={{
             // git states
             allRepositories, setAllRepositories,
-            isConfigured, isLoading, repoLoaded,
+            isConfigured, isLoading,
 
             // git func 
             getAllRepositories, getGitConfig

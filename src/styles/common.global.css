@@ -584,3 +584,36 @@
 .RCodeEditor .scrollbar {
     display: none;
 }
+
+
+/* r select */
+.RSelect {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+}
+
+.RSelectOptions {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-shadow: var(--shadowSM);
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.RSelectOptions .SelectOption {
+    width: 100%;
+    background-color: var(--background);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.RSelectOptions .SelectOption:hover {
+    background-color: var(--secondaryBg);
+}
