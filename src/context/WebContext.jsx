@@ -303,11 +303,18 @@ const WebContext = ({ children }) => {
 
     // on delete env 
     const onDeleteEnv = (idx) => {
-        const filteredEnv = singleWeb.variables?.filter((_, itemIdx) => itemIdx !== idx);
-        setSingleWeb(prev => ({
-            ...prev,
-            variables: filteredEnv
-        }))
+        const find = singleWeb.variables?.find((_, itemIdx) => itemIdx === idx);
+        axios.post(`${API}/v1/web/delete-variable`, { id: singleWeb?._id, key: find.key })
+            .then((res) => {
+                const { status } = res.data;
+                if (status === "success") {
+                    const filteredEnv = singleWeb.variables?.filter((_, itemIdx) => itemIdx !== idx);
+                    setSingleWeb(prev => ({
+                        ...prev,
+                        variables: filteredEnv
+                    }))
+                }
+            })
     }
 
     // rebuild website 

@@ -87,6 +87,7 @@ const WebDetails = () => {
             </RModal>
 
             <div className="mainWebGrid">
+
                 <WithLoading classList={"mainBg roundSM withShadow"} min={"200px"} spinnerSize={40} loading={loading?.singleWebLoading}>
                     <div className="webDetailCol1 withShadow roundSM">
                         <div className="webDetailItem">

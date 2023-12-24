@@ -6,7 +6,7 @@
 .mainWebGrid {
     width: 100%;
     display: grid;
-    grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     align-items: flex-start;
     gap: 10px;
 }
@@ -17,6 +17,7 @@
     width: 100%;
     overflow: hidden;
 }
+
 .webDetailCol1 {
     padding: 10px;
 }
@@ -26,15 +27,18 @@
     flex-direction: column;
     align-items: flex-start;
 }
+
 .webDetailCol1 .webDetailItem {
     width: 100%;
     padding: 8px 0;
     display: grid;
     grid-template-columns: 100px minmax(0, 1fr);
 }
-.webDetailCol1 .webDetailItem:not(:last-child){
+
+.webDetailCol1 .webDetailItem:not(:last-child) {
     border-bottom: 1px solid var(--secondaryBg);
 }
+
 .webDetailCol1 .webDetailItem p,
 .webDetailCol1 .webDetailItem a {
     font-size: 12px;
@@ -67,7 +71,8 @@
     background-color: var(--secondaryBg);
     padding: 5px;
 }
-.containerDetailTab > pre {
+
+.containerDetailTab>pre {
     font-size: 11px;
 }
 
@@ -77,6 +82,9 @@
     flex-direction: column;
     gap: 8px;
     align-items: flex-start;
+    max-height: 68.5vh;
+    overflow-y: auto;
+    padding: 5px;
 }
 
 /* tab => proxy details  */
@@ -92,26 +100,28 @@
     gap: 10px;
     padding: 5px 10px;
 }
-.proxyDomains:nth-child(odd){
+
+.proxyDomains:nth-child(odd) {
     background-color: var(--secondaryBg);
 }
+
 .proxyDomains:nth-child(odd) .iconBtn {
     background-color: transparent;
 }
 
 
-.terminalTab .XtermTerminal{
+.terminalTab .XtermTerminal {
     background-color: var(--secondaryBg);
     width: 100%;
     height: 68vh;
     padding: 10px;
     overflow: hidden;
-} 
+}
 
 .terminalTab .terminal.xterm {
     width: 100%;
     height: 100%;
-} 
+}
 
 .terminalTab .xterm .xterm-viewport {
     background-color: var(--secondaryBg) !important;
@@ -127,8 +137,9 @@
     background-color: var(--secondaryBg);
     padding: 15px;
     max-height: 68vh;
-    overflow-y: auto; 
+    overflow-y: auto;
 }
+
 .containerLogsTab p {
     word-wrap: break-word;
     word-break: break-all;
@@ -144,6 +155,7 @@
     overflow-y: auto;
     padding: 10px;
 }
+
 .rebuildLogs p {
     white-space: pre-line;
 }
